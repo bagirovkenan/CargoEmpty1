@@ -1,0 +1,97 @@
+﻿@model IEnumerable<CargoEmpty.Models.General.Bundel.GetIndexBundel>
+
+@{
+    foreach (var i in Model)
+    {
+        <tr>
+            <td>
+                @i.CountryName
+            </td>
+            <td>
+                @i.ShopName
+            </td>
+            <td>
+                @i.UnicalNumberReception
+            </td>
+            <td>
+                Link  : @i.Price<br />
+                Catd : @i.DeliveryPrice
+            </td>
+            <td>
+                @if (i.CreateDate != null)
+                {
+                    @Html.DisplayNameFor(model => model.CreateDate) <span>:</span> @i.CreateDate<br />
+
+                }
+                @if (i.ReceivingTime != null)
+                {
+                    @Html.DisplayNameFor(model => model.ReceivingTime) <span>:</span> @i.ReceivingTime<br />
+
+                }
+
+                @if (i.OnWay != null)
+                {
+                    @Html.DisplayNameFor(model => model.OnWay) <span>:</span> @i.OnWay<br />
+
+                }
+
+                @if (i.DeliveryTime != null)
+                {
+                    @Html.DisplayNameFor(model => model.DeliveryTime) <span>:</span> @i.DeliveryTime
+
+                }
+            </td>
+            <td>
+                @for (var j = 0; j < i.Links.Count; j++)
+                {
+
+                    if (i.Links[j].OrderLink == null)
+                    {
+                        <span>|</span> <span data-id="@i.Links[j].Id" id="BundelIndexDecNameId" style="cursor:pointer">Dec</span> <span>|</span>
+
+                    }
+                    else
+                    {
+                        <span>|</span> <a href="@i.Links[j].OrderLink">Order</a> <span>|</span>
+                    }
+
+                }
+            </td>
+            <td title="ceki/en/uznluq/hundurluk">
+                @i.Weight kq <br />
+                @i.Width/@i.Length/@i.Height
+            </td>
+            <td>
+                @foreach (var k in ViewBag.status)
+                {
+                    if (i.OrderStatusId == k.Id)
+                    {
+                        <span>@k.StatusName</span>
+                    }
+                }
+            </td>
+            <td>
+                @if (i.OrderStatusId == 0 || i.OrderStatusId == 2)
+                {
+                    <button id="changeBundelStatus" data-id="@i.Id"  class="btn btn-warning" style="font-size:15px;">Status</button>
+                    <button data-id="@i.Id" class="btn btn-danger" style="font-size:15px;" id="bundelIndexDeleteButton"><i class="fas fa-times"></i></button>
+                }
+                else
+                {
+                    <!-- Example single danger button -->
+                    <div class="btn-group" style="width:100%;">
+                        <button style="width:100%;" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                        </button>
+                        <div class="dropdown-menu">
+                            <button class="btn btn-info" href="#" style="width:100%;text-align:center;display:block;margin-top:5px;font-size:12px;">Status</button>
+                            <button class="btn btn-info" style="width:100%;text-align:center;display:block;margin-top:5px;font-size:12px;" href="#">Status1</button>
+                            <button class="btn btn-info" href="#" style="width:100%;text-align:center;display:block;margin-top:5px;font-size:12px;">Status2</button>
+
+                        </div>
+                    </div>
+                }
+            </td>
+        </tr>
+    }
+}

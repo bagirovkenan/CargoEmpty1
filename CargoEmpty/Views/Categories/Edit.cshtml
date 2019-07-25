@@ -1,0 +1,35 @@
+﻿@model CargoEmpty.Models.General.Category
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+}
+
+
+<div class="col-lg-10 col-12 offset-lg-1 AdminCreateNews" style="width:100%;height:auto;">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CategoryName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12 col-lg-12">
+                    @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-4 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

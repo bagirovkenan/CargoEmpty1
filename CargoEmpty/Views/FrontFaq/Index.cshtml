@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CargoEmpty.Models.Pages.Faq.FaqDb>
+@{
+    ViewBag.Title = "FAQ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcroumbs start -->
+
+<div class="FaqTopImgMainDiv">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-7 faqTitleColDiv leftText">
+                <h1>@ViewBag.Title</h1>
+                <a href="/Home/Index" title="Home">Əsas</a>
+                / FAQ
+            </div>
+            <div class="col-12 col-lg-5 RightText">
+                <h4>Siz sifariş edin, biz çatdıraq. <span>SÜRƏTLİ</span> və <span>TƏHLÜKƏSİZ!</span></h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Accordion & Button Start -->
+<div class="FaqsMainDiv" style="margin-top:100px;">
+    <div class="container FaqsContainerDiv">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 faqFaqsTopTitleColDiv">
+                <div class="FaqsTopTitleDiv">
+                    <h3 class="FaqsTitleH3">Faq...</h3>
+                </div>
+            </div>
+            @*------------------------------------------------------------------------------------------------------------------*@
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 FaqFaqsMainColDiv">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 FaqTitleColDiv">
+                        @foreach (var i in Model)
+                        {
+
+                            <div class="row">
+
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 ShowFaqtitleFaq">
+                                    <h3><i class="fab fa-quora"></i> - @i.FaqTitle</h3>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 FaqHiddeColDiv">
+                                   <p id="faqContetntP">                                       
+                                        @(new HtmlString(i.FaqContent))
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="width:100%;height:100px;" ></div>
+
+
+
+@section FrontFaqScript
+{
+    <script type="text/javascript" src="~/JavaScript/Front/Faq.js"></script>
+
+}
+
+

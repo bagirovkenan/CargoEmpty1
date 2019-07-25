@@ -1,0 +1,46 @@
+﻿<div class="modal fade" id="CountryCreateModal" tabindex="-1" role="dialog" aria-labelledby="CountryCreateModalLong" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CountryCreateModalLabel">Create</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12 col-12">
+                        <div class="CreatModalFormMainDiv">
+                            @using (Html.BeginForm("Create", "Cauntry", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <label class="form-control;">Olke Adi<span style="color:red;">*</span></label>
+                                <div>
+                                    <input type="text" name="CauntryName" class="form-control creatModalInput" /><br />
+                                </div>
+                                <label class="form-control;">Valyuta<span style="color:red;">*</span></label>
+                                <div>
+                                    <select name="CurrencyId" class="form-control">
+                                     @foreach(var i in ViewBag.Currency)
+                                     {
+                                        <option value="@i.Id" class="form-control">@i.CurrencyName</option>
+                                     }
+                                    </select>
+                                </div>
+                                <label class="">Olke Bayragi<span style="color:red;">*</span></label>
+                                <div>
+                                    <input type="file" class="form-control creatModalInput" name="CountryFlag" /><br />
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btm-danger creatModalBtn">Save</button>
+                                    <button type="button" id="CountryActivBtnCreate" class="btn btn-danger">DeActiv</button>
+                                    <input id="activInput" type="hidden" name="Activ" value="false" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

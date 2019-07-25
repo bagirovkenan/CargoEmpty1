@@ -1,0 +1,117 @@
+﻿@model CargoEmpty.Models.Pages.News.NewsDbModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+
+    DateTime? LastDate; 
+    if (Model.NewsRefreshDate == null)
+    {
+        LastDate = @Model.NewsCreateDate;
+    }
+    else
+    {
+        LastDate = @Model.NewsRefreshDate;
+    }
+    string isActiveClass;
+    string IsActivText;
+    string activinput;
+    if (Model.IsActive)
+    {
+        activinput = "true";
+        IsActivText = "Activ";
+        isActiveClass = "btn btn-success";
+    }
+    else
+    {
+
+
+        isActiveClass = "btn btn-danger";
+        IsActivText = "DeActiv";
+        activinput = "false";
+
+    }
+
+}
+
+<div class="col-lg-10 col-md-11 col-12 col-sm-12 offset-lg-1 AdminCreateNews" style="width:100%;height:auto;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12 NewsEditFormMainColDiv">
+                <form action="/News/Edit" method="post" enctype="multipart/form-data" class="form-group">
+                    @*      <input name="__ RequestVerificationToken" type="hidden" value="saTFWpkKN0BYazFtN6c4YbZAmsEwG0srqlUqqloi / fVgeV2ciIFVmelvzwRZpArs" />*@
+
+                    <input type="hidden" name="Id" value="@Model.Id" />
+                    <input type="hidden" name="ImagePath" value="@Model.ImagePath" />
+                    <div class="NewsCreateFormDiv" style="width:100%;height:auto">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <label>Xeber Basligi <span style="color:red"> *</span> </label>
+                                <input class="form-control" type="text" name="NewsTitle" value="@Model.NewsTitle" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <label>Xeber Yeni Sekili <span style="color:red"> *</span> </label>
+                                <input class="form-control" type="file" name="NewsImg" value="" />
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <label>Xeberin Yaranma(Deyisme) Tarixi <span style="color:red"> *</span> </label>
+                                <label class="form-control" name="NewsCreateDate">@LastDate</label>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-lg-6 col-md-6 col-12" style="padding-top:10px;">
+                                <label>Indiki Sekili</label><br />
+                                <img src="@Model.ImagePath" alt="Alternate Text" style="width:70%;height:70%;" />
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <label>Xeberin Yenilenme Tarixi <span style="color:red">*</span> </label>
+                                <input class="form-control" type="date" name="NewsRefreshDate" value="@Model.NewsCreateDate" />
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <label>Xeber Metni <span style="color:red"> *</span> </label>
+                                <textarea id="summernote" name="NewsContent" required ValidateRequestMode="Disabled">@Model.NewsContent</textarea>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-12" style="margin-top:15px;">
+                            <button type="submit" id="NewsSubmitBtn" class="btn btn-primary">Yadda saxla</button>
+                            <button type="button" id="NewsActivBtnEdite" class="@isActiveClass">@IsActivText</button>
+                            <input id="activInput" type="hidden" name="activ" value="@activinput" />
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section NewsScript
+{
+    <script type="text/javascript" src="~/JavaScript/News.js"></script>
+
+}
+
+@section Editor
+{
+    @* text editor *@
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+    @* text editor  *@
+    <script type="text/javascript" src="~/JavaScript/TextEditor.js"></script>
+
+
+} 

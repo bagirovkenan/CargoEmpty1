@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Numune</title>
+
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+          crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/Style/BlogSide.css">
+    <link rel="stylesheet" href="~/Style/CaruselCreat.css">
+</head>
+
+<body>
+
+    <!-- blog side top  start -->
+    <div class="col-lg-12 col-12 FaqTopImgMainDiv">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-7 faqTitleColDiv leftText">
+                    <h1>Admin Panel</h1>
+                    <a href="/Home/Index" title="Home">Əsas</a>
+                    / Admin Panel
+                </div>
+                <div class="col-12 col-lg-5 RightText">
+                    <h4>Siz sifariş edin, biz çatdıraq. <span>SÜRƏTLİ</span> və <span>TƏHLÜKƏSİZ!</span></h4>
+                </div>
+                <div class="col-12 col-lg-12 RightSrcInput" style="margin-bottom:-40px;">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <label>Sifaris:</label>
+                            <input class="form-control" type="search" name="name" value="" placeholder="Search" />
+
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+
+                            <label>Isdifadeci:</label>
+                            <input class="form-control" type="search" name="name" value="" placeholder="Search" />
+                            @*     <i class="fas fa-search"></i>*@
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <select class="form-control" style="margin-top:30px;">
+                                <option value="value">Istifadeci Adi olacaq</option>
+                                <option value="value">Log out</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <button class="btn btn-warning" id="layoutDeclerationModal" style="width:100%;box-shadow:unset;margin-top:31px;">Beyanname</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- blog side top end -->
+    <!-- blog side bottom start -->
+    <div class="col-lg-12 col-12 BlogSideBottomMainDiv">
+        @*<div class="col-lg-12 col-12 blogSideContainerDiv">*@
+        <div class="row">
+
+            <div class="col-lg-2 col-md-2 col-sm-12 col-12 CategoryMainColDiv">
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 CategoryTitelColDiv">
+                        <h6>Menyu</h6>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-12 CategoryMenyuButtonColDiv">
+                        <button id="CategoryMenyuButton" class="btn btn-default" type="button">
+
+                            <i class="fas fa-bars"></i>
+                            Menyu
+                        </button>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 CategoryesColDiv">
+                        <div class="row CategoryisTitelsRowDiv">
+                            <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
+                                <a href="/Bundel/Index"><h3>Bundels</h3></a>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
+                                <a href="/Orders/IndexAdmin"><h3>Orders</h3></a>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
+                                <a href="/User/UsersIndex">   <h3>Users</h3></a>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
+                                <a href="/User/IndexCustumers">   <h3>Custumers</h3></a>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
+                                <a href="/Carusel/Index">   <h3>Slider</h3></a>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
+                                <a href="/News/Index">   <h3>News</h3></a>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
+                                <a href="/Faq/Index">   <h3>Faqs</h3></a>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
+                                <a href="/About/Index">   <h3>About</h3></a>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
+                                <a href="/Shops/Index">   <h3>Shops</h3></a>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
+                                <a href="/Tarif/Index">   <h3>Tarifs</h3></a>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
+                                <a href="/Categories/Index">   <h3>Categories</h3></a>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
+                                <a href="/Cauntry/Index">   <h3>Cauntry</h3></a>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
+                                <a href="/Currency/Index">   <h3>Currency</h3></a>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
+                                <a href="/Setting/Index">   <h3>Setting</h3></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-10 col-md-10 col-sm-12  SideMainColDiv">
+                <div class="row">
+                    @RenderBody()
+                </div>
+            </div>
+
+        </div>
+        @*</div>*@
+    </div>
+
+    <footer>
+        <div style="height:100px;">
+
+        </div>
+    </footer>
+
+    @*modal*@
+    <button id="adminLayoutModalBtn" class="btn btn-danger" style="width:100%;box-shadow:unset;display:none; " type="button" data-toggle="modal" data-target=".bd-example-modal-lg">Beyanname</button>
+
+    @*decleration modal*@
+    <div class="DeclerationModalAdminLayoutDiv">
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+             aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header" style="border-bottom:none;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="DeclerationModalAdminLayout">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*modal*@
+    <!-- blog side bottom end -->
+    @* //////////////////////////////////////////////////////// *@
+
+
+
+    @* //////////////////////////////////////////////////////// *@
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+
+    <script src="~/JavaScript/Main.js"></script>
+
+
+
+    @RenderSection("CaruselScript", required: false)
+    @RenderSection("NewsScript", required: false)
+    @RenderSection("FaqsScript", required: false)
+    @RenderSection("AboutScript", required: false)
+    @RenderSection("ShopsScript", required: false)
+    @RenderSection("MenyuScript", required: false)
+    @RenderSection("CurrencyScript", required: false)
+    @RenderSection("TarifScript", required: false)
+    @RenderSection("AdminUserEdit", required: false)
+    @RenderSection("AdminCustumer", required: false)
+    @RenderSection("AdminCustumerOrderIndex", required: false)
+    @RenderSection("AdminBundelCreate", required: false)
+
+
+
+    @RenderSection("Editor", required: false)
+
+
+</body>
+
+</html>

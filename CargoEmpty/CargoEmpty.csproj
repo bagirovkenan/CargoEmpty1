@@ -1,0 +1,563 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CE85538E-5496-4978-A930-BF31EFE761C7}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CargoEmpty</RootNamespace>
+    <AssemblyName>CargoEmpty</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="Image\Carusel\19132_en_1_20190404175827884.jpg" />
+    <Content Include="Image\Carusel\19132_en_1_20190404175933372.jpg" />
+    <Content Include="Image\Carusel\19391_en_1_20190404175914396.jpg" />
+    <Content Include="Image\Carusel\19391_en_1_20190408030226250.jpg" />
+    <Content Include="Image\Carusel\animate-1_20190408030737150.jpg" />
+    <Content Include="Image\Carusel\animate-1_20190408031722833.jpg" />
+    <Content Include="Image\Carusel\animate-1_20190408031849813.jpg" />
+    <Content Include="Image\Carusel\animate-1_20190408192520220.jpg" />
+    <Content Include="Image\Carusel\animate-2_20190408040856117.jpg" />
+    <Content Include="Image\Carusel\animate-3_20190408043500773.jpg" />
+    <Content Include="Image\Carusel\animate-3_20190408043632461.jpg" />
+    <Content Include="Image\Carusel\animate-3_20190408045354184.jpg" />
+    <Content Include="Image\Carusel\animate-4_20190408043444525.jpg" />
+    <Content Include="Image\Carusel\animate-4_20190408043536337.jpg" />
+    <Content Include="Image\Carusel\animate-6_20190408043427055.jpg" />
+    <Content Include="Image\Carusel\logo_20190408040129254.png" />
+    <Content Include="Image\Carusel\logo_20190408040318725.png" />
+    <Content Include="Image\Front\Home\logo.png" />
+    <Content Include="Image\Front\Home\master.png" />
+    <Content Include="Image\Front\Home\process-icon1.png" />
+    <Content Include="Image\Front\Home\process-icon2.png" />
+    <Content Include="Image\Front\Home\process-icon3.png" />
+    <Content Include="Image\Front\Home\process-icon4.png" />
+    <Content Include="Image\Front\SignUp\1.jpg" />
+    <Content Include="Image\Front\SignUp\signup.jpg" />
+    <Content Include="Image\News\animate-2_20190413193721762.jpg" />
+    <Content Include="Image\News\animate-2_20190413194130210.jpg" />
+    <Content Include="Image\News\animate-2_20190414233617865.jpg" />
+    <Content Include="Image\News\animate-3_20190413190352087.jpg" />
+    <Content Include="Image\News\animate-3_20190414233714796.jpg" />
+    <Content Include="Image\News\animate-3_20190415002137051.jpg" />
+    <Content Include="Image\News\animate-4_20190413184621560.jpg" />
+    <Content Include="Image\News\animate-4_20190413191128496.jpg" />
+    <Content Include="Image\News\animate-4_20190413192918424.jpg" />
+    <Content Include="Image\News\animate-4_20190414232924527.jpg" />
+    <Content Include="Image\News\blg2_20190414193538650.jpg" />
+    <Content Include="Image\News\visualfon_20190418223232540.jpg" />
+    <Content Include="Image\News\visualfon_20190418223415228.jpg" />
+    <Content Include="Image\Shops\animate-2_20190427005035819.jpg" />
+    <Content Include="Image\Shops\Sony_20190427005626401.jpg" />
+    <Content Include="JavaScript\About.js" />
+    <Content Include="JavaScript\AdminCustumerDetails.js" />
+    <Content Include="JavaScript\AdminOrderIndex.js" />
+    <Content Include="JavaScript\AdminUserEdit.js" />
+    <Content Include="JavaScript\BlogSide.js" />
+    <Content Include="JavaScript\Country.js" />
+    <Content Include="JavaScript\CreateBundel.js" />
+    <Content Include="JavaScript\Currency.js" />
+    <Content Include="JavaScript\Faq.js" />
+    <Content Include="JavaScript\Front\BlogSide.js" />
+    <Content Include="JavaScript\Front\Faq.js" />
+    <Content Include="JavaScript\Front\Home.js" />
+    <Content Include="JavaScript\Front\MyAccount.js" />
+    <Content Include="JavaScript\Front\MyOrders.js" />
+    <Content Include="JavaScript\Front\News.js" />
+    <Content Include="JavaScript\Front\SignUpLogin.js" />
+    <Content Include="JavaScript\Main.js" />
+    <Content Include="JavaScript\Menyu.js" />
+    <Content Include="JavaScript\News.js" />
+    <Content Include="JavaScript\Shop.js" />
+    <Content Include="JavaScript\Tarif.js" />
+    <Content Include="JavaScript\TextEditor.js" />
+    <Content Include="Style\BlogSide.css" />
+    <Content Include="Style\CaruselCreat.css" />
+    <Content Include="Style\FrontStyle\About.css" />
+    <Content Include="Style\FrontStyle\BlogSide.css" />
+    <Content Include="Style\FrontStyle\Contact.css" />
+    <Content Include="Style\FrontStyle\Faq.css" />
+    <Content Include="Style\FrontStyle\Home.css" />
+    <Content Include="Style\FrontStyle\MyAccount.css" />
+    <Content Include="Style\FrontStyle\MyOrders.css" />
+    <Content Include="Style\FrontStyle\News.css" />
+    <Content Include="Style\FrontStyle\Taarif.css" />
+    <Content Include="Style\Home.css" />
+    <Content Include="Style\News.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Context\CargoDbContext.cs" />
+    <Compile Include="Controllers\Front\FrontAboutController.cs" />
+    <Compile Include="Controllers\Front\FrontContactController.cs" />
+    <Compile Include="Controllers\Front\FrontFaqController.cs" />
+    <Compile Include="Controllers\Front\FrontNewsController.cs" />
+    <Compile Include="Controllers\Front\FrontShopController.cs" />
+    <Compile Include="Controllers\Front\FrontTarifController.cs" />
+    <Compile Include="Controllers\Front\HomeController.cs" />
+    <Compile Include="Controllers\Front\MyAccountController.cs" />
+    <Compile Include="Controllers\General\BundelStatusAndCountry .cs" />
+    <Compile Include="Controllers\General\CategoriesController.cs" />
+    <Compile Include="Controllers\General\CauntryController.cs" />
+    <Compile Include="Controllers\General\CurrencyController.cs" />
+    <Compile Include="Controllers\General\DeclerationsController.cs" />
+    <Compile Include="Controllers\General\BundelController.cs" />
+    <Compile Include="Controllers\General\JsonResultController.cs" />
+    <Compile Include="Controllers\General\MyAddressesController.cs" />
+    <Compile Include="Controllers\General\OrdersController.cs" />
+    <Compile Include="Controllers\General\OrderStatusController.cs" />
+    <Compile Include="Controllers\General\UserLoginController.cs" />
+    <Compile Include="Controllers\General\SettingController.cs" />
+    <Compile Include="Controllers\General\SignUpController.cs" />
+    <Compile Include="Controllers\General\UserController.cs" />
+    <Compile Include="Controllers\Main\MainController.cs" />
+    <Compile Include="Controllers\Pages\AboutController.cs" />
+    <Compile Include="Controllers\Pages\CaruselController.cs" />
+    <Compile Include="Controllers\Pages\FaqController.cs" />
+    <Compile Include="Controllers\Pages\MenyuController.cs" />
+    <Compile Include="Controllers\Pages\NewsController.cs" />
+    <Compile Include="Controllers\Pages\ShopsController.cs" />
+    <Compile Include="Controllers\Pages\TarifController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903301243220_FirstMg.cs" />
+    <Compile Include="Migrations\201903301243220_FirstMg.Designer.cs">
+      <DependentUpon>201903301243220_FirstMg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904081408128_News.cs" />
+    <Compile Include="Migrations\201904081408128_News.Designer.cs">
+      <DependentUpon>201904081408128_News.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904091333594_deleteNoTE.cs" />
+    <Compile Include="Migrations\201904091333594_deleteNoTE.Designer.cs">
+      <DependentUpon>201904091333594_deleteNoTE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904111504363_ds.cs" />
+    <Compile Include="Migrations\201904111504363_ds.Designer.cs">
+      <DependentUpon>201904111504363_ds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904131429088_asd.cs" />
+    <Compile Include="Migrations\201904131429088_asd.Designer.cs">
+      <DependentUpon>201904131429088_asd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904201352237_faqs.cs" />
+    <Compile Include="Migrations\201904201352237_faqs.Designer.cs">
+      <DependentUpon>201904201352237_faqs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904261723006_category.cs" />
+    <Compile Include="Migrations\201904261723006_category.Designer.cs">
+      <DependentUpon>201904261723006_category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904291859161_asdd.cs" />
+    <Compile Include="Migrations\201904291859161_asdd.Designer.cs">
+      <DependentUpon>201904291859161_asdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905271331300_MyAdress.cs" />
+    <Compile Include="Migrations\201905271331300_MyAdress.Designer.cs">
+      <DependentUpon>201905271331300_MyAdress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906141632135_deletetype.cs" />
+    <Compile Include="Migrations\201906141632135_deletetype.Designer.cs">
+      <DependentUpon>201906141632135_deletetype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906181414079_removeorderdbIDindecleration.cs" />
+    <Compile Include="Migrations\201906181414079_removeorderdbIDindecleration.Designer.cs">
+      <DependentUpon>201906181414079_removeorderdbIDindecleration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\App\Setting.cs" />
+    <Compile Include="Models\General\Bundel\BundelAddOrder.cs" />
+    <Compile Include="Models\General\Bundel\BundelLinks.cs" />
+    <Compile Include="Models\General\Bundel\BundelProducts.cs" />
+    <Compile Include="Models\General\Bundel\BundelsDb.cs" />
+    <Compile Include="Models\General\Bundel\ChangeCountry.cs" />
+    <Compile Include="Models\General\Bundel\GetCreateBundel.cs" />
+    <Compile Include="Models\General\Bundel\GetIndexBundel.cs" />
+    <Compile Include="Models\General\Bundel\PostCreateBundel.cs" />
+    <Compile Include="Models\General\Bundel\ShopInfo.cs" />
+    <Compile Include="Models\General\Category.cs" />
+    <Compile Include="Models\General\Country.cs" />
+    <Compile Include="Models\General\Currency.cs" />
+    <Compile Include="Models\General\Decleration\CreateDeclerationWithOrder.cs" />
+    <Compile Include="Models\General\Decleration\DeclerationDb.cs" />
+    <Compile Include="Models\General\Decleration\CreateDeclerationView.cs" />
+    <Compile Include="Models\General\MyAddress.cs" />
+    <Compile Include="Models\General\Order\AdminCustumerOrdersStatusView.cs" />
+    <Compile Include="Models\General\Order\CreateOrderView.cs" />
+    <Compile Include="Models\General\Order\DeleteOrder.cs" />
+    <Compile Include="Models\General\Order\EditOder.cs" />
+    <Compile Include="Models\General\Order\OrderActions.cs" />
+    <Compile Include="Models\General\Order\OrderCountryJson.cs" />
+    <Compile Include="Models\General\Order\OrderDb.cs" />
+    <Compile Include="Models\General\Order\OrderIndexView.cs" />
+    <Compile Include="Models\General\Order\OrderStatus.cs" />
+    <Compile Include="Models\General\User\AdminEditUser.cs" />
+    <Compile Include="Models\General\User\ClientStatus.cs" />
+    <Compile Include="Models\General\User\UserLogin.cs" />
+    <Compile Include="Models\General\User\Role.cs" />
+    <Compile Include="Models\General\User\UserDb.cs" />
+    <Compile Include="Models\General\User\UserEdit.cs" />
+    <Compile Include="Models\General\User\UserRole.cs" />
+    <Compile Include="Models\General\User\UserSignUp.cs" />
+    <Compile Include="Models\Helper\ChangeActivStatus.cs" />
+    <Compile Include="Models\Helper\ChangeIsActivFromIndex.cs" />
+    <Compile Include="Models\Helper\DevideClass .cs" />
+    <Compile Include="Models\Helper\GenerateNewCod.cs" />
+    <Compile Include="Models\Helper\ProsesImageFile.cs" />
+    <Compile Include="Models\Helper\RemoveTags.cs" />
+    <Compile Include="Models\Helper\CustomMapper.cs" />
+    <Compile Include="Models\Helper\SendEmail.cs" />
+    <Compile Include="Models\Helper\SHA.cs" />
+    <Compile Include="Models\Helper\ViewModelFromDbModel.cs" />
+    <Compile Include="Models\Main\PagesMainModel.cs" />
+    <Compile Include="Models\Pages\About\AboutDb.cs" />
+    <Compile Include="Models\Pages\Calculate\FrontCalculateBundle.cs" />
+    <Compile Include="Models\Pages\Calculate\SelectTarif.cs" />
+    <Compile Include="Models\Pages\Carusel\CaruselDb.cs" />
+    <Compile Include="Models\Pages\Carusel\CaruselView.cs" />
+    <Compile Include="Models\Pages\FrontContact\FrontContact.cs" />
+    <Compile Include="Models\Pages\Faq\FaqDb.cs" />
+    <Compile Include="Models\Pages\Faq\FaqView.cs" />
+    <Compile Include="Models\Pages\Menyu\HeaderFooter.cs" />
+    <Compile Include="Models\Pages\Menyu\Menyu.cs" />
+    <Compile Include="Models\Pages\MyAcount\MyAccountHome.cs" />
+    <Compile Include="Models\Pages\News\NewsDbModel.cs" />
+    <Compile Include="Models\Pages\News\NewsViewModel.cs" />
+    <Compile Include="Models\Pages\Shop\ShopDb.cs" />
+    <Compile Include="Models\Pages\Shop\ShopView.cs" />
+    <Compile Include="Models\Pages\Tarif\Tarif.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <None Include="packages.config" />
+    <Content Include="Views\About\Create.cshtml" />
+    <Content Include="Views\About\Delete.cshtml" />
+    <Content Include="Views\About\Edit.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\AdminShared\_AdminLayout.cshtml" />
+    <Content Include="Views\AdminShared\_AdminViewStart.cshtml" />
+    <Content Include="Views\Carusel\Create.cshtml" />
+    <Content Include="Views\Carusel\Delete.cshtml" />
+    <Content Include="Views\Carusel\Edit.cshtml" />
+    <Content Include="Views\Carusel\Index.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Faq\Create.cshtml" />
+    <Content Include="Views\Faq\Delete.cshtml" />
+    <Content Include="Views\Faq\Edit.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Delete.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\View1.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shops\Create.cshtml" />
+    <Content Include="Views\Shops\Index.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shops\Edit.cshtml" />
+    <Content Include="Views\Shops\Delete.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\PartialCarusel.cshtml" />
+    <Content Include="Views\Home\PartialNews.cshtml" />
+    <Content Include="Views\Home\PartialSteps.cshtml" />
+    <Content Include="Views\Home\PartialCalculate.cshtml" />
+    <Content Include="Views\Faq\Index.cshtml" />
+    <Content Include="Views\FrontFaq\Index.cshtml" />
+    <Content Include="Views\FrontShop\Index.cshtml" />
+    <Content Include="Views\FrontShop\Details.cshtml" />
+    <Content Include="Views\FrontNews\Index.cshtml" />
+    <Content Include="Views\FrontNews\Details.cshtml" />
+    <Content Include="Views\FrontAbout\Index.cshtml" />
+    <Content Include="Views\Cauntry\Index.cshtml" />
+    <Content Include="Views\Cauntry\Create.cshtml" />
+    <Content Include="Views\Cauntry\Edit.cshtml" />
+    <Content Include="Views\Cauntry\Delete.cshtml" />
+    <Content Include="Views\Menyu\Index.cshtml" />
+    <Content Include="Views\Menyu\Create.cshtml" />
+    <Content Include="Views\Menyu\Edit.cshtml" />
+    <Content Include="Views\Menyu\Delete.cshtml" />
+    <Content Include="Views\Shared\Menu.cshtml" />
+    <Content Include="Views\Currency\Index.cshtml" />
+    <Content Include="Views\Currency\Create.cshtml" />
+    <Content Include="Views\Currency\Edit.cshtml" />
+    <Content Include="Views\Currency\Delete.cshtml" />
+    <Content Include="Views\Tarif\Index.cshtml" />
+    <Content Include="Views\Tarif\Create.cshtml" />
+    <Content Include="Views\Tarif\Edit.cshtml" />
+    <Content Include="Views\Tarif\Delete.cshtml" />
+    <Content Include="Views\FrontTarif\Index.cshtml" />
+    <Content Include="Views\Setting\Crete.cshtml" />
+    <Content Include="Views\Setting\Index.cshtml" />
+    <Content Include="Views\FrontContact\Index.cshtml" />
+    <Content Include="Views\User\IndexCustumers.cshtml" />
+    <Content Include="Views\User\UsersIndex.cshtml" />
+    <Content Include="Views\User\EditCustumers.cshtml" />
+    <Content Include="Views\SignUp\Index.cshtml" />
+    <Content Include="Views\SignUp\ModalConditions.cshtml" />
+    <Content Include="Views\FronAccount\AccountSettingLink.cshtml" />
+    <Content Include="Views\FronAccount\MyAccount.cshtml" />
+    <Content Include="Views\SignUp\Edit.cshtml" />
+    <Content Include="Views\UserLogin\Login.cshtml" />
+    <Content Include="Views\UserLogin\ForgetPassword.cshtml" />
+    <Content Include="Views\User\EditUser.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\MyAddresses\Index.cshtml" />
+    <Content Include="Views\MyAddresses\Create.cshtml" />
+    <Content Include="Views\MyAddresses\Edit.cshtml" />
+    <Content Include="Views\MyAddresses\Delete.cshtml" />
+    <Content Include="Views\MyAccount\Index.cshtml" />
+    <Content Include="Views\MyAccount\PartialDecleration.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\OrderStatus\Create.cshtml" />
+    <Content Include="Views\OrderStatus\Delete.cshtml" />
+    <Content Include="Views\OrderStatus\Edit.cshtml" />
+    <Content Include="Views\OrderStatus\Index.cshtml" />
+    <Content Include="Views\Home\Header.cshtml" />
+    <Content Include="Views\Home\Footer.cshtml" />
+    <Content Include="Views\Orders\IndexUser.cshtml" />
+    <Content Include="Views\MyAccount\MyAccountActions.cshtml" />
+    <Content Include="Views\Orders\MyOrdersActions.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\User\CustumerDetails.cshtml" />
+    <Content Include="Views\JsonResult\CustumerInfo.cshtml" />
+    <Content Include="Views\JsonResult\CustumerOrders.cshtml" />
+    <Content Include="Views\JsonResult\OrdersNotDecleration.cshtml" />
+    <Content Include="Views\JsonResult\OrdersNotPait.cshtml" />
+    <Content Include="Views\JsonResult\OrdersOrdered.cshtml" />
+    <Content Include="Views\JsonResult\OrdersUrgent.cshtml" />
+    <Content Include="Views\JsonResult\OrdersNormal.cshtml" />
+    <Content Include="Views\Orders\AdminDetailsOrder.cshtml" />
+    <Content Include="Views\Orders\IndexAdmin.cshtml" />
+    <Content Include="Views\Declerations\CreateOnDetailsPage.cshtml" />
+    <Content Include="Views\JsonResult\AllOrdersNotDecleration.cshtml" />
+    <Content Include="Views\JsonResult\AllOrdersOrdered.cshtml" />
+    <Content Include="Views\JsonResult\AllOrdersPait.cshtml" />
+    <Content Include="Views\JsonResult\AllOrdersNotPait.cshtml" />
+    <Content Include="Views\JsonResult\AllOrdersUrgent.cshtml" />
+    <Content Include="Views\JsonResult\AllOrdersNormal.cshtml" />
+    <Content Include="Views\JsonResult\CountryAllOrders.cshtml" />
+    <Content Include="Views\Declerations\CreateOnLayoutPage.cshtml" />
+    <Content Include="Views\JsonResult\ExecutedOrdered.cshtml" />
+    <Content Include="Views\JsonResult\AllExecutedOrdered.cshtml" />
+    <Content Include="Views\JsonResult\isNotExecutedOrdered.cshtml" />
+    <Content Include="Views\JsonResult\IsNotAllExecutedOrdered.cshtml" />
+    <Content Include="Views\Bundel\Create.cshtml" />
+    <Content Include="Views\Bundel\ChangeCountryOrder.cshtml" />
+    <Content Include="Views\Bundel\ChangeCountryDecleration.cshtml" />
+    <Content Include="Views\Bundel\Index.cshtml" />
+    <Content Include="Views\Bundel\DeclerationInfo.cshtml" />
+    <Content Include="Views\Bundel\ChangeCountryInIndexBundel.cshtml" />
+    <Content Include="Views\Bundel\ChangeStatus.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Image\Country\" />
+    <Folder Include="Image\Decleration\" />
+    <Folder Include="Image\Settings\" />
+    <Folder Include="Views\Login\" />
+    <Folder Include="Views\Main\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903301243220_FirstMg.resx">
+      <DependentUpon>201903301243220_FirstMg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904081408128_News.resx">
+      <DependentUpon>201904081408128_News.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904091333594_deleteNoTE.resx">
+      <DependentUpon>201904091333594_deleteNoTE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904111504363_ds.resx">
+      <DependentUpon>201904111504363_ds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904131429088_asd.resx">
+      <DependentUpon>201904131429088_asd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904201352237_faqs.resx">
+      <DependentUpon>201904201352237_faqs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904261723006_category.resx">
+      <DependentUpon>201904261723006_category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904291859161_asdd.resx">
+      <DependentUpon>201904291859161_asdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905271331300_MyAdress.resx">
+      <DependentUpon>201905271331300_MyAdress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906141632135_deletetype.resx">
+      <DependentUpon>201906141632135_deletetype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906181414079_removeorderdbIDindecleration.resx">
+      <DependentUpon>201906181414079_removeorderdbIDindecleration.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50744</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50744/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

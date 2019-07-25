@@ -1,0 +1,67 @@
+﻿@model IEnumerable<CargoEmpty.Models.General.User.UserDb>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+}
+<div class="col-lg-12 col-12">
+    <table class="table table-bordered" style="width:100%;">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayName("Role")
+            </th>
+            <th>
+                @Html.DisplayName("Edit/Delete")
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    <select class="btn btn-light" style="max-width:108px;">
+                        @foreach (var i in ViewBag.UserRole)
+                        {
+                            if (item.Id == i.UserDbId)
+                            {
+                                <option value="i.UserDbId">@i.Role.RoleName</option>
+                            }
+
+                        }
+                    </select>
+                </td>
+                <td>
+                    <a href="/User/EditUser/@item.Id"><button type="button" class="btn btn-info btn-sm NewsDetailsBtn" data-toggle="modal" id="@item.Id">Details/Edit</button> </a>
+                    <a href="/User/Delete/@item.Id"><button class="btn btn-danger btn-sm NewsDeleteBtn" data-toggle="modal" data-target="#NewsDeleteModal" id="@item.Id">Delete</button></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

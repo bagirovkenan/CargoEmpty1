@@ -1,0 +1,164 @@
+﻿@model CargoEmpty.Models.App.Setting
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+}
+<div class="col-lg-12 col-12 contactMainDiv" style="width:100%;height:auto;padding-top:10px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-12">
+                <h4 style="color:red;">Asagidaki melumatlari deyisdiren zaman diqqetli olun...!</h4>
+            </div>
+            <div class="col-lg-12 col-12">
+                <form action="/Setting/Edit" method="post" enctype="multipart/form-data" class="form-group">
+                    <input type="hidden" name="Id" value="@Model.Id" />
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <label>Bank Faizi(%) <span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="number" step="0.01" name="BankSpending" value="@Model.BankSpending" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <label>Tecili Sifaris Qiymeti<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="number" step="0.01" name="UrgentBookingPrice" value="@Model.UrgentBookingPrice" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-12">
+                            <label>USD</label>
+                            <div>
+                                <input class="form-control" type="number" step="0.01" name="USD" value="@Model.USD" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label>EUR</label>
+                            <div>
+                                <input class="form-control" type="number" step="0.01" name="EUR" value="@Model.EUR" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label>TRY</label>
+                            <div>
+                                <input class="form-control" type="number" step="0.01" name="TRY" value="@Model.TRY" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <label>Link<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="Title" value="@Model.Title" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <label>Logo</label>
+                            <div>
+                                <input class="form-control" type="file" name="TitleImage" value="" />
+                                <input class="form-control" type="hidden" name="TitleImagePath" value="@Model.TitleImagePath" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-12">
+                            <label>Logo Sekil</label>
+                            <div>
+                                <img src="@Model.TitleImagePath" alt="Alternate Text" style="width:100%;height:200px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-12">
+                            <label>Adres<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="Adress" value="@Model.Adress" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-12">
+                            <label>Telefon<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="PhoneNumber" value="@Model.PhoneNumber" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label>Mobil<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="MobileNumber" value="@Model.MobileNumber" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label>Mail<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="email" name="Mail" value="@Model.Mail" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <label>Ise Baslama Saati<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="StartWorkClock" value="@Model.StartWorkClock" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <label>Isin Bitme Saati<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="EndWorkClock" value="@Model.EndWorkClock" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-12">
+                            <label>Birinci Is Gunu<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="StartWorkDay" value="@Model.StartWorkDay" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label>Son Is Gunu<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="EndWorkDay" value="@Model.EndWorkDay" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label>Umumi Is Gunleri<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="WorkDays" value="@Model.WorkDays" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-12">
+                            <label>Face Book</label>
+                            <div>
+                                <input class="form-control" type="text" name="FaceBookAdress" value="@Model.FaceBookAdress" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label>Instagram</label>
+                            <div>
+                                <input class="form-control" type="text" name="InstagramAdress" value="@Model.InstagramAdress" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label>Youtube</label>
+                            <div>
+                                <input class="form-control" type="text" name="YoutubeAdress" value="@Model.YoutubeAdress" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-lg-12" style="margin-top:10px;">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

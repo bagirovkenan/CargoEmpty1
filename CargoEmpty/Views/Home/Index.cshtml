@@ -1,0 +1,18 @@
+﻿@model IEnumerable<CargoEmpty.Models.Pages.Carusel.CaruselDb>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@Html.Partial("PartialCarusel", Model as IEnumerable<CargoEmpty.Models.Pages.Carusel.CaruselDb>)
+@Html.Partial("PartialNews")
+@Html.Partial("PartialCalculate")
+@Html.Partial("PartialSteps")
+
+
+@section HomeScript
+{
+    <script type="text/javascript" src="~/JavaScript/Front/Home.js"></script>
+
+}

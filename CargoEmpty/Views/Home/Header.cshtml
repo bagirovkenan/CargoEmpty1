@@ -1,0 +1,103 @@
+﻿@model CargoEmpty.Models.Pages.Menyu.HeaderFooter
+
+<!-- footer top start -->
+<div class="HeaderTopMainDiv">
+    <div class="container-fluid HeaderTop">
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-12 HeaderTopContact">
+                <div class="top-contact">
+                    <a id="Mail" href="mailto:@Model.Mail"><i class="fa fa-envelope"></i> @Model.Mail </a>
+                    <a id="Phone" href="tel:+994508005585"><i class="fa fa-phone"></i> @Model.MobileNumber </a>
+                    <a id="Clock" href="#"><i class="fa fa-clock"></i> @Model.StartWorkClock - @Model.EndWorkClock</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-12 col-12 HeaderProfil">
+                <ul class="UserProfilUl">
+                    @{
+
+                        if (Session["isLogin"] == "true")
+                        {
+                            string cod = (string)Session["UserCode"];
+                            string fistName = (string)Session["FirstName"];
+                            string lastName = (string)Session["LastName"];
+
+
+                            <li id="UserCode">Musderi Nomresi-@cod</li>
+                            <li id="UserName"><a href="/MyAccount/Index" style="color:white;"><i class="fas fa-user"></i> @fistName @lastName</a></li>
+                            <li id="OrderBasket"><i class="fas fa-shopping-basket"></i></li>
+                            <li id="Exit"><a href="/UserLogin/ExitAccount" style="color:white;"><i class="fas fa-unlock"></i>Cixis</a></li>
+                            <li id="Country">
+                                <select>
+                                    <option value="">AZE</option>
+                                    <option value="">RUS</option>
+                                    <option value="">ENG</option>
+                                </select>
+                            </li>
+
+                        }
+                        else
+                        {
+
+                            <li id="UserName"><a href="/SignUp/Index" style="color:white;"><i class="fas fa-user"></i>Qeydiyyat</a></li>
+                            <li id="UserName"><a href="/UserLogin/Login" style="color:white;"><i class="fas fa-user"></i>Daxil Ol</a></li>
+
+                            <li id="Country">
+                                <select>
+                                    <option value="">AZE</option>
+                                    <option value="">RUS</option>
+                                    <option value="">ENG</option>
+                                </select>
+                            </li>
+
+
+                        }
+                    }
+
+                </ul>
+                </div>
+        </div>
+    </div>
+</div>
+
+<!-- footer  top end -->
+<!-- footer bootom start -->
+
+
+
+<nav id="navmainnavbar" class="navbar navbar-expand-lg navbar-light bg-light footerNavClmd-12 navabarNav">
+
+    <a href="/Home/Index"><img id="logoPng" src="@Model.TitleImagePath" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse navbarUlDiv" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 float-md-right">
+            @{
+                for (int i = 0; i < Model.NavItems.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        <li class="nav-item active">
+                            <a class="nav-link" href="@Model.NavItems[i].Url">@Model.NavItems[i].Text<span class="sr-only">(current)</span></a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a href="@Model.NavItems[i].Url" class="nav-link">@Model.NavItems[i].Text</a>
+                        </li>
+                    }
+
+                }
+            }
+        </ul>
+
+    </div>
+</nav>
+<!-- headr  end -->
+@* //////////////////////////////////////////////////////////////////////////// *@
+
+

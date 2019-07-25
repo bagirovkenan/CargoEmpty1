@@ -1,0 +1,171 @@
+button {
+    box-shadow: unset !important;
+}
+/*////////////////////*/
+.OrderNoteDiv {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+
+.CountryDiv span {
+    color: #495057;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    border-bottom: 0px;
+    border-radius: 5px 5px 0 0;
+    padding: 10px 15px;
+    background-color: #f6f6f6;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.OrderInputsMainDiv {
+    background-color: #f6f6f6;
+    padding: 36px 50px;
+    border: 1px solid #ddd;
+    border-radius: 0px 4px 4px 4px;
+    margin-top: 7px;
+}
+
+.addLinkButtonDiv button {
+    background-color: #f8a700;
+    border-radius: 3px;
+    display: inline-block;
+    color: #fff;
+    padding: 8px 30px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    border: unset;
+    box-shadow: unset;
+    text-align: center;
+    transition: 0.5s;
+}
+
+    .addLinkButtonDiv button:hover {
+        background-color: darkred;
+    }
+
+.formInputDiv {
+    margin-top: 50px;
+}
+
+.OrdersubmitBtn {
+    background-color: #64b5f6;
+    border: unset;
+    box-shadow: unset;
+    text-align: center;
+    border-radius: 3px;
+    display: inline-block;
+    color: #fff;
+    padding: 8px 30px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    margin-top: 40px;
+}
+
+#removform {
+    background-color: darkred;
+    border-radius: 3px;
+    display: inline-block;
+    color: #fff;
+    padding: 8px 30px;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    border: unset;
+    box-shadow: unset;
+    text-align: center;
+    transition: 0.5s;
+}
+
+#MyOrdersIndexTabelDiv {
+  
+    overflow-x: auto;
+}
+
+    #MyOrdersIndexTabelDiv table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid black;
+    }
+
+        #MyOrdersIndexTabelDiv table thead th {
+            text-align: center;
+            padding: 10px;
+        }
+
+        #MyOrdersIndexTabelDiv table tbody tr td {
+            text-align: center;
+            padding: 5px;
+        }
+
+#orderMenuMainDiv{
+    position:relative;
+  
+}
+#divMenu {
+    position: absolute;
+    z-index: 99;   
+    overflow: hidden;
+    
+}
+#orderMyOrdersStatus {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+
+    #orderMyOrdersStatus li {
+        display: block;
+        padding: 12px 0px 12px 20px;
+        background-color: #eb0028;
+        color: #f6f6f6;
+        text-transform: uppercase;
+        position: relative;
+        transition: 0.5s;
+      
+    }
+.MyOrderStatusActiveLi {
+    background-color: #f6f6f6 !important;
+    color: #808080 !important;
+}
+
+#orderMyOrdersStatus li:hover {
+    background-color: #f6f6f6;
+    color: #808080;
+    cursor:pointer;
+}
+#menyuOrdersLink {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background-color: #eb0028;
+    width: 100%;
+    text-align: left;
+    box-shadow: unset;
+}
+/*/* Medias scren 600px///////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+@media screen and (max-width: 600px) {
+    #MyOrdersIndexTabelDiv {
+        
+        overflow-x: auto
+    }
+
+
+        #MyOrdersIndexTabelDiv table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid black;
+        }
+
+            #MyOrdersIndexTabelDiv table thead th {
+                text-align: center;
+                padding: 10px;
+            }
+
+            #MyOrdersIndexTabelDiv table tbody tr td {
+                text-align: center;
+                padding: 5px;
+            }
+}

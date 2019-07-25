@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CargoEmpty.Models.Pages.Menyu.Menyu>
+    @foreach (var item in Model)
+    {
+        <li>@item.Text</li>
+    }
+
+    <nav id="navmainnavbar" class="navbar navbar-expand-lg navbar-light bg-light footerNavClmd-12 navabarNav">
+
+        <a href="/Home/Index"><img id="logoPng" src="~/Image/Front/Home/logo.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse navbarUlDiv" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0 float-md-right">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/Home/Index">Əsas<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="/FrontFaq/Index" class="nav-link">Faq</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/FrontShop/Index" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Nümunə Saytlar
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Faq</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/FrontNews/Index">Xəbərlər</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/FrontAbout/Index">Haqqimizda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/FrontContact?Index">Əlaqə</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/FrontTarif/Index">Tariflər</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>

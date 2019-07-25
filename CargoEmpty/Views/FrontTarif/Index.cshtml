@@ -1,0 +1,145 @@
+﻿@model IEnumerable<CargoEmpty.Models.General.Country>
+@{
+    ViewBag.Title = "Tarif";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- tarif top img start -->
+<div class="FaqTopImgMainDiv">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-7 faqTitleColDiv leftText">
+                <h1>@ViewBag.Title</h1>
+                <a href="/Home/Index" title="Home">Əsas</a>
+                / @ViewBag.Title
+            </div>
+            <div class="col-12 col-lg-5 RightText">
+                <h4>Siz sifariş edin, biz çatdıraq. <span>SÜRƏTLİ</span> və <span>TƏHLÜKƏSİZ!</span></h4>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- -------------------------------------------------------------------------------------------- -->
+<!-- tarif top img end -->
+<!-- Blog Details start -->
+<div class="AboutContentMainDiv" style="padding: 80px 0px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-12">
+                <!-- Blog content start -->
+                <div class="AboutContentBlogDiv">
+                    <div class="AboutContentTextDiv">
+                        <h2>Taarifler</h2>
+                        <p class="MsoNormal" style="line-height:200%">
+                            Sifariş olunan bağlamanın çatdırılma haqqı çəkiyə görə hesablanır.
+                            Ölçüsü 1 metrdən böyük olan bağlamaların çatdırılma haqqı həcminə görə hesablanır.
+                            Həcmi çəkinin hesablanması üçün <b>en*hündürlük* uzunluq/6000 </b>standartı tətbiq edilir.
+
+
+                        </p>
+
+                    </div>
+                    @foreach (var i in Model)
+                    {
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="PriceDiv">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-12">
+                                            <div style="padding-top: 10%;">
+                                                <img src="@i.ImagePath" alt="" style="width: 275px;height:183px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-12">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+
+                                                        <th scope="col">Asagi Ceki(kq)</th>
+                                                        <th scope="col">Yuxari Ceki(kq)</th>
+                                                        <th scope="col">Qiymet(@i.CountryCurrency.CurrencyName)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var l in ViewBag.Tarif)
+                                                    {
+                                                        if (l.CountryId == i.Id)
+                                                        {
+
+
+                                                            <tr>
+
+                                                                <td>@l.MinWeight kq</td>
+                                                                <td>@l.MaxWeight kq</td>
+                                                                <td>@l.WeightPrice $</td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @*<div class="row">
+                            <div class="col-lg-12">
+                                <div class="PriceDiv">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-12">
+                                            <div style="padding-top: 10%;">
+                                                <img src="images.jpg" alt="" style="width: 275px;height:183px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-12">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Tarif</th>
+                                                        <th scope="col">Asagi Ceki(kq)</th>
+                                                        <th scope="col">Yuxari Ceki(kq)</th>
+                                                        <th scope="col">Qiymet(USD)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>0 kq</td>
+                                                        <td>0,250 kq</td>
+                                                        <td>2,22 $</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">2</th>
+                                                        <td>0,250 kq</td>
+                                                        <td>0,500 kq</td>
+                                                        <td>3.22 $</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">3</th>
+                                                        <td>0.500 kq</td>
+                                                        <td>0.750 kq</td>
+                                                        <td>5.33 $</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">4</th>
+                                                        <td>0.750 kq</td>
+                                                        <td>1000 kq</td>
+                                                        <td>8.33 $</td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Blog Details end -->

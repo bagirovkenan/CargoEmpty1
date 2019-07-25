@@ -1,0 +1,34 @@
+﻿@model CargoEmpty.Models.Pages.Menyu.Menyu
+
+
+<form action="/Menyu/Delete" method="post" enctype="multipart/form-data">
+
+    <input readonly type="hidden" id="MenyuDeleteModalId" name="Id" value="@Model.Id" />
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Olke Adi: </label>
+        <div class="col-md-10">
+            <input readonly type="text" id="MenyuDeLeteModalTitle" name="Text" class="form-control" value="@Model.Text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Url: </label>
+        <div class="col-md-10">
+            <input readonly type="text" id="MenyuDeLeteModalTitle" name="Url" class="form-control" value="@Model.Url">
+        </div>
+    </div>
+
+    <div>
+        <p>
+            <span style="color:red">Diqqet!!! "Delete"</span> Duymesi Yuxardaki Melumarlari Silecek<br />
+            ve Geri Qaytarmaq Mumkun Deyil
+        </p>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger" data-id="">Delete</button>
+    </div>
+</form>
+
+

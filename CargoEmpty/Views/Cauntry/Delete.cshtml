@@ -1,0 +1,38 @@
+﻿@model CargoEmpty.Models.General.Country
+
+
+<form action="/Cauntry/DeletePost" method="post" enctype="multipart/form-data">
+
+    <input readonly type="hidden" id="CountryDeleteModalId" name="Id" value="@Model.Id" />
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Olke Adi: </label>
+        <div class="col-md-10">
+            <input readonly type="text" id="CountryDeLeteModalTitle" name="CountryName" class="form-control" value="@Model.CauntryName">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Valyuta </label>
+        <div class="col-md-10">
+            <input readonly type="text" id="CountryDeLeteModalTitle" name="CountryName" class="form-control" value="@Model.CountryCurrency.CurrencyName">
+        </div>
+    </div>
+    <div class="form-group" id="EditImgDiv">
+        <label class="control-label col-md-2">Olke Bayragi:</label>
+        <img src="@Model.ImagePath" id="CountryDeLeteModalImage" alt="no picture yet" style="width:30%; height:30%" />
+    </div>
+
+    <div>
+        <p>
+            <span style="color:red">Diqqet!!! "Delete"</span> Duymesi Yuxardaki Melumarlari Silecek<br />
+            ve Geri Qaytarmaq Mumkun Deyil
+        </p>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger" data-id="">Delete</button>
+    </div>
+</form>
+        

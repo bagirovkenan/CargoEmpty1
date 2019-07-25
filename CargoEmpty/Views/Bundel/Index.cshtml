@@ -1,0 +1,198 @@
+﻿@model IEnumerable<CargoEmpty.Models.General.Bundel.GetIndexBundel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 col-12 BundelIndexMainDiv">
+    <div class="row">
+        <div class="col-lg-12 col-12">
+            <input type="hidden" name="StatusId" value="" id="BundelStatuseIdInIndex" />
+            <select name="CountryId" class="btn btn-warning BundelIndexCountry" style="box-shadow:unset;font-size:12px;">
+                <option value="" selected>Butun Baglamalar</option>
+                @foreach (var i in ViewBag.counry)
+                {
+                    <option value="@i.Id">@i.CauntryName</option>
+                }
+
+            </select>
+            @{
+                foreach (var i in ViewBag.status)
+                {
+                    <button class="btn btn-warning BundelIndexStatusBtn" data-id="@i.Id" style="font-size:12px;">@i.StatusName</button>
+                }
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-12 BundelIndexTableMainDiv" style="margin-top:10px;">
+            <table class="table table-bordered" style="width:100%;" id="CreateBundelOrdersTableId">
+                <thead style="background-color:red;color:white;">
+                    <tr>
+                        <th style="cursor:pointer">
+                            @Html.DisplayName("Olke")
+                        </th>
+                        <th style="cursor:pointer">
+                            @Html.DisplayName("Magaza")
+                        </th>
+                        <th style="cursor:pointer">
+                            @Html.DisplayName("Purchase Code")
+                        </th>
+                        <th style="cursor:pointer">
+                            @Html.DisplayName("Price/Delivery")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Tarix")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Orders/Dec")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Ceki/Olcu")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Status")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Actions")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="BundelIndexTableBodyId" class="BundelIndexTablesBady">
+
+                    @{
+                        foreach (var i in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @i.CountryName
+                                </td>
+                                <td>
+                                    @i.ShopName
+                                </td>
+                                <td>
+                                    @i.UnicalNumberReception
+                                </td>
+                                <td>
+                                    Link  : @i.Price<br />
+                                    Catd : @i.DeliveryPrice
+                                </td>
+                                <td>
+                                    @if (i.CreateDate != null)
+                                    {
+                                        @Html.DisplayNameFor(model => model.CreateDate) <span>:</span> @i.CreateDate<br />
+
+                                    }
+                                    @if (i.ReceivingTime != null)
+                                    {
+                                        @Html.DisplayNameFor(model => model.ReceivingTime) <span>:</span> @i.ReceivingTime<br />
+
+                                    }
+
+                                    @if (i.OnWay != null)
+                                    {
+                                        @Html.DisplayNameFor(model => model.OnWay) <span>:</span> @i.OnWay<br />
+
+                                    }
+
+                                    @if (i.DeliveryTime != null)
+                                    {
+                                        @Html.DisplayNameFor(model => model.DeliveryTime) <span>:</span> @i.DeliveryTime
+
+                                    }
+                                </td>
+                                <td>
+                                    @for (var j = 0; j < i.Links.Count; j++)
+                                    {
+
+                                        if (i.Links[j].OrderLink == null)
+                                        {
+
+                                            <span>|</span> <span data-id="@i.Links[j].Id" id="BundelIndexDecNameId" style="cursor:pointer">Dec</span> <span>|</span>
+                                        }
+                                        else
+                                        {
+                                            <span>|</span> <a href="@i.Links[j].OrderLink">Order</a> <span>|</span>
+                                        }
+
+                                    }
+                                </td>
+                                <td title="ceki/en/uznluq/hundurluk">
+                                    @i.Weight kq <br />
+                                    @i.Width/@i.Length/@i.Height
+                                </td>
+                                <td>
+                                    @foreach (var k in ViewBag.status)
+                                    {
+                                        if (i.OrderStatusId == k.Id)
+                                        {
+                                            <span>@k.StatusName</span>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @if (i.OrderStatusId == 0 || i.OrderStatusId == 2)
+                                    {
+                                        <button id="changeBundelStatus"  data-id="@i.Id" class="btn btn-warning" style="font-size:12px;">Status</button>
+                                        <button data-id="@i.Id" class="btn btn-danger" style="font-size:12px;" id="bundelIndexDeleteButton"><i class="fas fa-times"></i></button>
+                                    }
+                                    else
+                                    {
+                                        <!-- Example single danger button -->
+                                        <div class="btn-group" style="width:100%;">
+                                            <button style="width:100%;font-size:14px;" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Action
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <button class="btn btn-info" href="#" style="width:100%;text-align:center;display:block;font-size:12px;">Status</button>
+                                                <button class="btn btn-info" style="width:100%;text-align:center;display:block;margin-top:5px;font-size:12px;" href="#">Status1</button>
+                                                <button class="btn btn-info" href="#" style="width:100%;text-align:center;display:block;margin-top:5px;font-size:12px;">Status2</button>
+                                                <button class="btn btn-info" href="#" style="width:100%;text-align:center;display:block;margin-top:5px;font-size:12px;">Status2</button>
+                                                <button class="btn btn-info" href="#" style="width:100%;text-align:center;display:block;margin-top:5px;font-size:12px;">Status2</button>
+
+                                            </div>
+                                        </div>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@*decleration info modal*@
+<!-- Button trigger modal -->
+<button style="display:none;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="indexBundelDecIfoModalShowBtn"></button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="BundelIndexDeclerationInfoModalContenDiv">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Bagla</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*decleration info modal*@
+
+
+@section AdminBundelCreate
+{
+    <script type="text/javascript" src="~/JavaScript/CreateBundel.js"></script>
+
+}

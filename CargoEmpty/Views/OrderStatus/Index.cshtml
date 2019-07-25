@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CargoEmpty.Models.General.Order.OrderStatus>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+}
+
+
+<table class="table table-bordered" style="width:100%;">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusName)
+            </td>
+            <td>
+                <a class="btn btn-primary" type="button" href="/OrderStatus/Edit/@item.Id">Edit</a>
+                <a class="btn btn-danger" type="button" href="/OrderStatus/Delete/@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+<div>
+    <a href="/OrderStatus/Create"><button type="button" class="btn btn-secondary">Yenisini yarat</button></a>
+
+</div>

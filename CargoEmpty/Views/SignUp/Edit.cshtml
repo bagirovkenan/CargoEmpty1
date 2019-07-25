@@ -1,0 +1,161 @@
+﻿@model CargoEmpty.Models.General.User.UserDb
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@*@Html.AntiForgeryToken()*@
+
+<div class="SignUpMainDiv" style="width:100%;height:auto;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-12 " id="signupcolMainDivId">
+                <form action="/SignUp/Edit" method="post" class="forum-group">
+                    <input type="hidden" name="Id" value="@Model.Id" />
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-6  col-12">
+                            <label>Adiniz</label>
+                            <div>
+                                <input type="text" name="FirstName" value="@Model.FirstName" class="form-control" required />
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6  col-12">
+                            <label>Soy Adiniz</label>
+                            <div>
+                                <input type="text" name="LastName" value="@Model.LastName" class="form-control" required />
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-6 col-12">
+                            <label>Yasiniz</label>
+                            <div style="color:white;">
+                                <input type="number" name="Age" value="@Model.Age" class="form-control" required maxlength="2" />
+                                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-6 col-12">
+                            <label>Cinsiniz</label>
+                            <div style="color:white;">
+                                <select name="Gender" class="form-control">
+                                    <option class="form-control" value="Male">Kisi</option>
+                                    <option class="form-control" value="Female">Qadin</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-12">
+                            <label>Adress</label>
+                            <div>
+                                <input type="text" name="Adress" value="@Model.Adress" required class="form-control" />
+                                @Html.ValidationMessageFor(model => model.Adress, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6  col-6" id="EditUserUserName">
+                            <label>Isdifadeci Adi</label>
+                            <div>
+                                <input type="text" name="UserName" value="@Model.UserName" class="form-control" required />
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-2 col-2">
+                            <div style="margin-top:30px">
+                                <button type="button" class="btn btn-warning" id="ChangePassword">Parolu Deyis</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chsngePAswwordHiddendiv">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-4  col-12">
+                                <label>Indiki Parolunuz</label>
+                                <div>
+                                    <input type="password" name="LastPassword" value="" class="form-control"  />
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-4  col-12  ">
+                                <label>Yeni Parolunuz</label>
+                                <div>
+                                    <input type="password" name="NewPassword" value="" class="form-control"  />
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-4  col-12">
+                                <label> Yeni Parolunuzun Tekrari</label>
+                                <div style="color:white;">
+                                    <input type="password" name="NewConfirmPassword" value="" class="form-control"  />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6  col-12">
+                            <label>Email Adresiniz</label>
+                            <div>
+                                <input type="email" name="Mail" value="@Model.Mail" class="form-control" required />
+                                @Html.ValidationMessageFor(model => model.Mail, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6  col-12">
+                            <label title="Daim Aktiv olan bir nomre">Mobil Nomreniz</label>
+                            <div>
+                                <input type="tel" name="PhoneNumber" value="@Model.PhoneNumber" class="form-control" required />
+                                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6  col-12">
+                            <label>Sexsiyyet Vesiqesinin Seria Nomresi</label>
+                            <div>
+                                <input type="text" name="IDCardNumber" value="@Model.IDCardNumber" class="form-control" required />
+                                @Html.ValidationMessageFor(model => model.IDCardNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6  col-12">
+                            <label title="Sexsiyyet vesiqesinin sag asagi kuncunde sondan 7 herif">Fin Cod</label>
+                            <div>
+                                <input title="Sexsiyyet vesiqesinin sag asagi kuncunde sondan 7 herif" type="text" name="FINNumber" value="@Model.FINNumber" class="form-control" required />
+                                @Html.ValidationMessageFor(model => model.FINNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div style="margin-top:20px;" class="col-12 col-lg-12">
+                            <button class="btn btn-danger" type="submit" id="EditSignUpSubmitButton">Yadda Saxla</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4 col-12" style="margin-top:20px;">
+                  <ul id="accauntsettingUl">
+                        <li><a href="/MyAccount/Index" title="" id="salam">Ünvanlarım</a></li>
+                        <li><a href="/Orders/IndexUser" title="">SİFARİŞLƏRİM</a></li>
+                        <li class=activeAccountLink><a href="/SignUp/Edit/@Model.Id" title="">TƏNZİMLƏMƏLƏR</a></li>
+                        <li><a href="#" title="">Balans (SİFARİŞLƏR)</a></li>
+                        <li><a href="#" title="">Balans (XİDMƏTLƏR)</a></li>
+                        <li><a href="#" title="">Sorğular</a></li>
+                        <li><a href="#" title="">Mesajlar </a></li>
+                        <li><a href="" title="">Çıxış</a></li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="height:100px;"></div>
+
+
+@section SignUpLogin
+{
+    <script type="text/javascript" src="~/JavaScript/Front/SignUpLogin.js"></script>
+
+}

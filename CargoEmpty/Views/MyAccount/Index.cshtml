@@ -1,0 +1,285 @@
+﻿@model CargoEmpty.Models.Pages.MyAcount.MyAccountHome
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- news top img start -->
+<div class="FaqTopImgMainDiv">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8 faqTitleColDiv leftText">
+                <h1>Hesabim</h1>
+                <a href="file:///C:/Users/code/Desktop/P504-Final/ViewFerid/Home/Home/Home.html" title="Home">Əsas</a>
+                / Hesabim
+            </div>
+            <div class="col-12 col-lg-5 RightText">
+                <h4>Siz sifariş edin, biz çatdıraq. <span>SÜRƏTLİ</span> və <span>TƏHLÜKƏSİZ!</span></h4>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- -------------------------------------------------------------------------------------------- -->
+<!-- news top img end -->
+<div class="BottomMainDiv" style="padding: 80px 0px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-7 order-xs-2 order-sm-2 order-2 order-md-1 order-lg-1" id="MyAccountAdress">
+                <div class="col-12 col-md-8 col-lg-8 offset-md-2 offset-lg-2">
+                    <div class="AccountContentTitleDiv" style="text-align: center;padding-bottom: 30px;">
+                        <h2>DİQQƏT!</h2>
+                        <p>
+                            Satıcı firmanın saytında sifariş verərkən ünvan hissəsini aşağıda qeyd olunan formada
+                            doldurmağınızı xahiş edirik.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tracking-block">
+                    <ul class="nav nav-tabs CountryHeaderUl" role="tablist">
+                        @{
+
+
+
+                            for (var i = 0; i < Model.MyAdress.Count; i++)
+                            {
+
+                                <li class="nav-item CountryHeaderLi ActivHeader" id="ActivHeader-@Model.MyAdress[i].Country.Id" data-id="@Model.MyAdress[i].Country.Id" style="cursor:pointer;">
+                                    <a class="nav-link active countryLink" style="background-color: #f6f6f6;"> @Model.MyAdress[i].Country.CauntryName</a>
+                                </li>
+
+                            }
+                        }
+                    </ul>
+                    @{
+                        string ActivClassContent = "ActivContent";
+
+                        string FullName;
+
+                        for (var i = 0; i < Model.MyAdress.Count; i++)
+                        {
+                            if (i > 0)
+                            {
+                                ActivClassContent = "DeActivContent";
+                            }
+                            if (Model.MyAdress[i].FullName != null)
+                            {
+                                FullName = Model.MyAdress[i].FullName;
+                                Model.MyAdress[i].AddressLine1 = Model.MyAdress[i].AddressLine1 + " " + Model.User.FirstName + " " + Model.User.LastName;
+                            }
+                            else
+                            {
+                                FullName = Model.User.FirstName + " " + Model.User.LastName;
+                            }
+                            <div class="LeftBlogContentDiv" id="@ActivClassContent" data-id="@Model.MyAdress[i].Country.Id">
+                                <div role="tabpanel" class="tab-pane active" id="address_0">
+
+                                    <div class="put-reference-number ">
+                                        <form action="">
+                                            <div class="form-group">
+                                                <div class="row ContentAdressRowDiv">
+                                                    @*=====================================*@
+                                                    <div class="col-12 col-md-6 col-lg-6">
+                                                        <label>Country:</label>
+                                                        <div class="input-group ">
+                                                            <strong>@Model.MyAdress[i].Country.CauntryName</strong>
+                                                        </div>
+                                                    </div>
+                                                    @*=====================================*@
+                                                    <div class="col-12 col-md-6 col-lg-6" style="    margin-bottom: 20px;">
+                                                        <label>City:</label>
+                                                        <div class="input-group ">
+                                                            <strong>@Model.MyAdress[i].City</strong>
+                                                        </div>
+                                                    </div>
+                                                    @*=====================================*@
+
+
+                                                    <div class="col-12 col-md-6 col-lg-6" style="    margin-bottom: 20px;">
+                                                        <label>Full Name</label>
+                                                        <div class="input-group ">
+                                                            <strong>@FullName</strong>
+                                                        </div>
+                                                    </div>
+                                                    @*=====================================*@
+                                                    <div class="col-12 col-md-6 col-lg-6" style="    margin-bottom: 20px;">
+                                                        <label>Adress Line 1(Street):</label>
+                                                        <div class="input-group ">
+                                                            <strong>@Model.MyAdress[i].AddressLine1</strong>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                    @*=====================================*@
+                                                    <div class="col-12 col-md-6 col-lg-6" style="    margin-bottom: 20px;">
+                                                        <label>Adress Line 2:</label>
+                                                        <div class="input-group ">
+                                                            <strong>@Model.MyAdress[i].AddressLine2</strong>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                    @*=====================================*@
+                                                    <div class="col-12 col-md-6 col-lg-6" style="    margin-bottom: 20px;">
+                                                        <label>Region:</label>
+                                                        <div class="input-group ">
+                                                            <strong>@Model.MyAdress[i].Semt</strong>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                    @*=====================================*@
+                                                    <div class="col-12 col-md-6 col-lg-6" style="    margin-bottom: 20px;">
+                                                        <label>District:</label>
+                                                        <div class="input-group ">
+                                                            <strong>@Model.MyAdress[i].Ilce</strong>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                    @*=====================================*@
+                                                    <div class="col-12 col-md-6 col-lg-6" style="    margin-bottom: 20px;">
+                                                        <label>Phone Number:</label>
+                                                        <div class="input-group ">
+                                                            <strong>@Model.MyAdress[i].PhoneNumber</strong>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                    @*=====================================*@
+                                                    <div class="col-12 col-md-6 col-lg-6" style="    margin-bottom: 20px;">
+                                                        <label>IDNumber:</label>
+                                                        <div class="input-group ">
+                                                            <strong>@Model.MyAdress[i].IDNumber</strong>
+
+
+                                                        </div>
+                                                    </div>
+                                                    @*=====================================*@
+                                                    <div class="col-12 col-md-6 col-lg-6" style="    margin-bottom: 20px;">
+                                                        <label>Tax IDNumber:</label>
+                                                        <div class="input-group ">
+                                                            <strong>@Model.MyAdress[i].TaxIDNumber</strong>
+
+
+                                                        </div>
+                                                    </div>
+                                                    @*=====================================*@
+                                                    <div class="col-12 col-md-6 col-lg-6" style="    margin-bottom: 20px;">
+                                                        <label>ZIP/Postal Code:</label>
+                                                        <div class="input-group ">
+                                                            <strong>@Model.MyAdress[i].ZIPcode</strong>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                    @*=====================================*@
+                                                    <div class="col-12 col-md-6 col-lg-6" style="    margin-bottom: 20px;">
+                                                        <label>Address Header:</label>
+                                                        <div class="input-group ">
+                                                            <strong>@Model.MyAdress[i].Addressheader</strong>
+
+
+                                                        </div>
+                                                    </div>
+                                                    @*=====================================*@
+
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+
+            @*==================================================================================================================================================*@
+            <!-- Right sidebar start -->
+            <div class="col-12 col-lg-4 order-xs-1 order-sm-1 order-1">
+                <div class="RightBlokMainDiv ">
+
+                    <div class="RightBlokClientNumberDiv">
+                        Müştəri nömrəsi-@Model.User.UserCod
+
+                    </div>
+                    <div class="col-md-12 col-12">
+                        <div class="row">
+                            <button class="btn orderlinkbtn"  style="width:100%;">
+                                <a href="/Orders/Create"
+                                   class="col-md-5 orderLink" style="">
+                                    SİFARİŞ
+                                    EDİN
+                                </a>
+                            </button>
+                            <button type="button" class="btn btn-primary" id="DeclerationBtnId" data-toggle="modal"
+                                    data-target=".bd-example-modal-lg">
+                                Beyanname
+                            </button>
+                            @*@Html.Partial("PartialDecleration")*@
+                        </div>
+                    </div>
+                </div>
+                @*----------------------------------------------------------------------------------------------------------------------------------*@
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="latest-news-section" style="margin-top:0;">
+                            <a href="#" title="">
+                                <div class="news-date"> 0 <span>azn</span></div>
+                                <h5>Balans</h5>
+                                @*<div class="news-post-by">Son əməliyyat <span></span></div>*@
+                                <p>
+                                    Bu balansdan istifadə edərək siz sifarişlərin (linklərin) ödənişini edə
+                                    bilərsiniz
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="latest-news-section" style="margin-bottom:15px;">
+                            <a href="#" title="">
+                                <div class="news-date"> 0 <span>azn</span></div>
+                                <h5> Bonus Balans</h5>
+                                @*<div class="news-post-by">Son əməliyyat <span></span></div>*@
+                                <p>
+                                    Her 10$-odenise 1 bonus balansiniza yuklenir ve bu bonuslarla sifarislerinizin odenisin ede bilersiniz
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <ul id="accauntsettingUl">
+                    <li class=activeAccountLink><a href="/MyAccount/Index" title="" id="salam">Ünvanlarım</a></li>
+                    <li><a href="/Orders/IndexUser" title="">SİFARİŞLƏRİM</a></li>
+                    <li class="PassivAccountLink"><a href="/SignUp/Edit/@Model.User.Id" title="">TƏNZİMLƏMƏLƏR</a></li>
+                    <li class="PassivAccountLink"><a href="#" title="">Balans (SİFARİŞLƏR)</a></li>
+                    <li class="PassivAccountLink"><a href="#" title="">Balans (XİDMƏTLƏR)</a></li>
+                    <li class="PassivAccountLink"><a href="#" title="">Sorğular</a></li>
+                    <li class="PassivAccountLink"><a href="#" title="">Mesajlar </a></li>
+                    <li class="PassivAccountLink"><a href="" title="">Çıxış</a></li>
+                </ul>
+            </div>
+
+            @*==================================================================================================================================================*@
+
+        </div>
+    </div>
+</div>
+@Html.Partial("PartialDecleration");
+
+@section FrontMyAccountScript
+{
+    <script type="text/javascript" src="~/JavaScript/Front/MyAccount.js"></script>
+
+}
+

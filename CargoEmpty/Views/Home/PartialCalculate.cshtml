@@ -1,0 +1,96 @@
+﻿<!-- calcuate start -->
+<div class="calculatemaindiv">
+    <div class=" container-fluid calculateContainerDiv">
+        <div id="calculator">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-12" style="text-align: center">
+                    <h2 style="color: #fff;">K A L K U L Y A T O R</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-12 CalculateInputTextColdiv">
+                    <p>
+                        Burada oz baglamanizin olculerini daxil edib hemin baglamnin catdirilmasi ucun odemeli
+                        olacaginiz meblegi
+                        evvelceden oyrene bilersiniz!
+                    </p><br /><hr />
+                              <h6>
+                                  <b>Diqqet..!</b> Sifariş olunan bağlamanın çatdırılma haqqı çəkiyə görə hesablanır.
+                                  Ölçüsü 1 metrdən böyük olan bağlamaların çatdırılma haqqı həcminə görə hesablanır.
+                                  Həcmi çəkinin hesablanması üçün <b> en*hündürlük* uzunluq/6000 </b>standartı tətbiq edilir.
+                              </h6>
+                </div>
+                <div class="col-md-6 col-sm-12 col-12 calculateInputMainDiv">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <label>Gonderilen Olke</label>
+                            <div class="form-group">
+                                <select name="CountryId" id="CountryId" class="form-control">
+                                    @foreach (var i in ViewBag.Country)
+                                    {
+                                        <option value="@i.Id">@i.CauntryName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <label>Baglamanin Sayi(1,2,3)</label>
+                            <div class="form-group">
+                                <input name="BundelCount" type="number" class="form-control calcInput" id="BundelCount" placeholder="Bağlama sayı (məs:1,2,3)" required />
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <label>Baglamanin Uzunlugu(sm)</label>
+                            <div class="form-group">
+                                <input  name="BundleLenght" type="number" class="form-control calcInput" placeholder="Uzunluq (sm)" id="BundleLenght"
+                                       required="">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <label>Baglamanin Eni(sm)</label>
+                            <div class="form-group">
+                                <input  name="BundleWidth" type="number"  class="form-control calcInput" placeholder="En (sm)" id="BundleWidth" required="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <label>Baglamanin Hundurluyu(sm)</label>
+                            <div class="form-group">
+                                <input  name="BundleHeight" type="number"  class="form-control calcInput" placeholder="Hundurluk (sm)" id="BundleHeight"
+                                       required="">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <label>Baglamanin Cekisi(kq)</label>
+                            <div class="form-group">
+                                <input  name="BundleWeight" type="number" step="0.01" class="form-control calcInput" placeholder="Ceki (kq)" id="BundleWeight"
+                                       required="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <button class=" btn btn-secondary" type="submit" onclick="calculatePrice()">Hesabla</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 style="color: #fff">Cemi:</h4>
+                            <h4 style="color: #fff">
+                                <span id="calculatorResultUSD">0.00</span> $ 
+                                <span id="calculatorResultAZN">0.00</span> AZN
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- calculate end -->

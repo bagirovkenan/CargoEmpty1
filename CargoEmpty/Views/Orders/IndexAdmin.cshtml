@@ -1,0 +1,191 @@
+﻿@model IEnumerable<CargoEmpty.Models.General.Order.OrderDb>
+@{
+    ViewBag.Title = "IndexAdmin";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 col-md-12 col-12" id="OrdersIndexMainDiv">
+    <div class="row">
+
+
+
+        <div class="col-lg-12 col-md-12 col-12 AdminCustumersOrdersIndex" style="padding-bottom:5px;">
+            <select data-action="/JsonResult/CountryAllOrders" class="btn btn-warning OrderIndexCountrySelect">
+                <option>Bütün Sifrişlər<span class="float-right">(@Model.Count())</span></option>
+                @foreach (var i in ViewBag.Country)
+                {
+                    var s = 0;
+                    foreach (var l in Model)
+                    {
+                        if (l.CountryId == i.Id)
+                        {
+                            s++;
+                        }
+                    }
+                    <option value="@i.Id">@i.CauntryName<span class="float-right">(@s)</span></option>
+                }
+            </select>
+            <button data-action="/JsonResult/AllExecutedOrdered" class="btn btn-warning custumersOrdersActionBtn">Icra Edilib<span class="float-right">(@ViewBag.orders.isExcuteOrder)</span></button>
+            <button data-action="/JsonResult/IsNotAllExecutedOrdered" class="btn btn-warning custumersOrdersActionBtn">Icra Edilmeyib<span class="float-right">(@ViewBag.orders.isNotExcuteOrder)</span></button>
+            <button data-action="/JsonResult/AllOrdersOrdered" class="btn btn-warning custumersOrdersActionBtn">Sifarish Edilib<span class="float-right">(@ViewBag.orders.OrderedCount)</span></button>
+            <button data-action="/JsonResult/AllOrdersNotDecleration" class="btn btn-warning custumersOrdersActionBtn">Sifarish Edilmeyib<span class="float-right">(@ViewBag.orders.isNotOrdered)</span></button>
+            <button data-action="/JsonResult/AllOrdersPait" class="btn btn-warning custumersOrdersActionBtn">Odenilib<span class="float-right">(@ViewBag.orders.isPaidCount)</span></button>
+            <button data-action="/JsonResult/AllOrdersNotPait" class="btn btn-warning custumersOrdersActionBtn">Odenilmeyib<span class="float-right">(@ViewBag.orders.isNotPaidCount)</span></button>
+            <button data-action="/JsonResult/AllOrdersUrgent" class="btn btn-warning custumersOrdersActionBtn">Tecili<span class="float-right">(@ViewBag.orders.isUrgentOrderCount)</span></button>
+            <button data-action="/JsonResult/AllOrdersNormal" class="btn btn-warning custumersOrdersActionBtn">Normal<span class="float-right">(@ViewBag.orders.isNormalOrderCount)</span></button>
+        </div>
+        <div class="col-lg-12 col-md-12 col-12" style="overflow-x: auto;overflow-y: auto;margin-top:10px;" id="OrdersJsonTabelMainDiv">
+            @*  <button class="test">test</button>*@
+            <table class="table table-bordered" style="width:100%;">
+                <thead style="background-color:red;color:white;">
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Custumer")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cust-ID")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Country")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Date Time")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Fast")
+                        </th>
+                        <th style="cursor:pointer;" id="OrderAllPaid">
+                            @Html.DisplayName("Paid")
+                        </th>
+                        <th style="cursor:pointer;">
+                            @Html.DisplayName("Actions")
+                        </th>
+                        <th style="cursor:pointer;" id="OrderAllDelete" title="Diqqet!!! Butun sifarisleri Silir">
+                            @Html.DisplayName("Sil") <i class="fas fa-caret-square-down"></i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+
+
+                        string IsPaid = "Ode";
+                        string IsUrgent = "Normal";
+                        string color = "green";
+                        string comment;
+
+                        foreach (var i in Model)
+                        {
+                            if (i.Coment.Length > 25)
+                            {
+                                comment = i.Coment.Substring(0, 25) + "...";
+                            }
+                            else
+                            {
+                                comment = i.Coment;
+                            }
+
+                            if (i.isPaid == true)
+                            {
+                                IsPaid = "Paid";
+                                color = "green";
+
+                            }
+                            else
+                            {
+                                IsPaid = "NotPaid";
+                                color = "red";
+
+                            }
+                            if (i.isUrgent == true)
+                            {
+                                IsUrgent = "Tecili";
+
+                            }
+                            else
+                            {
+                                IsUrgent = "Normal";
+                            }
+                            <tr>
+
+                                <td>
+                                    @i.UserDb.FirstName @i.UserDb.LastName
+                                </td>
+                                <td>
+
+                                    @i.UserDb.Id
+
+                                </td>
+                                <td>
+                                    @i.Country.CauntryName
+                                </td>
+                                <td>
+                                    @i.CreatedDate
+                                </td>
+                                <td>
+                                    <span style="font-size:13px;border-radius:3px;background-color:green;color:white;">@IsUrgent</span>
+                                </td>
+                                <td>
+                                    <span style="font-size:13px;border-radius:3px;background-color:@color;color:white;">@IsPaid</span>
+                                </td>
+                                <td>
+                                    <a href="/Bundel/Create/@i.UserDbId"><button class="btn btn-warning">Process</button></a>
+                                </td>
+                                <td>
+                                    <button type="button" data-id="@i.Id" class="btn btn-primary OrderEditBtn" style="font-size:13px;"><i class="far fa-edit"></i></button>
+                                    <button type="button" data-id="@i.Id" data-action="Order" class="btn btn-danger OrderDelete" style="font-size:13px"><i class="far fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="OrderIndexModalParentDiv">
+    @*modal*@
+    <!-- Button trigger modal -->
+    <button id="OrderIndexModalBtn" type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalCenter" style="display:none;">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="OrderIndexModalFormParentDiv">
+                <form action="/User/Delete" method="post">
+                    <div class="modal-header" style="border-bottom:none;">
+                        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="AdminOrderIndexModalBody">
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer" style="border-top:none;">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @*modal*@
+</div>
+
+
+
+
+@section AdminCustumerOrderIndex
+{
+    <script type="text/javascript" src="~/JavaScript/AdminOrderIndex.js"></script>
+
+}
+

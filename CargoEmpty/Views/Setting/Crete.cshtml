@@ -1,0 +1,154 @@
+﻿@model CargoEmpty.Models.App.Setting
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+}
+<div class="contactMainDiv" style="width:100%;height:auto;padding:10px 0px">
+    <div class="Container">
+        <div class="row">
+            <div class="col-lg-12 col-12">
+                <h4 style="color:red;">"*" Isareli Setirler Bos Ola Bilmez ...!</h4>
+            </div>
+            <div class="col-lg-12 col-12">
+                <form action="/Setting/Create" method="post" enctype="multipart/form-data" class="form-group">
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <label>Bank Faizi(%) <span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="number" step="0.01" name="BankSpending" value="" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <label>Tecili Sifaris Qiymeti<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="number" step="0.01" name="UrgentBookingPrice" value="" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-12">
+                            <label>Face Book</label>
+                            <div>
+                                <input class="form-control" type="number" step="0.01" name="USD" value="" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label>Instagram</label>
+                            <div>
+                                <input class="form-control" type="number" step="0.01" name="EUR" value="" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label>Youtube</label>
+                            <div>
+                                <input class="form-control" type="number" step="0.01" name="TRY" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <label>Link<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="Title" value="" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <label>Logo</label>
+                            <div>
+                                <input class="form-control" type="file" name="TitleImage" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-12">
+                            <label>Adres<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="Adress" value="" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-12">
+                            <label>Telefon<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="PhoneNumber" value="" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label>Mobil<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="MobileNumber" value="" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label>Mail<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="email" name="Mail" value="" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <label>Ise Baslama Saati<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="StartWorkClock" value="" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <label>Isin Bitme Saati<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="EndWorkClock" value="" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-12">
+                            <label>Birinci Is Gunu<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="StartWorkDay" value="" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label>Son Is Gunu<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="EndWorkDay" value="" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label>Umumi Is Gunleri<span style="color:red;">*</span></label>
+                            <div>
+                                <input class="form-control" type="text" name="WorkDays" value="" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-12">
+                            <label>Face Book</label>
+                            <div>
+                                <input class="form-control" type="text" name="FaceBookAdress" value="" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label>Instagram</label>
+                            <div>
+                                <input class="form-control" type="text" name="InstagramAdress" value="" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label>Youtube</label>
+                            <div>
+                                <input class="form-control" type="text" name="YoutubeAdress" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-lg-12" style="margin-top:10px;">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+﻿@model IEnumerable<CargoEmpty.Models.General.Order.OrderDb>
+
+<table class="table table-bordered" style="width:100%;">
+    <thead style="background-color:red;color:white;">
+        <tr>
+            <th>
+                @Html.DisplayName("Custumer")
+            </th>
+            <th>
+                @Html.DisplayName("Cust-ID")
+            </th>
+            <th>
+                @Html.DisplayName("Country")
+            </th>
+            <th>
+                @Html.DisplayName("Date Time")
+            </th>
+            <th>
+                @Html.DisplayName("Fast")
+            </th>
+            <th style="cursor:pointer;" id="OrderAllPaid">
+                @Html.DisplayName("Paid")
+            </th>        
+            <th style="cursor:pointer;" id="OrderAllDelete" title="Diqqet!!! Butun sifarisleri Silir">
+                @Html.DisplayName("Sil") <i class="fas fa-caret-square-down"></i>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+
+
+            string IsPaid = "Ode";
+            string IsUrgent = "Normal";
+            string color = "green";
+            string comment;
+
+            foreach (var i in Model)
+            {
+                if (i.Coment.Length > 25)
+                {
+                    comment = i.Coment.Substring(0, 25) + "...";
+                }
+                else
+                {
+                    comment = i.Coment;
+                }
+
+                if (i.isPaid == true)
+                {
+                    IsPaid = "Paid";
+                    color = "green";
+
+                }
+                else
+                {
+                    IsPaid = "NotPaid";
+                    color = "red";
+
+                }
+                if (i.isUrgent == true)
+                {
+                    IsUrgent = "Tecili";
+
+                }
+                else
+                {
+                    IsUrgent = "Normal";
+                }
+                <tr>
+
+                    <td>
+                        @i.UserDb.FirstName @i.UserDb.LastName
+                    </td>
+                    <td>
+
+                        @i.UserDb.Id
+
+                    </td>
+                    <td>
+                        @i.Country.CauntryName
+                    </td>
+                    <td>
+                        @i.CreatedDate
+                    </td>
+                    <td>
+                        <span style="font-size:13px;border-radius:3px;background-color:green;color:white;">@IsUrgent</span>
+                    </td>
+                    <td>
+                        <span style="font-size:13px;border-radius:3px;background-color:@color;color:white;">@IsPaid</span>
+                    </td>             
+                    <td>
+                        <button type="button" data-id="@i.Id" class="btn btn-primary OrderEditBtn" style="font-size:13px;"><i class="far fa-edit"></i></button>
+                        <button type="button" data-id="@i.Id" data-action="Order" class="btn btn-danger OrderDelete" style="font-size:13px"><i class="far fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

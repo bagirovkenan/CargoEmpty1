@@ -1,0 +1,121 @@
+﻿@model IEnumerable<CargoEmpty.Models.Pages.News.NewsDbModel>
+@{
+    ViewBag.Title = "Xeberler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    DateTime? NewsDate;
+}
+
+<!-- news top img start -->
+<div class="FaqTopImgMainDiv">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-7 faqTitleColDiv leftText">
+                <h1>@ViewBag.Title</h1>
+                <a href="/Home/Index" title="Home">Əsas</a>
+                / @ViewBag.Title
+            </div>
+            <div class="col-12 col-lg-5 RightText">
+                <h4>Siz sifariş edin, biz çatdıraq. <span>SÜRƏTLİ</span> və <span>TƏHLÜKƏSİZ!</span></h4>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- -------------------------------------------------------------------------------------------- -->
+<!-- news top img end -->
+
+<div class="NewBlogMainDiv">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8 NewsLeftBlogMainColDiv">
+                <div class="row">
+                    @foreach (var i in Model)
+                    {
+                        if (i.NewsRefreshDate!=null)
+                        {
+                            NewsDate = @i.NewsRefreshDate;
+                        }
+                        else
+                        {
+                            NewsDate = @i.NewsCreateDate;
+                        }
+
+                        <div class="col-12 col-lg-6">
+                            <!-- Blog item start -->
+                            <div class="NewsBlog">
+                                <div class="NewsBlogImg" style="background-image:url(@i.ImagePath)"></div>
+                                <div class="NewsBlogNewsTitle">
+                                    <h3>@i.NewsTitle</h3>
+                                    <div class="NewsBlogIconDiv">
+                                        <ul>
+                                            <li style="color:red"><i class="fas fa-calendar"></i>@NewsDate</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="1" class="continue-read-blog aParentDiv">
+                                    <a class="NewsDetails" href="/FrontNews/Details/@i.Id" title="">
+                                        Ətraflı
+                                        oxu
+                                    </a>
+                                </div>
+                                <div class="NewsBloGHeaderDiv">
+                                    <div class="blog-action-holder">
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Blog item end -->
+                    }
+                </div>
+            </div>
+            <!-- pagination start -->
+            <!-- pagination end -->
+            <!-- left sidebar end -->
+            <div class="col-12 col-lg-4 NewsRightBlogMainColDiv">
+
+
+                <div class="NewsRightBlogMainDiv">
+                    <h4 class="title-with-bg bg-black">Son xəbərlər </h4>
+                    <ul>
+                        @foreach (var i in Model)
+                        {
+                            if (i.NewsRefreshDate != null)
+                            {
+                                NewsDate = @i.NewsRefreshDate;
+                            }
+                            else
+                            {
+                                NewsDate = @i.NewsCreateDate;
+                            }
+
+                        <li id="1">
+                            <a href="/FrontNews/Details/@i.Id" title="">
+                                <img src="@i.ImagePath"
+                                     alt="post1">
+                                <p>@i.NewsTitle</p>
+                                <span>@NewsDate</span>
+                            </a>
+                        </li>
+                        }
+                    </ul>
+                </div>
+
+            </div>
+            <!-- Right sidebar end -->
+        </div>
+    </div>
+</div>
+
+<div style="width:100%;height:100px;"></div>
+
+
+
+@section  FrontNewsScript
+{
+    <script type="text/javascript" src="~/JavaScript/Front/News.js"></script>
+
+}

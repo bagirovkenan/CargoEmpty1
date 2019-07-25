@@ -1,0 +1,45 @@
+﻿@model CargoEmpty.Models.Pages.About.AboutDb
+    @{
+        ViewBag.Title = "Haqqimizda";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <!-- about top img start -->
+    <div class="FaqTopImgMainDiv">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-7 faqTitleColDiv leftText">
+                    <h1>@ViewBag.Title</h1>
+                    <a href="/Home/Index" title="Home">Əsas</a>
+                    /  @ViewBag.Title
+                </div>
+                <div class="col-12 col-lg-5 RightText">
+                    <h4>Siz sifariş edin, biz çatdıraq. <span>SÜRƏTLİ</span> və <span>TƏHLÜKƏSİZ!</span></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- -------------------------------------------------------------------------------------------- -->
+    <!-- about top img end -->
+    <!-- Breadcroumbs start -->
+    <!-- Blog Details start -->
+    <div class="AboutContentMainDiv" style="padding: 80px 0px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-12">
+                    <!-- Blog content start -->
+                    <div class="AboutContentBlogDiv">
+                        <div class="AboutContentTextDiv">
+                            <h2>@ViewBag.Title</h2>
+                            <p class="MsoNormal">
+                               @(new HtmlString(Model.ContentText))
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Blog Details end -->

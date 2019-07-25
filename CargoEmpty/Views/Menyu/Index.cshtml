@@ -1,0 +1,113 @@
+﻿@model IEnumerable<CargoEmpty.Models.Pages.Menyu.Menyu>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+
+    string isActive;
+    string ActivClass;
+}
+
+<div class="AminIndexPages" id="AdminCountry" style="width:100%;height:auto;">
+
+    <div class="row">
+        <div clasa="col-lg-12 col-12">
+            <table class="table table-bordered" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th scope="col">Text</th>
+                        <th scope="col">isActive</th>
+                        <th scope="col">Editing</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+
+                        if (item.IsActive)
+                        {
+                            isActive = "checked";
+                            ActivClass = "Activ";
+                        }
+                        else
+                        {
+                            isActive = "";
+                            ActivClass = "DeActiv";
+
+                        }
+
+
+
+
+
+
+                        <tr class="ss">
+                            <td>@item.Text</td>
+                            <td>
+                                <div class="CheckBoxenMenyu">
+                                    <input type="checkbox" data-id="@item.Id" class="@ActivClass" id="@item.Id" name="IsActive" @isActive>
+                                </div>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-info btn-sm MenyuDetailsBtn" data-toggle="modal" data-target="#MenyuDetailsModalLong" id="@item.Id">Details/Edit</button>
+                                <button class="btn btn-danger btn-sm MenyuDeleteBtn" data-toggle="modal" data-target="#MenyuDeleteModal" id="@item.Id">Delete</button>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <button type="button" id="SaveActiveMenyuBtn" class="btn btn-primary">Yadda saxla</button>
+    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#MenyuCreateModal">Yenisini yarat</button>
+    @Html.Partial("Create")
+
+    @*  ========================================================================================*@
+    <div class="modal fade" id="MenyuDetailsModalLong" tabindex="-1" role="dialog" aria-labelledby="MenyuDetailsModalLongLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="MenyuDetailsModalLongLabel">About</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="MenyueditPartialModal">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* ========================================================================================*@
+
+    @*  ========================================================================================*@
+    <div class="modal fade" id="MenyuDeleteModal" tabindex="-1" role="dialog" aria-labelledby="MenyuDeleteModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="MenyudeletePartialModal">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* ========================================================================================*@
+
+
+</div>
+@section MenyuScript
+{
+    <script type="text/javascript" src="~/JavaScript/Menyu.js"></script>
+
+}
+
+

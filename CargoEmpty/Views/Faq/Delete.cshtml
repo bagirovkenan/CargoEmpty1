@@ -1,0 +1,32 @@
+﻿@model CargoEmpty.Models.Pages.Faq.FaqDb
+
+<form class="form-group" action="/Faq/DeletePost" method="post">
+    <input readonly type="hidden" id="FaqDeleteModalId" name="Id" value="@Model.Id" />
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Title: </label>
+        <div class="col-md-10">
+            <input readonly type="text" id="FaqDeLeteModalTitle" name="Title" class="form-control" value="@Model.FaqTitle">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Text: </label>
+        <div class="col-md-10">
+
+            <span id="FaqDeLeteModalText" name="Text" class="form-control" style="max-width:360px;height:auto;">  @( new HtmlString(Model.FaqContent))</span>
+        </div>
+    </div>
+
+  
+    <div>
+        <p>
+            <span style="color:red">Diqqet!!!</span> <button class="btn btn-danger" type="button">Delete</button> Melumati Silecek<br />
+            ve Geri Qaytarmaq Mumkun Deyil
+        </p>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger" data-id="">Delete</button>
+    </div>
+</form>

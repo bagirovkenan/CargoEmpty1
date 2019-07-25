@@ -1,0 +1,63 @@
+﻿@model CargoEmpty.Models.General.Country
+@{
+    string isActiveClass;
+    string IsActivText;
+    string activinput;
+    if (Model.IsActive)
+    {
+        activinput = "true";
+        IsActivText = "Activ";
+        isActiveClass = "btn btn-success";
+    }
+    else
+    {
+
+
+        isActiveClass = "btn btn-danger";
+        IsActivText = "DeActiv";
+        activinput = "false";
+
+    }
+}
+
+<form action="/Cauntry/Edit" method="post" enctype="multipart/form-data">
+
+    <input type="hidden" id="CountryDetailsModalId" name="Id" value="@Model.Id" />
+    <div class="form-group">
+        <label class="control-label col-md-2">Olke Adi:</label>
+        <div class="col-md-10">
+            <input type="text" id="CountryDetailsModalTitle" name="CauntryName" class="form-control" value="@Model.CauntryName">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Valyuta<span style="color:red;">*</span></label>
+        <div class="col-md-10">
+            <select name="CurrencyId" class="form-control">
+                <option value="@Model.CurrencyId" class="form-control">@Model.CountryCurrency.CurrencyName</option>
+                @foreach (var i in ViewBag.Currency)
+                {
+                    <option value="@i.Id" class="form-control">@i.CurrencyName</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Image: </label>
+        <div class="col-md-10">
+            <input type="file" id="CountryDetailsModalFile" name="CountryFlag" class="form-control">
+        </div>
+    </div>
+    <div class="form-group" id="EditImgDiv">
+        <label class="control-label col-md-2">Olke Bayragi:</label>
+        <img src="@Model.ImagePath" id="CountryDetailsModalImage" alt="no picture yet" style="width:30%; height:30%" />
+    </div>
+
+    <div class="modal-footer">
+        @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>*@
+        <button type="submit" class="btn btn-primary" data-id="">Save</button>
+        <button type="button" id="CountryActivBtnEdit" class="@isActiveClass">@IsActivText</button>
+        <input id="activInput" type="hidden" name="Activ" value="@activinput" />
+    </div>
+</form>
+
+

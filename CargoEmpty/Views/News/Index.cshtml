@@ -1,0 +1,101 @@
+﻿@model IEnumerable<CargoEmpty.Models.Pages.News.NewsDbModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+}
+
+
+<div class="col-lg-12 col-12  AminIndexPages"  id="AdminNews" style="width:100%;height:auto;">
+    <div class="row">
+        <div class="col-lg-12 col-12">
+            <table class="table table-bordered" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">IsActive</th>
+                        <th scope="col">Editing</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in Model)
+                    {
+                        string ItemClass;
+                        string ItemSelected;
+                        string ItemeText;
+                        if (i.IsActive == true)
+                        {
+                            ItemClass = "Activ";
+                            ItemSelected = "checked";
+                        }
+                        else
+                        {
+                            ItemClass = "DeActiv";
+                            ItemSelected = "";
+                        }
+                        if (i.NewsContent.Length > 40)
+                        {
+                            ItemeText = i.NewsContent.Substring(0, 35) + "...";
+                        }
+                        else
+                        {
+                            ItemeText = i.NewsContent;
+                        }
+
+                        <tr class="ss">
+                            <td>@i.NewsTitle</td>
+                            <td>@ItemeText</td>
+
+                            <td style="display:none;">@i.ImagePath</td>
+                            <td>
+                                <div class="ChecxBoxNews">
+                                    <input type="checkbox" data-id="@i.Id" class="@ItemClass" id="ss" name="IsActive" @ItemSelected>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="/News/Edit/@i.Id"><button type="button" class="btn btn-info btn-sm NewsDetailsBtn" data-toggle="modal" id="@i.Id">Details/Edit</button> </a>
+                                <button class="btn btn-danger btn-sm NewsDeleteBtn" data-toggle="modal" data-target="#NewsDeleteModal" id="@i.Id">Delete</button>
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <button type="button" id="SaveActiveNewsBtn" class="btn btn-primary">Yadda saxla</button>
+    <a href="/News/Create"><button type="button" class="btn btn-secondary">Yenisini yarat</button></a>
+
+
+
+</div>
+@*/////*@
+<div class="modal fade" id="NewsDeleteModal" tabindex="-1" role="dialog" aria-labelledby="NewsDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="deleteModal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body " id="deletePartialModal">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section NewsScript
+{
+    <script type="text/javascript" src="~/JavaScript/News.js"></script>
+
+}

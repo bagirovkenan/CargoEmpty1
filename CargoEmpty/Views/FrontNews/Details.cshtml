@@ -1,0 +1,86 @@
+﻿@model  CargoEmpty.Models.Pages.News.NewsDbModel
+@{
+    ViewBag.Title = "Xeberler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    DateTime? NewsDate;
+    DateTime? NewsDateModel;  
+    if (Model.NewsRefreshDate!=null)
+    {
+        NewsDateModel = Model.NewsRefreshDate;
+    }
+    else
+    {
+        NewsDateModel = Model.NewsCreateDate;
+    }
+
+}
+<div class="FaqTopImgMainDiv">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-7 faqTitleColDiv leftText">
+                <h1> @ViewBag.Title</h1>
+                <a href="/Home/Index" title="Home">Əsas</a>
+                / @ViewBag.Title
+            </div>
+            <div class="col-12 col-lg-5 RightText">
+                <h4>Siz sifariş edin, biz çatdıraq. <span>SÜRƏTLİ</span> və <span>TƏHLÜKƏSİZ!</span></h4>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- -------------------------------------------------------------------------------------------- -->
+<!-- news top img end -->
+<!-- Blog Details start -->
+<div class="NewBlogMainDiv">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <!-- Blog content start -->
+                <div class="NewsDetailsShowNewsMainDiv ">
+                    <div class="NewsDetailsNewsDiv">
+                        <h2>@Model.NewsTitle</h2>
+                        <h6 style="color:red">@NewsDateModel</h6>
+                        <h3>@(new HtmlString(Model.NewsContent))</h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-12 col-lg-4 NewsRightBlogMainColDiv">
+
+
+                <div class="NewsRightBlogMainDiv">
+                    <h4 class="title-with-bg bg-black">Son xəbərlər </h4>
+                    <ul>
+                        @foreach (var i in ViewBag.News)
+                        {
+                            if (i.NewsRefreshDate != null)
+                            {
+                                NewsDate = @i.NewsRefreshDate;
+                            }
+                            else
+                            {
+                                NewsDate = @i.NewsCreateDate;
+                            }
+
+                            <li id="1">
+                                <a href="/FrontNews/Details/@i.Id" title="">
+                                    <img src="@i.ImagePath"
+                                         alt="post1">
+                                    <p>@i.NewsTitle</p>
+                                    <span>@NewsDate</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+            </div>
+            <!-- Right sidebar end -->
+        </div>
+    </div>
+</div>
+
+<div style="width:100%;height:100px;"></div>
+

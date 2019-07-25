@@ -1,0 +1,85 @@
+﻿@model CargoEmpty.Models.Pages.FrontContact
+    @{
+        ViewBag.Title = "Contact";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <!-- contact top img start -->
+    <div class="FaqTopImgMainDiv">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-7 faqTitleColDiv leftText">
+                    <h1>Xəbərlər</h1>
+                    <a href="/Home/Index" title="Home">Əsas</a>
+                    / @ViewBag.Title
+                </div>
+                <div class="col-12 col-lg-5 RightText">
+                    <h4>Siz sifariş edin, biz çatdıraq. <span>SÜRƏTLİ</span> və <span>TƏHLÜKƏSİZ!</span></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- -------------------------------------------------------------------------------------------- -->
+    <!-- contact top img end -->
+    <!-- Contact Start -->
+    <div class="ContactInputsMainDiv">
+        <div class="container">
+            <div class="row flex-lg-row-reverse">
+                <div class="col-12 col-lg-4">
+                    <div class="AdressDiv">
+                        <h3>Ünvan</h3>
+                        <div class="AdressUlDiv">
+                            <ul>
+                                <li class="address-icon">
+                                    <i class="fas fa-map-marker-alt"></i><span><strong>Ünvan:</strong><br></span><span>
+                                      @Model.Adress 
+                                    </span>
+                                </li>
+                                <li class="phone-icon"><i class="fas fa-phone"></i><span><strong>Telephone</strong></span><span><br>@Model.PhoneNumber</span></li>
+                                <li class="mobile-icon"><i class="fas fa-mobile-alt"></i><span><strong>Mobile</strong></span><br><span>@Model.MobileNumber</span></li>
+                                <li class="email-icon">
+                                    <i class="fas fa-envelope"></i><span><strong>Email:</strong></span><br><span>
+                                        <span>@Model.Mail</span>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-8">
+                    <div class="ContactFormMainDiv" style="margin-top: 20px;">
+                        <h3 class="">Bizə yazın</h3>
+                        <form action="contact.html">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-12 col-lg-6">
+                                        <input type="text" class="form-control" placeholder="Your Full Name">
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <input type="text" class="form-control" placeholder="Company">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-12 col-lg-6">
+                                        <input type="email" class="form-control" placeholder="Email">
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <input type="text" class="form-control" placeholder="Phone Number">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Message"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-submit formSubmitBtn">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact end -->

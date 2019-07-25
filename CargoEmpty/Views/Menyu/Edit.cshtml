@@ -1,0 +1,25 @@
+﻿@model CargoEmpty.Models.Pages.Menyu.Menyu
+
+
+<form action="/Menyu/Edit" method="post" enctype="multipart/form-data">
+
+    <input type="hidden" id="MenyuDetailsModalId" name="Id" value="@Model.Id" />
+    <div class="form-group">
+        <label class="control-label col-md-2">Text:</label>
+        <div class="col-md-10">
+            <input type="text" id="MenyuDetailsModalTitle" name="Text" class="form-control" value="@Model.Text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Url: </label>
+        <div class="col-md-10">
+            <input type="Text" id="MenyuDetailsModalFile" name="Url" class="form-control" value="@Model.Url">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" data-id="">Save</button>
+    </div>
+</form>
+
+

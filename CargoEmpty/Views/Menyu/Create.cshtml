@@ -1,0 +1,36 @@
+﻿<div class="modal fade" id="MenyuCreateModal" tabindex="-1" role="dialog" aria-labelledby="MenyuCreateModalLong" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="MenyuCreateModalLabel">Create</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12 col-12">
+                        <div class="CreatModalFormMainDiv">
+                            @using (Html.BeginForm("Create", "Menyu", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <label class="form-control;">Text<span style="color:red;">*</span></label>
+                                <div>
+                                    <input type="text" name="Text" class="form-control creatModalInput" /><br />
+                                </div>
+                                <label class="">Url<span style="color:red;">*</span></label>
+                                <div>
+                                    <input type="text" class="form-control creatModalInput" name="Url" /><br />
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btm-danger creatModalBtn">Submit</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

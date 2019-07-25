@@ -1,0 +1,98 @@
+﻿@model CargoEmpty.Models.Pages.Shop.ShopView
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-10 col-12 offset-lg-1 AdminCreateNews" style="width:100%;height:auto;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <form action="/Shops/Create" method="post" class="form-group" enctype="multipart/form-data">
+
+
+                    <div class="col-lg-12 col-md-12 col-12 ShopCreateFormDiv" style="width:100%;height:auto">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-12">
+                                <label>Magaza Adi <span style="color:red"> *</span> </label>
+                                <input class="form-control" type="text" name="ShopName" value="" />
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-12">
+                                <label>Firma Adi <span style="color:red"> *</span> </label>
+                                <input class="form-control" type="text" name="CompanyName" value="" />
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <label>Kateqoria <span style="color:red"> *</span> </label>
+                                <select class="form-control" name="CategoryId">
+                                    @foreach (var i in ViewBag.Category)
+                                    {
+                                        <option class="form-control" value="@i.Id">@i.CategoryName</option>
+                                    }
+                                </select>
+
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <label>Olke <span style="color:red"> *</span> </label>
+                                <input class="form-control" type="text" name="Country" value="" />
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <label>Seher <span style="color:red"> *</span> </label>
+                                <input class="form-control" type="text" name="City" value="" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <label>Telefon <span style="color:red"> *</span> </label>
+                                <input class="form-control" type="text" name="PhoneNumber" value="" />
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <label>Posta Kodu <span style="color:red"> *</span> </label>
+                                <input class="form-control" type="number" name="PostCode" value="" />
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <label>Abone Hesab.No<span style="color:red">*</span> </label>
+                                <input class="form-control" type="number" name="AccountNumber" value="" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <label>Adres<span style="color:red">*</span></label>
+                                <input class="form-control" type="text" name="Adress" value="" />
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-12">
+                                <label>Link <span style="color:red"> *</span> </label>
+                                <input class="form-control" type="text" name="Link" value="" />
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <label>Magaza Sekili <span style="color:red"> *</span> </label>
+                                <input class="form-control" type="file" name="ShopImage" value="" />
+
+                            </div>
+                        </div>                       
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-12" style="margin-top:15px;">
+                            <button type="submit" id="ShopSubmitBtn" class="btn btn-primary">Yadda Saxla</button>
+                            <button type="button" id="ShopActivBtnCreate" class="btn btn-danger">DeActiv</button>
+                            <input id="activInputCreate" type="hidden" name="Activ" value="false" />
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ShopsScript
+{
+
+ <script type="text/javascript" src="~/JavaScript/Shop.js"></script>
+
+}

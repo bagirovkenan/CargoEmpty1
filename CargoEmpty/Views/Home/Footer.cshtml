@@ -1,0 +1,75 @@
+﻿<!-- footer bootom start -->
+@* //////////////////////////////////////////////////////////////////////////// *@
+<div class="footerMinDiv">
+    <div class="container footerContainerDiv">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-12 col-sm-12 FooterVipexImgColDiv">
+                        <div class="footerVipexImgDiv">
+                            <img src="@Model.TitleImagePath" alt="">
+                        </div>
+                        <div class="footerMailDiv" style="color: #a7a7a7;">
+                            <p><i class="fas fa-envelope"></i>  @Model.Mail</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 footerTitelsColDiv">
+                        <div class="FooterTitelsDiv">
+                            <h3 class="footerTitel">Sosyal Şəbəkələr</h3>
+                        </div>
+                        <div class="footerIcon">
+                            <div><a href="@Model.FaceBookAdress"><i class="fab fa-facebook-f"></i></a></div>
+                            <div><a href="@Model.InstagramAdress"><i class="fab fa-instagram"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 footerTitelsColDiv">
+                        <div class="FooterTitelsDiv">
+                            <h3 class="footerTitel">Bizimle Elaqe</h3>
+                        </div>
+
+                        <div class="footerContactIcon">
+                            <div><span><i class="fas fa-mobile-alt"></i>  @Model.PhoneNumber</span></div>
+                            <div><span><i class="fas fa-phone"></i> @Model.MobileNumber</span></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 footerTitelsColDiv">
+                        <div class="FooterTitelsDiv">
+                            <h3 class="footerTitel">Is Saatlari</h3>
+                        </div>
+
+                        <div class="footerWorkHorsSpaniv">
+                            <div><span>@Model.StartWorkDay - @Model.EndWorkDay: @Model.StartWorkClock to @Model.EndWorkClock</span></div>
+                            <div><span>Sun: Closed</span></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12" style="margin-top: 20px;">
+                <div class="FooterCredicartImgdiv">
+                    <img src="~/Image/Front/Home/master.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="height:50px"></div>
+</div>
+

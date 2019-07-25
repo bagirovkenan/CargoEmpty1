@@ -1,0 +1,42 @@
+﻿@model CargoEmpty.Models.General.Order.OrderDb
+
+            <div class="col-lg-12 col-12">
+                <div class="row">
+                    <div class=" col-12 col-lg-12">
+                        <label>Link</label>                        
+                        <div>
+                            <span class="form-control">@Model.Link</span>
+                        </div>
+                    </div>
+                    <div class=" col-12 col-md-5 col-lg-5">
+                        <label>Sifarisin Adi</label>
+                        <div>
+                            <span class="form-control">@Model.OrderName</span>
+                        </div>
+                    </div>
+                    <div class=" col-11 col-md-5 col-lg-5">
+                        <label>Qiymet</label>
+                        <div>
+                            <span class="form-control">@Model.Price</span>
+                      
+                        </div>
+                    </div>
+                    <div class=" col-1 col-md-1 col-lg-1" style="margin-top:35px;">
+                        <span>@Model.Country.CountryCurrency.CurrencyName</span>
+                    </div>
+                    <div class=" col-12 col-md-12 col-lg-12">
+                        <label>Qeyd</label>
+                        <div>
+                            <span class="form-control">@Model.Coment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form action="/Orders/Delete" method="post">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Sil</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Bagla</button>
+
+                </div>
+            </form>

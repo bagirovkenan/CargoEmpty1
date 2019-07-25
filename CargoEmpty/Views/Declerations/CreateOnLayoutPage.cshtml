@@ -1,0 +1,176 @@
+﻿@model IEnumerable<CargoEmpty.Models.General.User.UserDb>
+
+<div class="col-lg-12 col-12 MainDeclerationFormMainDiv">
+    <form method="post" action="/Declerations/CreateOnDetailsPage" class="form-group" enctype="multipart/form-data">
+        <div class="col-lg-12 col-12">
+            <div class="row">
+                <div class="col-lg-6 col-6">
+                    <label for="">Olke</label>
+                    <div class="form-group" id="MainDeclerationCountryDiv">
+                        <select name="CountryId" class="form-control" id="MainDeclerationCountrySelect">
+                            @{
+                                for (var i = 0; i < ViewBag.Country.Count; i++)
+                                {
+                                    <option data-id="@ViewBag.Country[i].CountryCurrency.CurrencyName" value="@ViewBag.Country[i].Id">@ViewBag.Country[i].CauntryName</option>
+
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-6">
+                    <label for="">Musderi</label>
+                    <div class="form-group" id="MainDeclerationCountryDiv">
+                        <select name="UserDbId" class="form-control" id="MainDeclerationUserSelect">
+                            @{
+                                foreach (var i in Model)
+                                {
+                                    <option data-id="@i.Id" value="@i.Id">@i.FirstName @i.LastName | @i.UserCod</option>
+
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-12">
+                    <label>Sifarisin Adi</label>
+                    <div id="MainDeclerationOrdersDiv">
+                        <select name="OrderDbId" class="form-control" id="MainOrdesName">
+                         
+                            @{
+                                foreach (var i in ViewBag.Orders)
+                                {
+                                    <option data-id="@i.Id" value="@i.Id">@i.OrderName</option>
+
+                                }
+                            }
+                           
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-12">
+                    <label for="">Baglama Sayi</label>
+                    <div class="forum-group" id="MainDeclerationOrderCountDiv">
+                        <input type="number" name="BundleCount" class="form-control" placeholder="Meselen 1,2,3.." required="" id="MainDeclerationOrderCountInput" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <label for=""> Sifarisin Tarixi(ay/gun/il)</label>
+                    <div class="form-group" id="MainDeclerationOrderDateDiv">
+                        <input type="datetime-local" name="DecDate" class="form-control" placeholder="Meselen:12/13/2019" id="MainDeclerationOrderDateInput" required />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-10">
+                    <label for="">Mehsulun qiymedi</label>
+                    <div id="MainDeclerationOrderPriceDiv">
+                        <input type="number" step="0.01"
+                               name="OrderPrice" class="form-control"
+                               placeholder="Mehsulun Qiymeti"
+                               required="" id="MainDeclerationOrderPriceInput" />
+                    </div>
+                </div>
+                <div class="col-lg-2 col-2">
+                    <label for="">Valyuta</label>
+                    <div id="MainDeclerationValyutaDiv">
+                        @{
+                            for (var i = 0; i < ViewBag.Country.Count; i++)
+                            {
+                                if (i == 0)
+                                {
+                                    <span id="MainDeclerationOrderOrderValyuta">@ViewBag.Country[i].CountryCurrency.CurrencyName</span>
+
+                                }
+
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12" id="MainDeclerationCtegoryDiv">
+                    <label for="">Kategoria</label>
+                    <div>
+                        <select name="CategoryId" class="form-control" id="MainDeclerationCtegorySelect" required>
+                            @foreach (var i in ViewBag.Category)
+                            {
+                                <option value="@i.Id">@i.CategoryName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <label for="">Sifaris Yeri</label>
+                    <div>
+                        <select name="FromOrder"
+                                class="form-control" required="">
+                            <option value="Shoop">Magaza</option>
+                            <option value="Diger">Diger</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <label for="">Magaza Adi</label>
+                    <input type="text" name="ShopName"
+                           class="form-control" placeholder="Magaza Adi"
+                           required="" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <label for="">Izleme Kodu</label>
+                    <div>
+                        <input type="number" name="TrackingCode"
+                               class="form-control"
+                               placeholder="İzləmə kodu" required="" />
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <label for="">Invoice</label>
+                    <input type="file" name="Invoice"
+                           placeholder="" class="form-control"
+                           required="" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-12">
+                    <label for="">Elave Qeydler</label>
+                    <div id="MainDeclerationComentDiv">
+                        <textarea id="MainDeclerationComentTextArea" placeholder="Elave Qeydler"
+                                  name="Comment" class="notes form-control"
+                                  required=""></textarea>
+                    </div>
+                </div>
+            </div><br><br>
+            <div class="float-right" style="padding-bottom:10px;">
+                <button type="submit"
+                        class="btn btn-primary">
+                    Gonder
+                </button>
+                <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">
+                    Bagla
+                </button>
+            </div>
+        </div>
+
+        <button type="reset" id="reset" style="display:none;">reset</button>
+    </form>
+
+</div>
+
+
+
+@*end modal*@
+

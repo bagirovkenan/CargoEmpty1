@@ -1,0 +1,80 @@
+﻿@model IEnumerable<CargoEmpty.Models.General.Order.OrderDb>
+
+@{
+
+
+    string IsPaid = "Ode";
+    string IsUrgent = "Normal";
+    string color = "green";
+    string Color2 = "green";
+    string comment;
+
+    foreach (var i in Model)
+    {
+        if (i.Coment.Length > 50)
+        {
+            comment = i.Coment.Substring(0, 50) + "...";
+        }
+        else
+        {
+            comment = i.Coment;
+        }
+
+        if (i.isPaid == true)
+        {
+            IsPaid = "Paid";
+            color = "green";
+
+        }
+        else
+        {
+            IsPaid = "NotPaid";
+            color = "red";
+
+        }
+        if (i.isUrgent == true)
+        {
+            IsUrgent = "Tecili";
+            Color2 = "red";
+        }
+        else
+        {
+            IsUrgent = "Normal";
+            Color2 = "green";
+        }
+        <tr>
+            <td>
+                <input type="checkbox" name="name" class="CheckedForBundel" data-id="@i.Id" data-type="Order" />
+            </td>
+            <td>
+                @i.OrderName
+            </td>
+            <td>
+
+                <a href="@i.Link">@i.Link</a>
+
+            </td>
+            <td>
+                @i.Category.CategoryName
+            </td>
+
+            <td>
+                @i.Coment
+            </td>
+            <td>
+                @i.CreatedDate
+            </td>
+            <td>
+                @i.Country.CauntryName
+            </td>
+            <td>
+                @i.Price<br /> @i.Country.CountryCurrency.CurrencyName
+            </td>
+            <td>
+                <span style="font-size:13px;border-radius:3px;background-color:@color;color:white;">@IsPaid</span>
+                <span style="font-size:13px;border-radius:3px;background-color:@Color2;color:white;">@IsUrgent</span>
+            </td>
+        </tr>
+    }
+}
+

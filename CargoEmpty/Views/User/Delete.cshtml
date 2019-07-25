@@ -1,0 +1,92 @@
+﻿@model CargoEmpty.Models.General.User.UserDb
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+}
+
+<div class="col-10 col-lg-10 offset-lg-1 usereditMainDiv" style="width:100%;height:auto">
+    <div class="row">
+        <div class="col-lg-12 col-12">
+            <div class="row">
+                <div class="col-lg-4 col-sm-4 col-12">
+                    <span>Ad</span>
+                    <div>
+                        <span class="form-control">@Model.FirstName</span>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-4 col-12">
+                    <span>Soy Ad</span>
+                    <div>
+                        <span class="form-control">@Model.LastName</span>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-4 col-12">
+                    <span>Yas</span>
+                    <div>
+                        <span class="form-control">@Model.Age</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-4 col-12">
+                    <span>Email</span>
+                    <div>
+                        <span class="form-control">@Model.Mail</span>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-4 col-12">
+                    <span>Telefon</span>
+                    <div>
+                        <span class="form-control">@Model.PhoneNumber</span>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-sm-4 col-12">
+                    <span>Adres</span>
+                    <div>
+                        <span class="form-control">@Model.Adress</span>
+                    </div>
+                </div>
+            </div>
+        
+                <div class="row">
+                    <div class="col-lg-6 col-sm-4 col-12">
+                        <span>Isdifadeci Statuslari</span>
+                        <div>
+                            <select class="form-control">
+
+                                @foreach (var i in ViewBag.UserRole)
+                                {
+                                    if (Model.Id == i.UserDbId)
+                                    {
+                                        <option value="i.UserDbId">@i.Role.RoleName</option>
+                                    }
+
+                                }
+
+                            </select>
+                        </div>
+                    </div>
+                 
+                </div>
+                <div class="row" style="margin-top:30px;">
+                    <div class="col-12 col-lg-12">
+                        <form action="/User/Delete" method="post" class="form-group">
+                            <input type="hidden" name="Id" value="@Model.Id" />
+                            <button type="submit" class="btn btn-danger" style="margin-top:30px;width:150px">SIL</button>
+                        </form>
+                        
+                    </div>
+                </div>
+                <div class="HiddenDiv" id="UserRolesDiv">
+
+                </div>
+        </div>
+    </div>
+</div>
+
+@section AdminUserEdit
+{
+    <script type="text/javascript" src="~/JavaScript/AdminUserEdit.js"></script>
+
+}
+

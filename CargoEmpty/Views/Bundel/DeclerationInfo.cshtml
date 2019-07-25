@@ -1,0 +1,35 @@
+﻿@model CargoEmpty.Models.General.Decleration.DeclerationDb
+
+
+<div class="col-lg-12 col-12 DeclerationInfoModalMainDiv">
+    <div class="row">
+        <div class="col-12 col-lg-2">
+            <span>Id</span>
+            <span class="form-control">@Model.Id</span>
+        </div>
+        <div class="col-12 col-lg-5">
+            <span>Magaza Adi</span>
+            <span class="form-control">@Model.ShopName</span>
+        </div>
+        <div class="col-12 col-lg-5">
+            <span>Olke</span>
+            <span class="form-control">@Model.Country.CauntryName</span>
+        </div>
+        <div class="col-12 col-lg-6">
+            <span>Qiymet</span>
+            <span class="form-control">@Model.OrderPrice @Model.Country.CountryCurrency.CurrencyName</span>
+        </div>
+        <div class="col-12 col-lg-6">
+            <span>Izleme Nomresi</span>
+            <span class="form-control">@Model.TrackingCode</span>
+        </div>
+        <div class="col-12 col-lg-12">
+            <span>Qeyd</span>
+            <span class="form-control">@Model.Comment</span>
+        </div>
+        <div class="col-12 col-lg-12">
+            <span style="display:block;">Invoce</span>
+            <img style="max-width:100%;" src="@Model.InvoicePath" alt="Alternate Text"/>
+        </div>
+    </div>
+</div>

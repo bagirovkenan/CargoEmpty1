@@ -1,0 +1,98 @@
+﻿@model IEnumerable<CargoEmpty.Models.Pages.About.AboutDb>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+}
+
+
+<div class="col-lg-12 col-12  AminIndexPages" id="AdminNews" style="width:100%;height:auto;">
+
+    <div class="row">
+        <div class="col-lg-12 col-12">
+
+
+            <table class="table table-bordered" style="width:100%;">
+                <thead>
+                    <tr>
+
+                        <th scope="col">Content</th>
+                        <th scope="col">IsActive</th>
+                        <th scope="col">Editing</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in Model)
+                    {
+                        string ItemClass;
+                        string ItemSelected;
+
+                        if (i.IsActive == true)
+                        {
+                            ItemClass = "Activ";
+                            ItemSelected = "checked";
+                        }
+                        else
+                        {
+                            ItemClass = "DeActiv";
+                            ItemSelected = "";
+                        }
+
+
+                        <tr class="ss">
+                            <td> @( new HtmlString(i.ContentText))</td>
+                            <td>
+                                <div class="ChecxBoxAbout">
+                                    <input type="checkbox" data-id="@i.Id" class="@ItemClass" id="ss" name="IsActive" @ItemSelected>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="/About/Edit/@i.Id"><button type="button" class="btn btn-info btn-sm AboutDetailsBtn" id="@i.Id">Details/Edit</button></a>
+                                <button class="btn btn-danger btn-sm AboutDeleteBtn" data-toggle="modal" data-target="#AboutDeleteModal" id="@i.Id">Delete</button>
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <button type="button" id="SaveActiveAboutBtn" class="btn btn-primary">Yadda saxla</button>
+    <a href="/About/Create"><button type="button" class="btn btn-secondary">Yenisini yarat</button></a>
+
+
+
+</div>
+
+@*/////////////Faq Delete Modal ////////////////////////////*@
+
+<div class="modal fade" id="AboutDeleteModal" tabindex="-1" role="dialog" aria-labelledby="AboutDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="deleteModal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body " id="AboutDeletePartialModal">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*///////////////////////////////////////////////////////////////////////////////////*@
+
+
+
+
+
+@section AboutScript
+{
+    <script type="text/javascript" src="~/JavaScript/About.js"></script>
+
+}

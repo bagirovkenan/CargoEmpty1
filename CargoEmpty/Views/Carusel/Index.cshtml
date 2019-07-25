@@ -1,0 +1,86 @@
+﻿@model IEnumerable<CargoEmpty.Models.Pages.Carusel.CaruselDb>
+
+@{
+    ViewBag.Title = "Carusel";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="col-lg-12 col-12  AminIndexPages" id="AdminNews" style="width:100%;height:auto;">
+
+    <div class="row">
+        <div class="col-lg-12 col-12">
+
+            <table class="table table-bordered" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Text</th>
+                        <th scope="col">isActive</th>
+                        <th scope="col">Editing</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        string isActive;
+                        string ActivClass;
+
+                        if (item.IsActive)
+                        {
+                            isActive = "checked";
+                            ActivClass = "Activ";
+                        }
+                        else
+                        {
+                            isActive = "";
+                            ActivClass = "DeActiv";
+
+                        }
+
+
+                        if (item.Text.Length > 40) { item.Text = item.Text.Substring(0, 40); }
+
+
+
+                        <tr class="ss">
+                            <td>@item.Title</td>
+                            <td>@item.Text </td>
+                            <td style="display:none;">@item.ImagePath</td>
+                            <td>
+                                <div class="ChecxBoxCarusel">
+                                    <input type="checkbox" data-id="@item.Id" class="@ActivClass" id="@item.Id" name="IsActive" @isActive>
+                                </div>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-info btn-sm CaruselDetailsBtn" data-toggle="modal" data-target="#CaruselDetailsModalLong" id="@item.Id">Details/Edit</button>
+                                <button class="btn btn-danger btn-sm CaruselDeleteBtn" data-toggle="modal" data-target="#CaruselDeleteModal" id="@item.Id">Delete</button>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <button type="button" id="SaveActiveCaruselsBtn" class="btn btn-primary">Yadda saxla</button>
+    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#CaruselCreateModal">Yenisini yarat</button>
+
+    @Html.Partial("Create")
+    @Html.Partial("Edit")
+    @Html.Partial("Delete")
+
+</div>
+@section CaruselScript
+{
+    <script type="text/javascript" src="~/JavaScript/BlogSide.js"></script>
+
+}
+
+
+
+@*/////////////////////////////  *@
+

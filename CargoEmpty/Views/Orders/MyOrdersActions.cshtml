@@ -1,0 +1,105 @@
+﻿@model IEnumerable<CargoEmpty.Models.General.Order.OrderDb>
+<div class="col-lg-12 col-12">
+    <table class="table table-bordered" style="width:100%;">
+        <thead style="background-color:red;color:white;">
+            <tr>
+                <th style="text-align:center;cursor:pointer;" id="OrderAllSelect" title="Butub Sifarisleri Sec">
+                    <i class="fas fa-caret-square-down"></i>
+                </th>
+                <th>
+                    @Html.DisplayName("Ad")
+                </th>
+                <th>
+                    @Html.DisplayName("Link")
+                </th>
+                <th>
+                    @Html.DisplayName("Qeyd")
+                </th>
+                <th>
+                    @Html.DisplayName("Qiymet")
+                </th>
+                <th>
+                    @Html.DisplayName("Olke")
+                </th>
+                <th style="text-align:center;cursor:pointer;" id="OrderAllPaid" title="Butub Sifarisleri Ode">
+                    @Html.DisplayName("Ode")
+                </th>
+                <th style="text-align:center;cursor:pointer;" id="OrderAllDelete" title="Butub Sifarisleri Sil">
+                    @Html.DisplayName("Sil")  <i class="fas fa-caret-square-down"></i>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+
+
+                string IsPaid = "Ode";
+                string IsUrgent = "Normal";
+                string IsPaidLink = "/IsPaid/Paid";
+                string comment;
+
+                foreach (var i in Model)
+                {
+                    if (i.Coment.Length > 25)
+                    {
+                        comment = i.Coment.Substring(0, 25) + "...";
+                    }
+                    else
+                    {
+                        comment = i.Coment;
+                    }
+
+                    if (i.isPaid == true)
+                    {
+                        IsPaid = "Odenilib";
+                        IsPaidLink = "#";
+
+                    }
+                    else
+                    {
+                        IsPaid = "Odenilmeyib";
+
+                        IsPaidLink = "/IsPaid/Paid";
+                    }
+                    if (i.isUrgent == true)
+                    {
+                        IsUrgent = "Tecili";
+
+                    }
+                    else
+                    {
+                        IsUrgent = "Normal";
+                    }
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="name" valuec class="CheckedOrder" id="@i.Id" />
+                        </td>
+                        <td>
+                            @i.OrderName
+                        </td>
+                        <td>
+                            <a href="@i.Link">@i.Link.Substring(7, 17)...</a>
+
+                        </td>
+                        <td>
+                            @comment
+                        </td>
+                        <td>
+                            @i.Price<br /> @i.Country.CountryCurrency.CurrencyName
+                        </td>
+                        <td>
+                            @i.Country.CauntryName
+                        </td>
+                        <td>
+                            <a href="@IsPaidLink"><button type="button" class="btn btn-success" style="font-size:13px">@IsPaid</button></a>
+                        </td>
+                        <td>
+                            <button type="button" data-id="@i.Id" class="btn btn-primary OrderEditBtn" style="font-size:15px;"><i class="far fa-edit"></i></button>
+                            <button type="button" data-id="@i.Id" class="btn btn-danger OrderDelete" style="font-size:15px"><i class="far fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,162 @@
+﻿@*@model IEnumerable<CargoEmpty.Models.General.Order.OrderDb>
+
+                <div class="col-lg-12 col-12 DeclerationFromMainDiv">
+                    <div class="col-lg-12 col-12">                      
+                        <span class="form-control">Custumer-@ViewBag.Custumer.FirstName @ViewBag.Custumer.LastName | ID-@ViewBag.Custumer.Id | UserCod-@ViewBag.Custumer.UserCod | Balanc-@ViewBag.Custumer.Balance | Bonuc-@ViewBag.Custumer.BonusBalance </span>                 
+                    </div>
+                    <form method="post" action="/Declerations/CreateOnDetailsPage" class="form-group" enctype="multipart/form-data">
+                        <div>
+                            <input class="userDecId" type="hidden" name="UserDbId" value="@ViewBag.Custumer.Id" />
+                        </div>
+                        <div class="col-lg-12 col-12">
+                            <div class="row">
+                                <div class="col-lg-12 col-12">
+                                    <label for="">Olke</label>
+                                    <div class="form-group" id="DeclerationCountryDiv">
+                                        <select name="CountryId" class="form-control" id="DeclerationCountrySelect">
+                                            @{
+                                                for (var i = 0; i < ViewBag.Country.Count; i++)
+                                                {
+                                                    <option data-id="@ViewBag.Country[i].CountryCurrency.CurrencyName" value="@ViewBag.Country[i].Id">@ViewBag.Country[i].CauntryName</option>
+
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-12">
+                                    <label>Sifarisin Adi</label>
+                                    <div id="DeclerationOrdersDiv">
+                                        <select name="OrderDbId" class="form-control" id="OrdesName">
+                                            @foreach (var i in Model)
+                                            {
+                                                <option value="@i.Id" class="OrderNameOnUserDetailDeclerTionModalClasse">@i.OrderName</option>
+                                            }
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-12">
+                                    <label for="">Baglama Sayi</label>
+                                    <div class="forum-group" id="DeclerationOrderCountDiv">
+                                        <input type="number" name="BundleCount" class="form-control" placeholder="Meselen 1,2,3.." required="" id="DeclerationOrderCountInput" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-12">
+                                    <label for="">Sifarisin Tarixi(ay/gun/il)</label>
+                                    <div class="form-group" id="DeclerationOrderDateDiv">
+                                        <input type="datetime-local" name="DecDate" class="form-control" placeholder="Meselen:12/13/2019" id="DeclerationOrderDateInput" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10 col-10">
+                                    <label for="">Mehsulun qiymedi</label>
+                                    <div id="DeclerationOrderPriceDiv">
+                                        <input type="number" step="0.01"
+                                               name="OrderPrice" class="form-control"
+                                               placeholder="Mehsulun Qiymeti"
+                                               required="" id="DeclerationOrderPriceInput" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-2">
+                                    <label for="">Valyuta</label>
+                                    <div id="DeclerationValyutaDiv">
+                                        @{
+                                            for (var i = 0; i < ViewBag.Country.Count; i++)
+                                            {
+                                                if (i == 0)
+                                                {
+                                                    <span id="DeclerationOrderOrderValyuta">@ViewBag.Country[i].CountryCurrency.CurrencyName</span>
+
+                                                }
+
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-12" id="DeclerationCtegoryDiv">
+                                    <label for="">Kategoria</label>
+                                    <div>
+                                        <select name="CategoryId" class="form-control" id="DeclerationCtegorySelect" required>
+                                            @foreach (var i in ViewBag.Category)
+                                            {
+                                                <option value="@i.Id">@i.CategoryName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-lg-6 col-12">
+                                    <label for="">Sifaris Yeri</label>
+                                    <div>
+                                        <select name="FromOrder"
+                                                class="form-control" required="">
+                                            <option value="Shoop">Magaza</option>
+                                            <option value="Diger">Diger</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <label for="">Magaza Adi</label>
+                                    <input type="text" name="ShopName"
+                                           class="form-control" placeholder="Magaza Adi"
+                                           required="" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-12">
+                                    <label for="">Izleme Kodu</label>
+                                    <div>
+                                        <input type="number" name="TrackingCode"
+                                               class="form-control"
+                                               placeholder="İzləmə kodu" required="" />
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <label for="">Invoice</label>
+                                    <input type="file" name="Invoice"
+                                           placeholder="" class="form-control"
+                                           required="" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 col-12">
+                                    <label for="">Elave Qeydler</label>
+                                    <div id="DeclerationComentDiv">
+                                        <textarea id="DeclerationComentTextArea" placeholder="Elave Qeydler"
+                                                  name="Comment" class="notes form-control"
+                                                  required=""></textarea>
+                                    </div>
+                                </div>
+                            </div><br><br>
+                                      <div class="float-right" style="padding-bottom:10px;">
+                                          <button type="submit"
+                                                  class="btn btn-primary">
+                                              Gonder
+                                          </button>
+                                          <button type="button" class="btn btn-secondary"
+                                                  data-dismiss="modal">
+                                              Bagla
+                                          </button>
+                                      </div>
+                        </div>
+
+                        <button type="reset" id="reset" style="display:none;">reset</button>
+                    </form>
+
+                </div>
+
+
+
+@*end modal*@*@

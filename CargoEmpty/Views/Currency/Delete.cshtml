@@ -1,0 +1,29 @@
+﻿
+@model CargoEmpty.Models.General.Currency
+
+
+<form action="/Currency/DeletePost" method="post" enctype="multipart/form-data">
+
+    <input readonly type="hidden" id="CurrencyDeleteModalId" name="Id" value="@Model.Id" />
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Valyuta Adi: </label>
+        <div class="col-md-10">
+            <input readonly type="text" id="CurrencyDeLeteModalTitle" name="CurrencyName" class="form-control" value="@Model.CurrencyName">
+        </div>
+    </div>
+  
+
+    <div>
+        <p>
+            <span style="color:red">Diqqet!!! "Delete"</span> Duymesi Yuxardaki Melumarlari Silecek<br />
+            ve Geri Qaytarmaq Mumkun Deyil
+        </p>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger" data-id="">Delete</button>
+    </div>
+</form>
+

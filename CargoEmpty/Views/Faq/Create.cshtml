@@ -1,0 +1,60 @@
+﻿@model CargoEmpty.Models.Pages.Faq.FaqDb
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+}
+
+
+<div class="col-lg-10 col-12 offset-lg-1 AdminCreateNews" style="width:100%;height:auto;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <form action="/Faq/Create" method="post" class="form-group">
+
+
+                    <div class="FaqsCreateFormDiv" style="width:100%;height:auto">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <label>Baslig <span style="color:red"> *</span> </label>
+                                <input class="form-control" type="text" name="FaqTitle" value="" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <label>Metn <span style="color:red"> *</span> </label>
+                                <textarea id="summernote" name="FaqContent" required ValidateRequestMode="Disabled"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-12" style="margin-top:15px;">
+                            <button type="submit" id="FaqSubmitBtn" class="btn btn-primary">Yadda Saxla</button>
+                            <button type="button" id="FaqActivBtnCreate" class="btn btn-danger">DeActiv</button>
+                            <input id="activInput" type="hidden" name="Activ" value="false" />
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section FaqsScript
+{
+
+    <script type="text/javascript" src="~/JavaScript/Faq.js"></script>
+
+}
+@section Editor
+{
+    @* text editor *@
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+    @* text editor  *@
+
+    <script type="text/javascript" src="~/JavaScript/TextEditor.js"></script>
+
+}  

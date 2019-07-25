@@ -1,0 +1,135 @@
+﻿@model CargoEmpty.Models.General.User.UserSignUp
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@Html.AntiForgeryToken()
+
+<div class="col-lg-12 col-12  SignUpMainDiv" style="width:100%;height:auto;">
+    <div class="Container">
+        <div class="row">
+            <div class="col-lg-10 col-12 offset-lg-1" id="signupcolMainDivId">
+                <form action="/SignUp/Index" method="post" class="forum-group">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-6  col-12">
+                            <label>Adiniz</label>
+                            <div>
+                                <input type="text" name="FirstName" value="" class="form-control" required />
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6  col-12">
+                            <label>Soy Adiniz</label>
+                            <div>
+                                <input type="text" name="LastName" value="" class="form-control" required />
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-6 col-12">
+                            <label>Yasiniz</label>
+                            <div style="color:white;">
+                                <input type="number" name="Age" value="" class="form-control" required maxlength="2" />
+                                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-6 col-12">
+                            <label>Cinsiniz</label>
+                            <div style="color:white;">
+                                <select name="Gender" class="form-control">
+                                    <option class="form-control" value="Male">Kisi</option>
+                                    <option class="form-control" value="Female">Qadin</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-12">
+                            <label>Adress</label>
+                            <div>
+                                <input type="text" name="Adress" value="" required class="form-control" />
+                                @Html.ValidationMessageFor(model => model.Adress, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-4  col-12">
+                            <label>Isdifadeci Adi</label>
+                            <div>
+                                <input type="text" name="UserName" value="" class="form-control" required />
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-4  col-12">
+                            <label>Parolunuz</label>
+                            <div>
+                                <input type="password" name="Password" value="" class="form-control" required />
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-4  col-12">
+                            <label>Parolunuzun Tekrari</label>
+                            <div style="color:white;">
+                                <input type="password" name="ConfirmPassword" value="" class="form-control" required />
+                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6  col-12">
+                            <label>Email Adresiniz</label>
+                            <div>
+                                <input type="email" name="Mail" value="" class="form-control" required />
+                                @Html.ValidationMessageFor(model => model.Mail, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6  col-12">
+                            <label title="Daim Aktiv olan bir nomre">Mobil Nomreniz</label>
+                            <div>
+                                <input type="tel" name="PhoneNumber" value="" class="form-control" required />
+                                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6  col-12">
+                            <label>Sexsiyyet Vesiqesinin Seria Nomresi</label>
+                            <div>
+                                <input type="text" name="IDCardNumber" value="" class="form-control" required />
+                                @Html.ValidationMessageFor(model => model.IDCardNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6  col-12">
+                            <label title="Sexsiyyet vesiqesinin sag asagi kuncunde sondan 7 herif">Fin Cod</label>
+                            <div>
+                                <input title="Sexsiyyet vesiqesinin sag asagi kuncunde sondan 7 herif" type="text" name="FINNumber" value="" class="form-control" required />
+                                <input type="hidden" name="Condition" value="false" id="ConditionInput" />
+                                @Html.ValidationMessageFor(model => model.FINNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        @Html.Partial("ModalConditions")
+                    </div>
+                    <div class="row">
+                        <div style="margin-top:20px;" class="col-12 col-lg-12">
+                            <button class="btn btn-danger" type="button" id="SignUpSubmitButton">Yadda Saxla</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="height:100px;"></div>
+
+
+@section SignUpLogin
+{
+    <script type="text/javascript" src="~/JavaScript/Front/SignUpLogin.js"></script>
+
+}

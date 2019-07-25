@@ -1,0 +1,409 @@
+﻿@model CargoEmpty.Models.General.Bundel.GetCreateBundel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 col-12">
+    <div class="row">
+        <div class="col-lg-12 col-12">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+                    <input type="hidden" name="userId" value="@Model.Id" id="BundelUserId" />
+                    <button class="btn btn-primary" style="width:100%;text-align:start;margin-top:5px;" title="Custumer-@Model.FirstName @Model.LastName | UserCod-@Model.UserCod">
+                        <a href="/User/CustumerDetails/@Model.Id" style="color:white;">
+                            Custumer-@Model.FirstName @Model.LastName | @Model.UserCod
+                        </a>
+                    </button>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-12 col-12 offset-lg-1" style="margin-top:5px;">
+
+                    <select class="form-control " id="BundelCountryId" style="background-color:#007bff;color:#ffffff">
+                        @foreach (var j in Model.Countries)
+                        {
+                            <option style="background-color:white;color:black;" value="@j.Id">@j.CauntryName</option>
+                        }
+                    </select>
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <button type="button" class="btn btn-primary" style="width:100%;text-align:start;margin-top:5px;" title="  Balanc-@Model.Balance | Bonuc-@Model.BonuceBalance">
+                        <a href="#" style="width:100%;color:white;" title="Balance">
+
+                            Balanc-@Model.Balance | Bonuc-@Model.BonuceBalance
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-12 col-12" id="CreateBundelBtnParentDivId" style="padding-bottom:5px;">
+            <button id="CreateBundelModalBtn" class="btn btn-primary float-lg-right float-md-right">Baglama Yarat</button>
+            <button class="btn btn-light" id="ShowOrdersTableBtnId" style="background-color:#ffc107;">Sifarisler</button>
+            <button class="btn btn-light" id="ShowDeclerationTableBtnId">Beyannameler</button>
+            @*<button class="btn btn-primary float-lg-right float-md-right">Total-1355,65</button>*@
+        </div>
+
+        <div class="col-lg-12 col-12 CreateBundelOrdersTableParentDiv" id="CreateBundelOrdersTableParentDivId" style="font-size:12px;">
+            <table class="table table-bordered" style="width:100%;" id="CreateBundelOrdersTableId">
+                <thead style="background-color:red;color:white;">
+                    <tr>
+                        <th style="cursor:pointer;" id="OrderAllSelect">
+                            <i class="fas fa-caret-square-down"></i>
+                        </th>
+                        <th>
+                            @Html.DisplayName("Sifaris")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Link")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Kateqoria")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Qeyd")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Tarix")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Olke")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Qiymet")
+                        </th>
+
+                        <th id="OrderAllPaid">
+                            @Html.DisplayName("Ödəniş/Təcili")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="orderTableBody" class="BundelTablesBady">
+                    @{
+
+
+                        string IsPaid = "Ode";
+                        string IsUrgent = "Normal";
+                        string color = "green";
+                        string Color2 = "green";
+                        string comment;
+
+                        foreach (var i in Model.Orders)
+                        {
+                            if (i.Coment.Length > 50)
+                            {
+                                comment = i.Coment.Substring(0, 50) + "...";
+                            }
+                            else
+                            {
+                                comment = i.Coment;
+                            }
+
+                            if (i.isPaid == true)
+                            {
+                                IsPaid = "Paid";
+                                color = "green";
+
+                            }
+                            else
+                            {
+                                IsPaid = "NotPaid";
+                                color = "red";
+
+                            }
+                            if (i.isUrgent == true)
+                            {
+                                IsUrgent = "Tecili";
+                                Color2 = "red";
+                            }
+                            else
+                            {
+                                IsUrgent = "Normal";
+                                Color2 = "green";
+                            }
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="name" class="CheckedForBundel" data-id="@i.Id" data-type="Order" />
+                                </td>
+                                <td>
+                                    @i.OrderName
+                                </td>
+                                <td>
+
+                                    <a href="@i.Link">@i.Link</a>
+
+                                </td>
+                                <td>
+                                    @i.Category.CategoryName
+                                </td>
+
+                                <td>
+                                    @i.Coment
+                                </td>
+                                <td>
+                                    @i.CreatedDate
+                                </td>
+                                <td>
+                                    @i.Country.CauntryName
+                                </td>
+                                <td>
+                                    @i.Price<br /> @i.Country.CountryCurrency.CurrencyName
+                                </td>
+                                <td>
+                                    <span style="font-size:13px;border-radius:3px;background-color:@color;color:white;">@IsPaid</span>/
+                                    <span style="font-size:13px;border-radius:3px;background-color:@Color2;color:white;">@IsUrgent</span>
+                                </td>
+                            </tr>
+                        }
+
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-12 col-12 CreateBundelOrdersTableParentDiv" id="CreateBundelDeclerationTableParentDivId" style="font-size:12px;display:none;">
+            <table class="table table-bordered" style="width:100%;" id="CreateBundelDeclerationTableId">
+                <thead style="background-color:red;color:white;">
+                    <tr>
+                        <th style="cursor:pointer;" id="OrderAllSelect" title="Butun Sifarisleri Sec">
+                            <i class="fas fa-caret-square-down"></i>
+                        </th>
+                        @*<th>
+            @Html.DisplayName("Sifaris Yeri")
+        </th>*@
+                        <th>
+                            @Html.DisplayName("Magaza")
+                        <th>
+                            @Html.DisplayName("Iz-Kodu")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Sayi")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Kateqoria")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Qeyd")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Tarix")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Olke")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Olculer")-ceki(kq)<br />
+                            En/Uzuluq/Hundurluk(sm)
+
+                        </th>
+                        <th>
+                            @Html.DisplayName("Qiymet")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="declerationTableBody" class="BundelTablesBady">
+                    @{
+
+
+
+
+
+                        foreach (var i in Model.Declerations)
+                        {
+
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="name" class="CheckedForBundel" data-id="@i.Id" data-type="Decleration" />
+                        </td>
+                        @*<td>
+            @i.FromOrder
+        </td>*@
+                        <td>
+                            @i.ShopName
+                        </td>
+                        <td>
+                            @i.TrackingCode
+                        </td>
+                        <td>
+                            @i.BundleCount
+                        </td>
+                        <td>
+                            @i.Category.CategoryName
+                        </td>
+
+                        <td>
+                            @i.Comment
+                        </td>
+                        <td>
+                            @i.OrderDate
+                        </td>
+                        <td>
+                            @i.Country.CauntryName
+                        </td>
+                        <td>
+                             @i.Weight kq<br />
+                            @i.Width/@i.Length/@i.Height
+
+                        </td>
+                        <td>
+                            @i.OrderPrice<br /> @i.Country.CountryCurrency.CurrencyName
+                        </td>
+                    </tr>
+                        }
+
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+@*modal*@
+<button type="button" id="CreateBundelModalBtnMainBtn" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xxl" style="display:none;"></button>
+@{
+    var date = DateTime.Now;
+}
+<div class="modal fade bd-example-modal-xxl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xxl" style="max-width:800px!important;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Yeni Baglama</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="CreateBundelFormPArentDiv">
+                    <form action="/Bundel/Create" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="UserDbId" value="@Model.Id" />
+                        <input id="CreateBundelFormContryId" type="hidden" name="CountryId" value="" />
+                        <div class="OrderInputParentDiv"></div>
+                        <div class="col-lg-12 col-12 CreateBundelFormContentDiv">
+                            <div class="row">
+                                <div class="col-lg-12 col-12">
+                                    <label>Odenilen Mebleg</label>
+                                    <div>
+                                        <input type="number" step="0.01" name="Price" value="" class="form-control" id="bundelModalPrice" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-12">
+                                    <label>Qeyd</label>
+                                    <div>
+                                        <textarea name="Note" class="form-control"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-12" style="margin-top:15px;">
+                                    <h3>Magaza Melumatlari</h3>
+                                </div>
+                                <div class="col-lg-8 col-12">
+                                    <label>Magaza Adi</label>
+                                    <div>
+                                        <input name="ShopName" class="form-control" id="ShopName" />
+                                    </div>
+                                    <div id="CreateBundelModalShopNameInputDiv">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-12">
+                                    <label>Tarix</label>
+                                    <div>
+                                        <input type="text" name="CreateDate" class="form-control" readonly value="@date" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-12">
+                                    <label>Alisin Unikal Nomresi (Sifarisin tesdiq mektubunda olur)</label>
+                                    <div>
+                                        <input type="text" name="UnicalNumberReception" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <label>Firma Adi</label>
+                                    <div>
+                                        <input type="text" name="CompanyName" value="" class="form-control" id="CreateBundelModalCompanyName" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <label>Adres</label>
+                                    <div>
+                                        <input type="text" name="Adress" value="" class="form-control" id="CreateBundelModalAdress" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-12">
+                                    <label>Telefon</label>
+                                    <div>
+                                        <input type="text" name="PhoneNumber" value="" class="form-control" id="CreateBundelModalPhone" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-12">
+                                    <label>Abone Hesab.No</label>
+                                    <div>
+                                        <input type="number" name="AccountNumber" value="" class="form-control" id="CreateBundelModalAccountNumber" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-12">
+                                    <label>Posta Codu</label>
+                                    <div>
+                                        <input type="number" name="PostCode" value="" class="form-control" id="CreateBundelModalPostCode" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <label>Olke</label>
+                                    <div>
+                                        <input type="text" name="Country" class="form-control" id="CreateBundelModalCountry" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <label>Seher</label>
+                                    <div>
+                                        <input type="text" name="City" value="" class="form-control" id="CreateBundelModalCity" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-12" style="margin-top:15px;">
+                                    <h3>Uluslararasi Servisler</h3>
+                                    <div>
+                                        <select name="CargoType" class="form-control">
+                                            <option value="Express">Express</option>
+                                            <option value="Economy">Economy</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-12 col-12" style="margin-top:15px;">
+                                    <h3>Tasima Ucretleri Kime Faturalandirilacaq</h3>
+                                    <div>
+                                        <select name="TransportationInvoiced" class="form-control">
+                                            <option value="Alici">Alici</option>
+                                            <option value="Gonderan">Gonderen</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-12">
+                                    <h3>Ic Referanslar</h3>
+                                    <div>
+                                        <input type="text" name="InternalTestimonials" value="" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="CreateBundelModalFormSubmitBtn" type="submit" style="display:none;"></button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button id="CreateButtonModalSaveBtn" type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*modal*@
+
+@section AdminBundelCreate
+{
+    <script type="text/javascript" src="~/JavaScript/CreateBundel.js"></script>
+
+}

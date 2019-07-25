@@ -1,0 +1,25 @@
+﻿@model CargoEmpty.Models.Pages.About.AboutDb
+
+<form class="form-group" action="/About/Delete" method="post">
+    <input readonly type="hidden" id="AboutDeleteModalId" name="Id" value="@Model.Id" />
+    <div class="form-group">
+        <label class="control-label col-md-2">Text: </label>
+        <div class="col-md-10">
+
+            <span id="AboutDeLeteModalText" class="form-control" style="max-width:360px;height:auto;">  @( new HtmlString(Model.ContentText))</span>
+        </div>
+    </div>
+
+
+    <div>
+        <p>
+            <span style="color:red">Diqqet!!!</span> <button class="btn btn-danger" type="button">Delete</button> Melumati Silecek<br />
+            ve Geri Qaytarmaq Mumkun Deyil
+        </p>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger" data-id="">Delete</button>
+    </div>
+</form>

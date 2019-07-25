@@ -1,0 +1,48 @@
+﻿@model IEnumerable<CargoEmpty.Models.General.Decleration.DeclerationDb>
+@{
+
+        
+
+        foreach (var i in Model)
+        {            
+<tr>
+    <td>
+        <input type="checkbox" name="name" class="CheckedForBundel" data-id="@i.Id" data-type="Decleration" />
+    </td>
+    @*<td>
+            @i.FromOrder
+        </td>*@
+    <td>
+        @i.ShopName
+    </td>
+    <td>
+        @i.TrackingCode
+    </td>
+    <td>
+        @i.BundleCount
+    </td>
+    <td>
+        @i.Category.CategoryName
+    </td>
+
+    <td>
+        @i.Comment
+    </td>
+    <td>
+        @i.OrderDate
+    </td>
+    <td>
+        @i.Country.CauntryName
+    </td>
+    <td>
+        @i.Weight kq<br />
+        @i.Width/@i.Length/@i.Height
+
+    </td>
+    <td>
+        @i.OrderPrice<br /> @i.Country.CountryCurrency.CurrencyName
+    </td>
+</tr>
+    }
+
+}   

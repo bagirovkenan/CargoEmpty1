@@ -1,0 +1,47 @@
+﻿
+@{ 
+    DateTime? NewsTime;
+
+}
+    <!-- news staart -->
+    <div class="wshipping-content-block" style="margin-top: 50px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 offset-lg-3">
+                    <div class="section-title wow fadeInUp newsTitleDiv ">
+                        <h2 class="newsTitle">Yeni ne xeber var</h2>
+                        <p class="newsP">Xidmetlerimizle bagli yenilikleri buradan oyrene bilersiniz</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                @foreach(var i in ViewBag.News)
+                {
+                    HtmlString  v = new HtmlString(i.NewsContent);
+                    v.ToHtmlString();
+                    var c = v.ToString().Substring(0,10);
+                    if (i.NewsRefreshDate == null)
+                    {
+                        NewsTime = i.NewsCreateDate;
+                    }
+                    else
+                    {
+                        NewsTime = i.NewsRefreshDate;
+                    }
+                <div class="col-12 col-lg-4 newBlogMainDiv">
+                    <div class="single-service-item wow fadeInUp newsblogfadeInUp">
+                        <div class="service-item-bg service-bg-1 newBlogImgDiv" style="background-image: url(@i.ImagePath)"></div>
+                        <div class="service-content newsBlognews">
+                            <h4>@i.NewsTitle</h4>
+                            <a href="/FrontNews/Details/@i.Id" title="" class="readmore-btn">Ətraflı oxu <i class="fa fa-angle-right"></i></a><br>
+                            <span id="newsCreatedTime" style="color: rgb(221, 9, 9)">@NewsTime</span>
+                        </div>
+                    </div>
+                </div>
+                }
+                
+            </div>
+        </div>
+    </div>
+    <!--new end  -->
