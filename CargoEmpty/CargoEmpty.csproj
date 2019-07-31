@@ -185,7 +185,7 @@
     <Compile Include="Controllers\Front\FrontTarifController.cs" />
     <Compile Include="Controllers\Front\HomeController.cs" />
     <Compile Include="Controllers\Front\MyAccountController.cs" />
-    <Compile Include="Controllers\General\BundelStatusAndCountry .cs" />
+    <Compile Include="Models\General\Bundel\BundelStatusAndCountry .cs" />
     <Compile Include="Controllers\General\CategoriesController.cs" />
     <Compile Include="Controllers\General\CauntryController.cs" />
     <Compile Include="Controllers\General\CurrencyController.cs" />
@@ -261,6 +261,8 @@
     <Compile Include="Models\General\Bundel\BundelProducts.cs" />
     <Compile Include="Models\General\Bundel\BundelsDb.cs" />
     <Compile Include="Models\General\Bundel\ChangeCountry.cs" />
+    <Compile Include="Models\General\Bundel\ChangeStatus.cs" />
+    <Compile Include="Models\General\Bundel\GetBundelIndexChangeStatus.cs" />
     <Compile Include="Models\General\Bundel\GetCreateBundel.cs" />
     <Compile Include="Models\General\Bundel\GetIndexBundel.cs" />
     <Compile Include="Models\General\Bundel\PostCreateBundel.cs" />
@@ -442,7 +444,7 @@
     <Content Include="Views\Bundel\Index.cshtml" />
     <Content Include="Views\Bundel\DeclerationInfo.cshtml" />
     <Content Include="Views\Bundel\ChangeCountryInIndexBundel.cshtml" />
-    <Content Include="Views\Bundel\ChangeStatus.cshtml" />
+    <Content Include="Views\Bundel\ChangeStatusModal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

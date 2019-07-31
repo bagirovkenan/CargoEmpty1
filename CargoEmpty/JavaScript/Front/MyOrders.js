@@ -23,8 +23,6 @@ $(document).ready(function () {
         var DeleteDiv = DeleteBtn.parent().children()[DeleteBtn.index() - 1];
         DeleteDiv.remove();
         DeleteBtn.remove()
-
-        console.log(a);
     })
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     $(".CountryDiv .OrderCounrtryHeader:first").css({ "background-color": "#f8a700", "color": "white" })

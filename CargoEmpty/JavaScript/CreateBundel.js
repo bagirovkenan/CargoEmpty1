@@ -6,6 +6,7 @@ $(document).ready(function () {
         var id = $(this).attr("data-id");
         
         AjaxReturnPartialView("GET", "/Bundel/DeclerationInfo", id, ".BundelIndexDeclerationInfoModalContenDiv");
+        $("#bundelIndexModalSaveBtn").css("display", "none");
         $("#indexBundelDecIfoModalShowBtn").click();
     })
 
@@ -62,17 +63,51 @@ $(document).ready(function () {
         })
     })
 
-    //Change Bundel Status
+    //Click Bundel Status Button in bundel index page
     $(".BundelIndexTableMainDiv").on("click", "#changeBundelStatus", function () {
-        var Link = "/Bundel/ChangeStatus";
+        var Link = "/Bundel/ChangeStatusModal";
         var id = $(this).attr("data-id");
-        AjaxReturnPartialView("GET", Link, id, ".BundelIndexDeclerationInfoModalContenDiv");
+        AjaxReturnPartialView("POST", Link, id , ".BundelIndexDeclerationInfoModalContenDiv");
+        $("#bundelIndexModalSaveBtn").css("display", "block");
         $("#indexBundelDecIfoModalShowBtn").click();
     });
 
+    //save bundel staus 
+    $("#bundelIndexModalSaveBtn").click(function () {
+        var statusId = $("#BundelIndexStatusSelect").val();
+        var bundelID = $("#changeStatusModalBundelId").val();
+        var id = {
+            BundelStatusID: statusId,
+            BundelId: bundelID
+        }
+        AjaxReturnPartialView("POST", "/Bundel/ChangeStatus", id, "#BundelIndexTableBodyId")
+    });
+    
+    //when clicked the add button in the Index Bundel Pages Change Modal 
+    var bundels=0;
+    $(".BundelIndexDeclerationInfoModalContenDiv").on("click", "#ChangeBundelStatuseModalTableAddBtn", function () {
+        bundels++   
+        $(".ChangeBundelStatuseModalTableRemoveTd").css("display", "block");
+            var tr = $("#IndexChangeStatusWarehouseAbroadTableBody").children()[0].outerHTML;
+        $("#IndexChangeStatusWarehouseAbroadTableBody").append(tr);
+        console.log(bundels  + " add")
 
+    }); 
 
-
+     //when clicked the remove button in the Index Bundel Pages Change Modal 
+    $(".BundelIndexDeclerationInfoModalContenDiv").on("click", "#ChangeBundelStatuseModalTableRemoveBtn", function () {
+     
+        if (bundels > 0) {
+            bundels--
+            $(this).parent().parent().remove();
+        }
+        if (bundels==0) {
+            $(".ChangeBundelStatuseModalTableRemoveTd").css("display", "none")
+        }
+    }); 
+//----------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------
     ///Creaate Bundel Page js
     $("#ShowOrdersTableBtnId").on("click", function () {
         $("#CreateBundelDeclerationTableParentDivId").css("display", "none");

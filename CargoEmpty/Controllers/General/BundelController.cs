@@ -22,7 +22,7 @@ namespace CargoEmpty.Controllers.General
 
             foreach (var j in bundellist)
             {
-                GetIndex.Add(GetIndexBundel.Create(j,db));               
+                GetIndex.Add(GetIndexBundel.Create(j));
             }
 
             ViewBag.status = await db.OrderStatuses.ToListAsync();
@@ -35,36 +35,36 @@ namespace CargoEmpty.Controllers.General
         public async Task<ActionResult> ChangeCountryInIndexBundel(BundelStatusAndCountry id)
         {
             List<GetIndexBundel> GetIndex = new List<GetIndexBundel>();
-            if (id.StatusId==null && id.CountryId!=null)
+            if (id.StatusId == null && id.CountryId != null)
             {
-                var bundellist = await db.Bundels.Where(w => w.CountryId==id.CountryId).ToListAsync();              
+                var bundellist = await db.Bundels.Where(w => w.CountryId == id.CountryId).ToListAsync();
                 foreach (var j in bundellist)
                 {
-                    GetIndex.Add(GetIndexBundel.Create(j, db));
-                }    
+                    GetIndex.Add(GetIndexBundel.Create(j));
+                }
             }
-            else if (id.CountryId == null && id.StatusId!=null)
+            else if (id.CountryId == null && id.StatusId != null)
             {
                 var bundellist = await db.Bundels.Where(w => w.OrderStatusId == id.StatusId).ToListAsync();
                 foreach (var j in bundellist)
                 {
-                    GetIndex.Add(GetIndexBundel.Create(j, db));
-                }         
+                    GetIndex.Add(GetIndexBundel.Create(j));
+                }
             }
-            else if (id.CountryId!=null && id.StatusId!=null)
+            else if (id.CountryId != null && id.StatusId != null)
             {
-                var bundellist = await db.Bundels.Where(w => w.OrderStatusId == id.StatusId && w.CountryId==id.CountryId).ToListAsync();
+                var bundellist = await db.Bundels.Where(w => w.OrderStatusId == id.StatusId && w.CountryId == id.CountryId).ToListAsync();
                 foreach (var j in bundellist)
                 {
-                    GetIndex.Add(GetIndexBundel.Create(j, db));
-                }               
+                    GetIndex.Add(GetIndexBundel.Create(j));
+                }
             }
             else
             {
                 var bundellist = await db.Bundels.ToListAsync();
                 foreach (var j in bundellist)
                 {
-                    GetIndex.Add(GetIndexBundel.Create(j, db));
+                    GetIndex.Add(GetIndexBundel.Create(j));
                 }
             }
             ViewBag.status = await db.OrderStatuses.ToListAsync();
@@ -151,10 +151,44 @@ namespace CargoEmpty.Controllers.General
             }
             return RedirectToAction("Inddex");
         }
-        //Change bundel Statuse
-        public ActionResult ChangeStatus()
+
+        //Change bundel Statuse//?????duzgun deyil mellimnen sorusuh
+        [HttpPost]
+        public ActionResult ChangeStatus(ChangeStatus id)
+        {
+
+            var bundel = db.Bundels.FirstOrDefault(b => b.Id == id.BundelId);
+            if (bundel != null)
+            {
+                {
+                    bundel.OrderStatusId = id.BundelStatusID;
+                    if (id.BundelStatusID == 3)
+                    {
+                        bundel.OnWay = DateTime.Now;
+                    }
+                    else if (id.BundelStatusID == 5)
+                    {
+                        bundel.InBaku = DateTime.Now;
+                    }
+                    else if (id.BundelStatusID == 8)
+                    {
+                        bundel.DeliveryTime = DateTime.Now;
+                    }
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        //Change bundel Statuse Modal
+        [HttpPost]
+        public ActionResult ChangeStatusModal(int id)
         {
             var status = db.OrderStatuses.ToList();
+            ViewBag.bundel = db.Bundels.FirstOrDefault(f => f.Id == id);
             return PartialView(status);
         }
 
@@ -163,9 +197,9 @@ namespace CargoEmpty.Controllers.General
         public JsonResult Delete(int id)
         {
             var bundel = db.Bundels.FirstOrDefault(f => f.Id == id);
-            if (bundel==null)
+            if (bundel == null)
             {
-                return Json(new{ success = "false" });
+                return Json(new { success = "false" });
             }
             else
             {

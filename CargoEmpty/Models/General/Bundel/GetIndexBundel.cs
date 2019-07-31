@@ -32,6 +32,8 @@ namespace CargoEmpty.Models.General.Bundel
         public DateTime? ReceivingTime { get; set; }
         [DisplayName("Y.D")]
         public DateTime? OnWay { get; set; }
+        [DisplayName("B.A")]
+        public DateTime? InBaku { get; set; }
         [DisplayName("C.T")]
         public DateTime? DeliveryTime { get; set; }
 
@@ -42,35 +44,44 @@ namespace CargoEmpty.Models.General.Bundel
 
 
         //????????
-        public static GetIndexBundel Create(BundelsDb bundel, CargoDbContext db)
+        public static GetIndexBundel Create(BundelsDb bundel)
         {
             GetIndexBundel gt = new GetIndexBundel();
             bundel.ViewFromDb(gt);
-            gt.CountryName = db.Countries.AsParallel().FirstOrDefault(f => f.Id == bundel.CountryId).CauntryName;
-            var orders = db.Orders.AsParallel().Where(w => w.BundelsDbId == bundel.Id).ToList();
-            var decs = db.Declerations.AsParallel().Where(w => w.BundelsDbId == bundel.Id).ToList();
             Task task1 = Task.Run(() =>
             {
-                if (orders != null)
+                using (CargoDbContext dbs = new CargoDbContext())
                 {
-                    for (var i = 0; i < orders.Count; i++)
-                    {                       
-                        gt.Links.Add(new BundelLinks(orders[i]));
+                    gt.CountryName = dbs.Countries.AsParallel().FirstOrDefault(f => f.Id == bundel.CountryId).CauntryName;
+                    var orders = dbs.Orders.AsParallel().Where(w => w.BundelsDbId == bundel.Id).ToList();
+                    if (orders != null)
+                    {
+                        for (var i = 0; i < orders.Count; i++)
+                        {
+                            gt.Links.Add(new BundelLinks(orders[i]));
+                        }
                     }
                 }
             });
             Task task2 = Task.Run(() =>
            {
-               if (decs != null)
+               using (CargoDbContext dbs = new CargoDbContext())
                {
-                   for (var i = 0; i < decs.Count; i++)
-                   {                      
-                       gt.Links.Add(new BundelLinks(decs[i]));
+
+                   gt.CountryName = dbs.Countries.AsParallel().FirstOrDefault(f => f.Id == bundel.CountryId).CauntryName;
+                   var decs = dbs.Declerations.AsParallel().Where(w => w.BundelsDbId == bundel.Id).ToList();
+                   if (decs != null)
+                   {
+                       for (var i = 0; i < decs.Count; i++)
+                       {
+                           gt.Links.Add(new BundelLinks(decs[i]));
+                       }
                    }
                }
            });
 
             Task.WaitAll(task1, task2);
+
             return gt;
         }
     }

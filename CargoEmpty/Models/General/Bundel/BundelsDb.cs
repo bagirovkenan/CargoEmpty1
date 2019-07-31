@@ -38,6 +38,9 @@ namespace CargoEmpty.Models.General.Bundel
         public DateTime? ReceivingTime { get; set; }
         [DisplayName("Yola dusme tarixi")]
         public DateTime? OnWay { get; set; }
+        [DisplayName("Baki anbarina catma Tarix")]
+        public DateTime? InBaku { get; set; }
+
         [DisplayName("Catdirlima Tarix")]
         public DateTime? DeliveryTime { get; set; }
 
