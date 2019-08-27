@@ -1,7 +1,9 @@
 ﻿using CargoEmpty.Controllers.Main;
+using CargoEmpty.Models.Balance;
 using CargoEmpty.Models.General;
 using CargoEmpty.Models.General.Bundel;
 using CargoEmpty.Models.Helper;
+using CargoEmpty.Models.Pages.Calculate;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -72,6 +74,12 @@ namespace CargoEmpty.Controllers.General
             return PartialView(GetIndex);
         }
 
+        public async Task<ActionResult> CreateIndex()
+        {
+            var Custumer = await db.Users.ToListAsync();
+            return View(Custumer);
+        }
+
         public async Task<ActionResult> Create(int? id)
         {
             if (id == null)
@@ -136,7 +144,7 @@ namespace CargoEmpty.Controllers.General
 
                 BundelsDb bundelDb = new BundelsDb();
                 bundel.ViewFromDb(bundelDb);
-                bundelDb.OrderStatusId = 1;
+                bundelDb.OrderStatusId = 2;
                 db.Bundels.Add(bundelDb);
                 db.SaveChanges();
                 if (bundel.orderId != null && bundel.orderId.Length > 0)
@@ -149,31 +157,66 @@ namespace CargoEmpty.Controllers.General
                 db.SaveChanges();
 
             }
-            return RedirectToAction("Inddex");
+            return RedirectToAction("Index");
+        }
+
+        //Change bundel Statuse Modal
+        [HttpPost]
+        public ActionResult ChangeStatusModal(int id)
+        {
+            var status = db.OrderStatuses.ToList();
+            ViewBag.bundelId = db.Bundels.FirstOrDefault(f => f.Id == id).Id;
+            return PartialView(status);
         }
 
         //Change bundel Statuse//?????duzgun deyil mellimnen sorusuh
         [HttpPost]
-        public ActionResult ChangeStatus(ChangeStatus id)
+        public ActionResult ChangeStatus(int OrderStatusId, int Id)
         {
 
-            var bundel = db.Bundels.FirstOrDefault(b => b.Id == id.BundelId);
+            var bundel = db.Bundels.FirstOrDefault(b => b.Id == Id);
+
             if (bundel != null)
             {
                 {
-                    bundel.OrderStatusId = id.BundelStatusID;
-                    if (id.BundelStatusID == 3)
+                    bundel.OrderStatusId = OrderStatusId;
+                  
+                        foreach (var i in bundel.User.OrderDbs)
+                        {
+                            if (i.BundelsDbId == bundel.Id)
+                            {
+                                i.OrderStatusId = OrderStatusId;
+                            }
+                        }
+                 
+                    
+                        foreach (var i in bundel.User.DeclerationDbs)
+                        {
+                            if (i.BundelsDbId == bundel.Id)
+                            {
+                                i.OrderStatusId = OrderStatusId;
+                            }
+                        }
+                   
+
+                    if (OrderStatusId == 2)
+                    {
+                        bundel.CreateDate = DateTime.Now;
+                    }
+                    else if (OrderStatusId == 3)
                     {
                         bundel.OnWay = DateTime.Now;
                     }
-                    else if (id.BundelStatusID == 5)
+                    else if (OrderStatusId == 5)
                     {
                         bundel.InBaku = DateTime.Now;
                     }
-                    else if (id.BundelStatusID == 8)
+                    else if (OrderStatusId == 8)
                     {
                         bundel.DeliveryTime = DateTime.Now;
                     }
+                   
+                    db.SaveChanges();
                     return RedirectToAction("Index");
                 }
             }
@@ -183,14 +226,135 @@ namespace CargoEmpty.Controllers.General
             }
         }
 
-        //Change bundel Statuse Modal
-        [HttpPost]
-        public ActionResult ChangeStatusModal(int id)
+        //bundel status  Foreign Warehouse get
+        public ActionResult ForeignWarehouse(int id)
         {
-            var status = db.OrderStatuses.ToList();
-            ViewBag.bundel = db.Bundels.FirstOrDefault(f => f.Id == id);
-            return PartialView(status);
+            var bundel = db.Bundels.FirstOrDefault(f => f.Id == id);
+            return PartialView(bundel);
         }
+        //edit the bundel BundelEdit
+        public ActionResult BundelEdit(int id)
+        {
+            var bundel = db.Bundels.FirstOrDefault(f => f.Id == id);
+            return PartialView(bundel);
+        }
+
+        //bundel status  Foreign Warehouse   post
+        [HttpPost]
+        public ActionResult ForeignWarehouse(foreignWarehouse bundel)
+        {
+            if (ModelState.IsValid)
+            {
+                var Bundel = db.Bundels.FirstOrDefault(f => f.Id == bundel.Id);
+                if (Bundel != null)
+                {
+                    for (var i = 0; i < bundel.ProductName.Length; i++)
+                    {
+                        int? prId = bundel.ProductId[i];
+                        var PR = db.BundelProducts.FirstOrDefault(f => f.Id == prId);
+
+                        if (PR == null)
+                        {
+                            BundelProducts Bp = new BundelProducts()
+                            {
+                                BundelsDbId = bundel.Id,
+                                ProductName = bundel.ProductName[i],
+                                CountryName = bundel.CountryName[i],
+                                HarmonicCode = bundel.HarmonicCode[i],
+                                CustomsValue = bundel.CustomsValue[i]
+                            };
+                            db.BundelProducts.Add(Bp);
+                        }
+                        else
+                        {
+                            PR.ProductName = bundel.ProductName[i];
+                            PR.CountryName = bundel.CountryName[i];
+                            PR.HarmonicCode = bundel.HarmonicCode[i];
+                            PR.CustomsValue = bundel.CustomsValue[i];
+                        }
+                    }
+                    bundel.ViewFromDb(Bundel);
+                    bundel.DeliveryPrice = AddBalance.outPrice(bundel.DeliveryPrice);
+                    AddBalance.ChangeBalance(Bundel.User, bundel.DeliveryPrice, db);
+                    Bundel.User.BonusBalance += AddBalance.AddBonus(bundel.DeliveryPrice);
+                    if (bundel.InvoiceFile != null && bundel.InvoiceFile.ContentLength > 0)
+                    {
+                        Bundel.InvoicePath = bundel.SaveImageFileGeneral(bundel.InvoiceFile, "/File/BundelInvoice");
+                    }
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return HttpNotFound();
+
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
+
+        }
+        //Change the status of the bundle on the external storage
+
+        public ActionResult EditForeignWarehouseBundelStatuse(int id)
+        {
+            var bundel = db.Bundels.FirstOrDefault(f => f.Id == id);
+            ViewBag.BundelStatuse = db.OrderStatuses.ToList();
+            return PartialView(bundel);
+        }
+
+        // bill btn click info bundel
+        public async Task<ActionResult> BundelBill(int id)
+        {
+            BundelsDb bundel = await db.Bundels.FirstOrDefaultAsync(f => f.Id == id);
+            if (bundel != null)
+            {
+                return PartialView(bundel);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        //bundel label
+        // bill btn click info bundel
+        public async Task<ActionResult> BundelLabel(int id)
+        {
+            BundelsDb bundel = await db.Bundels.Include(l => l.BundelProducts).FirstOrDefaultAsync(f => f.Id == id);
+            if (bundel != null)
+            {
+                ViewBag.set = db.Settings.FirstOrDefault();
+                return PartialView(bundel);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+
+        //Calculate Delivare Priec
+        public JsonResult CalculatePrice(FrontCalculateBundle model)
+        {
+            decimal totalAZN = 0;
+            decimal totalUSD = 0;
+            if (model.BundleLenght >= 100)
+            {
+                totalUSD = SelectTarif.CalculateVolume(model);
+            }
+            else
+            {
+                totalUSD = SelectTarif.CalculateWeight(model);
+            }
+            totalAZN = totalUSD * db.Settings.FirstOrDefault().USD;
+
+            return Json(new { success = "true", responseUSD = totalUSD, responseAZN = totalAZN });
+        }
+
 
         //Delete Bundel
         [HttpPost]
@@ -206,6 +370,22 @@ namespace CargoEmpty.Controllers.General
                 db.Bundels.Remove(bundel);
                 db.SaveChanges();
                 return Json(new { success = "true" });
+            }
+        }
+
+        //delete bundelproduct
+        public async Task<JsonResult> DeleteProduct(int id)
+        {
+            var pr = await db.BundelProducts.FirstOrDefaultAsync(f => f.Id == id);
+            if (pr != null)
+            {
+                db.BundelProducts.Remove(pr);
+                await db.SaveChangesAsync();
+                return Json(new { success = "true" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { success = "false" }, JsonRequestBehavior.AllowGet);
             }
         }
 

@@ -1,0 +1,141 @@
+﻿@model CargoEmpty.Models.General.Bundel.BundelsDb
+
+<form action="/Bundel/ChangeStatus" method="post">
+    <input id="changeStatusModalBundelId" type="hidden" name="Id" value="@Model.Id" />
+    <div class="col-12 col-lg-12 BundelForeignWarehouseModalMainDiv">
+        <div class="row">
+            <div class="col-12 col-lg-12 ForeignWarehouseModalShowDiv">
+                <span>Status</span>
+                <div>
+                    <select name="OrderStatusId" class="form-control" id="BundelIndexStatusSelect">
+                        @foreach (var i in ViewBag.BundelStatuse)
+                        {
+                            if (i.Id == Model.OrderStatusId)
+                            {
+                                <option value="@i.Id" selected>@i.StatusName</option>
+                            }
+                            else
+                            {
+                                <option value="@i.Id">@i.StatusName</option>
+                            }
+
+                        }
+                    </select>
+                </div>
+            </div>
+            @*<div class="col-12 col-lg-12 ForeignWarehouseModalHiddenDiv">
+                <input id="changeStatusModalBundelCountryId" type="hidden" name="CountryId" value="@Model.CountryId" />
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label>Uzunluq (sm)</label>
+                        <div>
+                            <input id="ChangeBundelStatusModalLengthInputId" class="form-control ChangeBundelStatusModalBundelSize" type="number" step="0.01" name="Length" value="@Model.Length"  />
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <label>En (sm)</label>
+                        <div>
+                            <input id="ChangeBundelStatusModalWidthInputId" class="form-control ChangeBundelStatusModalBundelSize" type="number" step="0.01" name="Width" value="@Model.Width"  />
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <label>Hundurluk (sm)</label>
+                        <div>
+                            <input id="ChangeBundelStatusModalHeightInputId" class="form-control ChangeBundelStatusModalBundelSize" type="number" step="0.01" name="Height" value="@Model.Height"  />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-12">
+                        <label>Ceki (kq)</label>
+                        <div>
+                            <input id="ChangeBundelStatusModalWeightInputId" class="form-control ChangeBundelStatusModalBundelSize" type="number" step="0.01" name="Weight" value="@Model.Weight"  />
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-12">
+                        <label>Catdirilma Pulu (USD $)</label>
+                        <div>
+                            <span style="height:38px;" id="ChangeBundelStatusModalPriceSpanId" class="form-control">@Model.DeliveryPrice</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-12">
+                        <label>Qiymeti Hesabla</label>
+                        <div>
+                            <button style="width:100%;" type="button" id="ChangeBundelStatusModalPriceButtonId" class="btn btn-info">Hesabla</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <label>Izleme nomesi</label>
+                        <div>
+                            <input class="form-control" type="number" name="TrackingNumber" value=""  />
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <label>Invoice</label>
+                        <div>
+                            <input class="form-control" type="file" name="InvoiceFile" value="" />
+                            <a href="@Model.InvoicePath">File</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12">
+                        <label>Qeyd</label>
+                        <div>
+                            <textarea name="Note" class="form-control" required>@Model.Note</textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-12" style="margin-top:10px;">
+                        <table class="table table-bordered" style="font-size:12px;">
+                            <thead id="IndexChangeStatusWarehouseAbroadTableHead">
+                                <tr>
+                                    <th scope="col">Icindekilerin Tam Harmoni Tanimi</th>
+                                    <th scope="col">Harmoni Kodu</th>
+                                    <th scope="col">Uretildiyi Ulke</th>
+                                    <th scope="col">Gomruk Degeri</th>
+                                </tr>
+                            </thead>
+                            <tbody id="IndexChangeStatusWarehouseAbroadTableBody">
+                                @{
+                                    foreach (var i in Model.BundelProducts)
+                                    {
+                                        <tr>
+                                            <td><input class="form-control" type="text" name="ProductName" value="@i.ProductName"  /></td>
+                                            <td><input class="form-control" type="text" name="HarmonicCode" value="@i.HarmonicCode" /></td>
+                                            <td><input class="form-control" type="text" name="CountryName" value="@i.CountryName"  /></td>
+                                            <td><input class="form-control" type="number" step="0.01" name="CustomsValue" value="@i.CustomsValue" /></td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                        <label>Teslim Alan</label>
+                        <div>
+                            <input class="form-control" type="text" name="RecieverPerson" value="@Model.RecieverPerson"  />
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <label>Teslim Alma Tarihi</label>
+                        <div>
+                            <input class="form-control" type="text" name="ReceivingTime" value="@Model.ReceivingTime" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12">
+                        <label>Teslim Edilen</label>
+                        <div>
+                            <span class="form-control">@Model.User.FirstName @Model.User.LastName | @Model.User.UserCod</span>
+                            <input type="hidden" name="SuppliersPerson" value="@Model.UserDbId" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>*@
+            <button type="submit" class="changeStatusSubmitButton" style="display:none;"></button>
+        </div>
+    </div>
+</form>

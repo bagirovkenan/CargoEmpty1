@@ -1,4 +1,5 @@
 ﻿using CargoEmpty.Models.App;
+using CargoEmpty.Models.Balance;
 using CargoEmpty.Models.General;
 using CargoEmpty.Models.General.Bundel;
 using CargoEmpty.Models.General.Decleration;
@@ -48,6 +49,8 @@ namespace CargoEmpty.Context
         public DbSet<Setting> Settings { get; set; }
         public DbSet<OrderStatus> OrderStatuses { get; set; }
         public DbSet<MyAddress> MyAddresses { get; set; }
+        public DbSet<BalanceOperator> BalanceOperators { get; set; }
 
     }
+    
 }

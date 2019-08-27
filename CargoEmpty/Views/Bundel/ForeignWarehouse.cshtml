@@ -1,0 +1,115 @@
+﻿@model CargoEmpty.Models.General.Bundel.BundelsDb
+
+<input id="changeStatusModalBundelCountryId" type="hidden" name="CountryId" value="@Model.CountryId" />
+<div class="row">
+    <div class="col-lg-4">
+        <label>Uzunluq (sm)</label>
+        <div>
+            <input id="ChangeBundelStatusModalLengthInputId" class="form-control ChangeBundelStatusModalBundelSize" type="number" step="0.01" name="Length" value="" required/>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <label>En (sm)</label>
+        <div>
+            <input id="ChangeBundelStatusModalWidthInputId" class="form-control ChangeBundelStatusModalBundelSize" type="number" step="0.01" name="Width" value="" required/>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <label>Hundurluk (sm)</label>
+        <div>
+            <input id="ChangeBundelStatusModalHeightInputId" class="form-control ChangeBundelStatusModalBundelSize" type="number" step="0.01" name="Height" value="" required/>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4 col-12">
+        <label>Ceki (kq)</label>
+        <div>
+            <input id="ChangeBundelStatusModalWeightInputId" class="form-control ChangeBundelStatusModalBundelSize" type="number" step="0.01" name="Weight" value="" required/>
+        </div>
+    </div>
+    <div class="col-lg-5 col-12">
+        <label>Catdirilma Pulu (USD $)</label>
+        <div>
+            <span style="height:38px;" id="ChangeBundelStatusModalPriceSpanId" class="form-control"></span>
+            <input id="ChangeBundelStatusModalPriceInputId" class="form-control" type="hidden" step="0.01" name="DeliveryPrice" value="" />
+        </div>
+    </div>
+    <div class="col-lg-3 col-12">
+        <label>Qiymeti Hesabla</label>
+        <div>
+            <button style="width:100%;" type="button" id="ChangeBundelStatusModalPriceButtonId" class="btn btn-info">Hesabla</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-12">
+        <label>Izleme nomesi</label>
+        <div>
+            <input class="form-control" type="number" name="TrackingNumber" value=""  required/>
+        </div>
+    </div>
+    <div class="col-lg-6 col-12">
+        <label>Invoice</label>
+        <div>
+            <input class="form-control" type="file" name="InvoiceFile" value="" />
+        </div>
+    </div>
+    <div class="col-12 col-lg-12">
+        <label>Qeyd</label>
+        <div>
+            <textarea name="Note" class="form-control" required></textarea>
+        </div>
+    </div>
+    <div class="col-12 col-lg-12" style="margin-top:20px;">
+
+        <div>
+            <i id="ChangeBundelStatuseModalTableAddBtn" class="fas fa-plus-circle float-right" style="color:#17a2b8;font-size:25px;cursor:pointer;"></i>
+        </div>
+    </div>
+    <div class="col-lg-12 col-12" style="margin-top:10px;">
+        <table class="table table-bordered" style="font-size:12px;">
+            <thead id="IndexChangeStatusWarehouseAbroadTableHead">
+                <tr>
+                    <th scope="col">Icindekilerin Tam Harmoni Tanimi</th>
+                    <th scope="col">Harmoni Kodu</th>
+                    <th scope="col">Uretildiyi Ulke</th>
+                    <th scope="col">Gomruk Degeri</th>
+                </tr>
+            </thead>
+            <tbody id="IndexChangeStatusWarehouseAbroadTableBody">
+                <tr class="BundelProductsTrClass">
+                    <td style="display:none;"><input id="BundelEditBundelPruoductId" class="form-control BundelEditBundelPruoductClass" type="hidden" name="ProductId" value="" />
+                    <td><input class="form-control" type="text" name="ProductName" value="" required /></td>
+                    <td><input class="form-control" type="text" name="HarmonicCode" value="" /></td>
+                    <td><input class="form-control" type="text" name="CountryName" value="" required /></td>
+                    <td><input class="form-control" type="number" step="0.01" name="CustomsValue" value="" /></td>
+                    <td style="display:none;" class="ChangeBundelStatuseModalTableRemoveTd"><button style="font-size:12px;" id="ChangeBundelStatuseModalTableRemoveBtn" class="btn btn-danger" type="button"><i class="far fa-trash-alt" style="display:block;cursor:pointer;width:100%;height:100%;"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-lg-6">
+        <label>Teslim Alan</label>
+        <div>
+            <input class="form-control" type="text" name="RecieverPerson" value="" required />
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+        <label>Teslim Alma Tarihi</label>
+        <div>
+            <input class="form-control" type="text" name="ReceivingTime" value="@DateTime.Now" />
+        </div>
+    </div>
+    <div class="col-12 col-lg-12">
+        <label>Teslim Edilen</label>
+        <div>
+            <span class="form-control">@Model.User.FirstName @Model.User.LastName | @Model.User.UserCod</span>
+            <input type="hidden" name="SuppliersPerson" value="@Model.UserDbId" />
+        </div>
+    </div>
+</div>
+          
+  

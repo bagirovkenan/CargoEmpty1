@@ -1,4 +1,5 @@
 ﻿using CargoEmpty.Controllers.Main;
+using CargoEmpty.Models.General.Decleration;
 using CargoEmpty.Models.General.Order;
 using CargoEmpty.Models.General.User;
 using System;
@@ -13,28 +14,30 @@ namespace CargoEmpty.Controllers.General
 {
     public class JsonResultController : MainController
     {
-        // GET: JsonResult
+        //custumer details customers info
+       
         [HttpPost]
-        public ActionResult CustumerInfo(int id)
+        public async Task<ActionResult> CustumerInfo(int id)
         {
-            var Custumer = db.Users.FirstOrDefault(f => f.Id == id);            
+            var Custumer =await db.Users.FirstOrDefaultAsync(f => f.Id == id);            
             return PartialView(Custumer);
         }
 
+//customers details orders
         [HttpPost]
-        public ActionResult CustumerOrders(int id)
+        public async Task<ActionResult> CustumerOrders(int id)
         {
  
-            var Orders = db.Orders.Where(f => f.UserDbId == id).ToList();          
+            var Orders = await db.Orders.Where(f => f.UserDbId == id).ToListAsync();          
             var Counts = new AdminCustumerOrdersStatusView();
             Counts.UserId = id;
-            Counts.IsnotExcuteCount = db.Orders.Count(f => f.UserDbId == id && f.Executed == false);
-            Counts.ExcuteCount = db.Orders.Count(f => f.UserDbId == id && f.Executed == true);
-            Counts.DeclerationCount = db.Orders.Count(f => f.UserDbId == id && f.Ordered == true);
-            Counts.NotDeclerationCount = db.Orders.Count(f => f.UserDbId == id && f.Ordered == false);
-            Counts.IsNotPaid = db.Orders.Count(f => f.UserDbId == id && f.isPaid == false);        
-            Counts.IsUrgentOrdersCount = db.Orders.Count(f => f.UserDbId == id && f.isUrgent == true);
-            Counts.IsNormalOrderCount = db.Orders.Count(f => f.UserDbId == id && f.isUrgent == false);
+            Counts.IsnotExcuteCount = await db.Orders.CountAsync(f => f.UserDbId == id && f.Executed == false);
+            Counts.ExcuteCount =await db.Orders.CountAsync(f => f.UserDbId == id && f.Executed == true);
+            Counts.DeclerationCount =await db.Orders.CountAsync(f => f.UserDbId == id && f.Ordered == true);
+            Counts.NotDeclerationCount =await db.Orders.CountAsync(f => f.UserDbId == id && f.Ordered == false);
+            Counts.IsNotPaid =await db.Orders.CountAsync(f => f.UserDbId == id && f.isPaid == false);        
+            Counts.IsUrgentOrdersCount =await db.Orders.CountAsync(f => f.UserDbId == id && f.isUrgent == true);
+            Counts.IsNormalOrderCount =await db.Orders.CountAsync(f => f.UserDbId == id && f.isUrgent == false);
           
             ViewBag.Const = Counts;
             return PartialView(Orders);
@@ -164,22 +167,67 @@ namespace CargoEmpty.Controllers.General
             var Orders = await db.Orders.Where(f =>f.isUrgent == false).ToListAsync();
             return PartialView(Orders);
         }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// Custumers Details Declerations
+        /// 
+        [HttpPost]
+        public async Task<ActionResult> CustumerDecleration(int id)
+        {
 
-        //[HttpPost]//deyisecey baglama olacaq
-        //public ActionResult OrdersOutsideWarehouse(int id)
-        //{
-        //    var Orders = db.Orders.Where(f => f.UserDbId == id && f.OrderStatusId == 2).ToList();
-        //    return PartialView(Orders);
-        //}
+            var Decs = await db.Declerations.Where(w => w.UserDbId == id && w.CreatAdmin==false).ToListAsync();
+            ViewBag.Statuse = await db.OrderStatuses.ToListAsync();
+            ViewBag.Country = await db.Countries.ToListAsync();
+            return PartialView(Decs);
+        }
 
-        //[HttpPost] //deyisecey baglama olacaq
-        //public ActionResult OrdersBakuWarehouse(int id)
-        //{
-        //    var Orders = db.Orders.Where(f => f.UserDbId == id && f.OrderStatusId == 3).ToList();
-        //    return PartialView(Orders);
-        //}
+        [HttpPost]
+        public async Task<ActionResult> SelectCountryDec(UserBundelStatusAndCountry id)
+        {
+            List<DeclerationDb> Decs = new List<DeclerationDb>();
 
+            if (id.StatusId==null && id.CountryId==null)
+            {
+                Decs = await db.Declerations.Where(w => w.UserDbId == id.UserId && w.CreatAdmin == false).ToListAsync();
+            }
+            else if (id.StatusId == null && id.CountryId != null)
+            {
+                Decs = await db.Declerations.Where(w => w.UserDbId == id.UserId && w.CountryId==id.CountryId && w.CreatAdmin == false).ToListAsync();
+            }
+            else if (id.StatusId != null && id.CountryId == null)
+            {
+                Decs = await db.Declerations.Where(w => w.UserDbId == id.UserId && w.OrderStatusId == id.StatusId && w.CreatAdmin == false).ToListAsync();
+            }
+            else if (id.StatusId != null && id.CountryId != null)
+            {
+                Decs = await db.Declerations.Where(w => w.UserDbId == id.UserId &&  w.CountryId == id.CountryId && w.OrderStatusId == id.StatusId && w.CreatAdmin == false).ToListAsync();
+            }
 
-
+            ViewBag.Statuse = await db.OrderStatuses.ToListAsync();
+            ViewBag.Country = await db.Countries.ToListAsync();
+            
+            return PartialView(Decs);
+        }
+        //edit decs
+        [HttpPost]
+        public async Task<ActionResult> Edite(EditeDec dec)
+        {
+            int UserId = 0;
+            if (ModelState.IsValid)
+            {
+                var decDb = await db.Declerations.FirstOrDefaultAsync(f => f.Id == dec.Id);
+                if (decDb != null)
+                {
+                    decDb.IsForeignWarehouse = true;
+                    decDb.Weight = dec.Weight;
+                    decDb.Length = dec.Length;
+                    decDb.Width = dec.Width;
+                    decDb.Height = dec.Height;
+                    decDb.OrderStatusId = dec.OrderStatusId;
+                    UserId = decDb.UserDbId;
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("CustumerDetails", "User", new { id = UserId });
+        }
     }
 }

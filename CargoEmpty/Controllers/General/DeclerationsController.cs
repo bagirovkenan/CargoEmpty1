@@ -15,6 +15,22 @@ namespace CargoEmpty.Controllers.General
 {
     public class DeclerationsController : MainController
     {
+        // GET: Declerations
+        //return decleration list 
+        public ActionResult IndexCustumer(int id)
+        {
+            return View(db.Declerations.Where(w => w.UserDbId == id && w.CreatAdmin == false).ToList());
+        }
+
+        //change statuse  my orders index
+
+        public async Task<ActionResult> StatuseDec(int id)
+        {
+            var decs = await db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.OrderStatusId == id).ToListAsync();
+            ViewBag.Statuse = db.OrderStatuses.ToList();
+            return PartialView(decs);
+        }
+
         //create decleration from user account
         [HttpPost]
         public ActionResult Create(CreateDeclerationView create)
@@ -27,6 +43,7 @@ namespace CargoEmpty.Controllers.General
                 var dec = CreateDeclerationView.Creaet(user.Id, create);
                 dec.IsForeignWarehouse = false;
                 dec.CreatAdmin = false;
+                dec.OrderStatusId = 2;
                 db.Declerations.Add(dec);
                 db.SaveChanges();
                 return RedirectToAction("Index", "MyAccount");
@@ -38,15 +55,147 @@ namespace CargoEmpty.Controllers.General
 
         }
 
-/// <summary>//// /////////////////////////////////////////////////////////////////////////
-// Decleration actions for admin
- 
+        /// <summary>//// /////////////////////////////////////////////////////////////////////////
+        // Decleration actions for admin
+
 
         // GET: Declerations
         //return decleration list 
         public ActionResult Index()
         {
-            return View();
+            ViewBag.Country = db.Countries.ToList();
+            ViewBag.Statuse = db.OrderStatuses.ToList();
+            return View(db.Declerations.Where(w => w.CreatAdmin == false).ToList());
+        }
+
+        //dec edite
+
+        public async Task<ActionResult> Edite(int id)
+        {
+            ViewBag.Statuse = await db.OrderStatuses.ToListAsync();
+            return PartialView(await db.Declerations.FirstOrDefaultAsync(f => f.Id == id));
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edite(EditeDec dec)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var decDb = await db.Declerations.FirstOrDefaultAsync(f => f.Id == dec.Id);
+                if (decDb != null)
+                {
+                    decDb.IsForeignWarehouse = true;
+                    decDb.Weight = dec.Weight;
+                    decDb.Length = dec.Length;
+                    decDb.Width = dec.Width;
+                    decDb.Height = dec.Height;
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("Index");
+        }
+        /// <summary>
+        /// change country  in index page 
+        /// 
+        /// yazilish duzgun deyil
+        /// </summary>
+        /// <returns></returns>
+        /// 
+        [HttpPost]
+        public async Task<ActionResult> CountryDec(BundelStatusAndCountry id)
+        {
+            if (id.StatusId == null)
+            {
+                ViewBag.Statuse = db.OrderStatuses.ToList();
+                return PartialView(await db.Declerations.Where(w => w.CreatAdmin == false && w.CountryId == id.CountryId).ToListAsync());
+            }
+            else
+            {
+                if (id.StatusId == 100)
+                {
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
+                    return PartialView(await db.Declerations.Where(w => w.CreatAdmin == false && w.CountryId == id.CountryId && w.IsForeignWarehouse == true && (w.OrderStatusId == null || w.OrderStatusId == 9)).ToListAsync());
+
+                }
+                else if (id.StatusId == 99)
+                {
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
+                    return PartialView(await db.Declerations.Where(w => w.CreatAdmin == false && w.CountryId == id.CountryId && w.Executed == true).ToListAsync());
+
+                }
+                else if (id.StatusId == 98)
+                {
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
+                    return PartialView(await db.Declerations.Where(w => w.CreatAdmin == false && w.CountryId == id.CountryId && w.Executed == false).ToListAsync());
+
+                }
+                else
+                {
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
+                    return PartialView(await db.Declerations.Where(w => w.CreatAdmin == false && w.CountryId == id.CountryId && w.OrderStatusId == id.StatusId).ToListAsync());
+
+                }
+            }
+        }
+        //clicked dec statuse btn //yazilis duzgun deyil 
+        [HttpPost]
+        public async Task<ActionResult> SelectStatuse(BundelStatusAndCountry id)
+        {
+            if (id.CountryId != null)
+            {
+                if (id.StatusId == 100)
+                {
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
+                    return PartialView(await db.Declerations.Where(w => w.CreatAdmin == false && w.CountryId == id.CountryId && w.IsForeignWarehouse == true && (w.OrderStatusId == null || w.OrderStatusId == 9)).ToListAsync());
+
+                }
+                else if (id.StatusId == 99)
+                {
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
+                    return PartialView(await db.Declerations.Where(w => w.CreatAdmin == false && w.CountryId == id.CountryId && w.Executed == true).ToListAsync());
+
+                }
+                else if (id.StatusId == 98)
+                {
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
+                    return PartialView(await db.Declerations.Where(w => w.CreatAdmin == false && w.CountryId == id.CountryId && w.Executed == false).ToListAsync());
+
+                }
+                else
+                {
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
+                    return PartialView(await db.Declerations.Where(w => w.CreatAdmin == false && w.CountryId == id.CountryId && w.OrderStatusId == id.StatusId).ToListAsync());
+
+                }
+            }
+            else
+            {
+                if (id.StatusId == 100)
+                {
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
+                    return PartialView(await db.Declerations.Where(w => w.CreatAdmin == false && w.IsForeignWarehouse == true && (w.OrderStatusId == null || w.OrderStatusId == 9)).ToListAsync());
+
+                }
+                else if (id.StatusId == 99)
+                {
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
+                    return PartialView(await db.Declerations.Where(w => w.CreatAdmin == false && w.Executed == true).ToListAsync());
+
+                }
+                else if (id.StatusId == 98)
+                {
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
+                    return PartialView(await db.Declerations.Where(w => w.CreatAdmin == false && w.Executed == false).ToListAsync());
+
+                }
+                else
+                {
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
+                    return PartialView(await db.Declerations.Where(w => w.CreatAdmin == false && w.OrderStatusId == id.StatusId).ToListAsync());
+
+                }
+            }
         }
 
         //For an Admin to create  a decleration for the custumer on the all pages
@@ -70,13 +219,13 @@ namespace CargoEmpty.Controllers.General
         //    return PartialView(UserOrders);
         //}
 
-       
+
 
 
         [HttpPost]
-       public ActionResult CreateOnDetailsPage(CreateDeclerationView create)
+        public ActionResult CreateOnDetailsPage(CreateDeclerationView create)
         {
-            var order =   db.Orders.FirstOrDefault(f => f.Id == create.OrderDbId && f.UserDbId==create.UserDbId);
+            var order = db.Orders.FirstOrDefault(f => f.Id == create.OrderDbId && f.UserDbId == create.UserDbId);
 
             if (ModelState.IsValid && create.Invoice != null && create.Invoice.ContentLength > 0 && order != null)
             {
@@ -98,7 +247,7 @@ namespace CargoEmpty.Controllers.General
 
         //Returns order information  according to order ID  admin used  when  creating a decleration for users
         [HttpPost]
-        public async Task<JsonResult> OrderInformation(int id,int UserId)
+        public async Task<JsonResult> OrderInformation(int id, int UserId)
         {
             OrderDb order = await db.Orders.FirstOrDefaultAsync(f => f.Id == id && f.UserDbId == UserId && f.Ordered == false && f.isPaid == true);
 
@@ -133,7 +282,7 @@ namespace CargoEmpty.Controllers.General
         [HttpPost]
         public async Task<JsonResult> CustumersOrders(int UserId)
         {
-            var orders = await db.Orders.Where(w =>w.UserDbId == UserId && w.Ordered == false && w.isPaid == true).ToListAsync();
+            var orders = await db.Orders.Where(w => w.UserDbId == UserId && w.Ordered == false && w.isPaid == true).ToListAsync();
             List<OrderCountryJson> Userorders = new List<OrderCountryJson>();
             if (orders != null && orders.Count > 0)
             {
@@ -145,9 +294,9 @@ namespace CargoEmpty.Controllers.General
                     Userorders.Add(jsOrder);
                 }
 
-                return Json(orders);
+                return Json(Userorders);
             }
-            return Json(orders);
+            return Json(Userorders);
         }
 
         //Returns list of orders according to country  admin used  when  creating a decleration for users

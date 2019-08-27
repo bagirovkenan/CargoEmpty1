@@ -1,0 +1,228 @@
+﻿@model CargoEmpty.Models.General.Bundel.BundelsDb
+
+<div class="col-lg-12 col-12 BundelBillMainDiv">
+    <div class="row">
+        <div class="col-12 co-lg-12">
+            <h2>1 Gondern</h2>
+        </div>
+        <div class="col-lg-6 col-12">
+            <label>Firma Adi</label>
+            <div>
+                <span class="form-control">@Model.CompanyName</span>
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <label>Magaza Adi</label>
+            <div>
+                <span class="form-control">@Model.ShopName</span>
+            </div>
+        </div>
+        <div class="col-lg-8 col-12">
+            <label>Adres</label>
+            <div>
+                <span class="form-control">@Model.Adress</span>
+            </div>
+        </div>
+        <div class="col-lg-4 col-12">
+            <label>Tarix</label>
+            <div>
+                <span class="form-control">@DateTime.Now.Date</span>
+            </div>
+        </div>
+        <div class="col-lg-4 col-12">
+            <label>Telefon</label>
+            <div>
+                <span class="form-control">@Model.PhoneNumber</span>
+            </div>
+        </div>
+        <div class="col-lg-4 col-12">
+            <label>Abone Hesab.No</label>
+            <div>
+                <span class="form-control">@Model.AccountNumber</span>
+            </div>
+        </div>
+        <div class="col-lg-4 col-12">
+            <label>Post Kodu</label>
+            <div>
+                <span class="form-control">@Model.PostCode</span>
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <label>Olke</label>
+            <div>
+                <span class="form-control">@Model.CompanyName</span>
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <label>Seher</label>
+            <div>
+                <span class="form-control">@Model.City</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-12">
+            <h2>2 Alici</h2>
+        </div>
+        <div class="col-12 col-lg-12">
+            <label>Alicinin Adi</label>
+            <div class="col-12 col-lg">
+                <span class="form-control">@Model.User.FirstName @Model.User.LastName | @Model.User.UserCod</span>
+            </div>
+        </div>
+        <div class="col-12 col-lg-12">
+            <label>Firma Adi</label>
+            <div class="col-12 col-lg">
+                <span class="form-control"></span>
+            </div>
+        </div>
+        <div class="col-lg-12 col-12">
+            <label>Adres</label>
+            <div>
+                <span class="form-control">@Model.User.Adress</span>
+            </div>
+        </div>
+        <div class="col-lg-4 col-12">
+            <label>Telefon Nomresi</label>
+            <div>
+                <span class="form-control">@Model.User.PhoneNumber</span>
+            </div>
+        </div>
+        <div class="col-lg-4 col-12">
+            <label>Email</label>
+            <div>
+                <span class="form-control">@Model.User.Mail</span>
+            </div>
+        </div>
+        <div class="col-lg-4 col-12">
+            <label>Post Kodu</label>
+            <div>
+                <span class="form-control"></span>
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <label>Olke</label>
+            <div>
+                <span class="form-control">Azerbaycan</span>
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <label>Seher</label>
+            <div>
+                <span class="form-control"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-12">
+            <h2>3 Uluslararasi Servisler</h2>
+            <div>
+                <input class="form-control" type="text" name="name" value="@Model.CargoType" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-12">
+            <h2>4.Tasima Ucretleri Kime Fakturalanacaq</h2>
+            <div>
+                <input class="form-control" type="text" name="name" value="@Model.TransportationInvoiced" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-12">
+            <h2>5.Gonderici Bilgileri</h2>
+        </div>
+        <div class="col-6 col-lg-6">
+            <label>Olcu Vahidi</label>
+            <div>
+                <select class="form-control">
+                    <option value="kilo">Kilo</option>
+                    <option value="libre">Libre</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-6 col-lg-6">
+            <label>Tip</label>
+            <div>
+                <select class="form-control">
+                    <option value="Poset">Poset</option>
+                    <option value="Koli">Koli</option>
+                    <option value="Zarf">Zarf</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-12">
+            <label>Icindekiler</label>
+            <div>
+                <table class="table table-bordered" style="font-size:12px;">
+                    <thead id="IndexChangeStatusWarehouseAbroadTableHead">
+                        <tr>
+                            <th scope="col">Icindekilerin Tam Harmoni Tanimi</th>
+                            <th scope="col">Harmoni Kodu</th>
+                            <th scope="col">Uretildiyi Ulke</th>
+                            <th scope="col">Gomruk Degeri</th>
+                        </tr>
+                    </thead>
+                    <tbody id="IndexChangeStatusWarehouseAbroadTableBody">
+                        @{
+                            foreach (var i in Model.BundelProducts)
+                            {
+                                <tr>
+                                    <td><input class="form-control" type="text" name="ProductName" value="@i.ProductName" /></td>
+                                    <td><input class="form-control" type="text" name="HarmonicCode" value="@i.HarmonicCode" /></td>
+                                    <td><input class="form-control" type="text" name="CountryName" value="@i.CountryName" /></td>
+                                    <td><input class="form-control" type="number" step="0.01" name="CustomsValue" value="@i.CustomsValue" /></td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-12">
+            <h2>6.Ic Referanslar</h2>
+            <div>
+                <input class="form-control" type="text" name="name" value="@Model." />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-12">
+            <h2>7.Harc ve vergiler Kime Fakturalanacaq</h2>
+            <div>
+                <select class="form-control">
+                    <option value="gonderen">Gonderen</option>
+                    <option value="alici">Alici</option>
+                    
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <label>Teslim Alan</label>
+            <div>
+                <input class="form-control" type="text" name="RecieverPerson" value="@Model.RecieverPerson" />
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <label>Teslim Alma Tarihi</label>
+            <div>
+                <input class="form-control" type="text" name="ReceivingTime" value="@Model.ReceivingTime" />
+            </div>
+        </div>
+        <div class="col-12 col-lg-12">
+            <label>Teslim Edilen</label>
+            <div>
+                <span class="form-control">@Model.User.FirstName @Model.User.LastName | @Model.User.UserCod</span>
+                <input type="hidden" name="SuppliersPerson" value="@Model.UserDbId" />
+            </div>
+        </div>
+    </div>
+</div>

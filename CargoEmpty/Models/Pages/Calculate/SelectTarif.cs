@@ -22,7 +22,7 @@ namespace CargoEmpty.Models.Pages.Calculate
                 }
                 else
                 {
-                    WeightPrice = tarif.FirstOrDefault(f => Weight < f.MaxWeight).WeightPrice;
+                    WeightPrice = tarif.FirstOrDefault(f =>f.MaxWeight >= Weight).WeightPrice;
                 }
             }
             return WeightPrice;

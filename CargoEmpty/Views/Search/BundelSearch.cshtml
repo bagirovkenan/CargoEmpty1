@@ -1,0 +1,18 @@
+﻿
+@model IEnumerable<CargoEmpty.Models.General.Bundel.BundelsDb>
+
+
+
+<div class="col-12 col-lg-12" style="position:absolute;z-index:99;">
+    <ul style="list-style-type: none;width:100%;padding-left:0px;">
+        @{
+            foreach (var i in Model)
+            {
+                <li class="SearchResponseLi"><a href="/Bundel/Index/">@i.TrackingNumber | @i.ShopName</a></li>
+            }
+        }
+    </ul>
+</div>
+
+
+

@@ -154,12 +154,14 @@ table{
     margin: 0px;
     padding: 0px;
     list-style-type: none;
+    height: 0px;
+    width:88%;
+    overflow-y: auto !important;
+    position:absolute;
+    z-index:99;
 }
 
-    .CustumersDetailsMenyMainDiv #accauntsettingUl li {
-     
-        /* margin-top: 4px; */
-    }
+   
 
     .CustumersDetailsMenyMainDiv #accauntsettingUl li {
         display: block;
@@ -174,8 +176,8 @@ table{
         cursor: pointer !important;
     }
 
-            .CustumersDetailsMenyMainDiv #accauntsettingUl li :hover {
-                background-color: #eb0028;
+            .CustumersDetailsMenyMainDiv #accauntsettingUl li:hover {
+                background-color: #eb0028 ;
                 color: #f6f6f6;
             }
 
@@ -228,44 +230,105 @@ table{
     overflow-y: auto !important;
 }
 
+.BundelBillMainDiv span{
+    height:38px;
+}
+.BundelBillMainDiv h2 {
+    margin-top: 20px;
+}
+
+.BundelBillMainDiv label {
+    margin-top: 10px;
+}
+
+.SearchResponseLi {
+    background-color: #433;
+    width: 100% !important;
+    padding: 3px;
+    border-radius: 3px;
+}
+.SearchResponseLi a {
+    color: white !important;
+}
+    .SearchResponseLi:hover {
+        background-color: #ffc107;
+    }
+
 @media screen and (max-width: 800px) {
     .AminIndexPages {
         overflow-x: auto !important;
         overflow-y: auto !important;
     }
 }
-    /*///////////////////////////////////////////////////////////////////////////////////////*/
-    /* side left blog end */
-    /* Medias scren 600px///////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-    @media screen and (max-width: 600px) {
-        .CategoryTitelColDiv {
-            display: none;
-        }
 
-
-        .CategoryMenyuButtonColDiv {
-            display: inline-block;
-            padding-left: 0px;
-        }
-
-        .categoryTitetelColDiv {
-            display: none;
-        }
-
-        .AminIndexPages {
-            overflow-x: auto !important;
-            overflow-y: auto !important;
-        }
-        .AdminCustumersOrdersIndex button{
-            margin-bottom:5px;
-        }
-
-        .CreateBundelOrdersTableParentDiv {
-            overflow-x: auto !important;
-            overflow-y: auto !important;
-        }
-        .BundelIndexTableMainDiv {
-            overflow-x: auto !important;
-            overflow-y: auto !important;
-        }
+/*///////////////////////////////////////////////////////////////////////////////////////*/
+/* side left blog end */
+/* Medias scren 600px///////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+@media screen and (max-width: 600px) {
+    .CategoryTitelColDiv {
+        display: none;
     }
+
+
+    .CategoryMenyuButtonColDiv {
+        display: inline-block;
+        padding-left: 0px;
+    }
+
+    .categoryTitetelColDiv {
+        display: none;
+    }
+
+    .AminIndexPages {
+        overflow-x: auto !important;
+        overflow-y: auto !important;
+    }
+
+    .AdminCustumersOrdersIndex button {
+        margin-bottom: 5px;
+    }
+
+    .CreateBundelOrdersTableParentDiv {
+        overflow-x: auto !important;
+        overflow-y: auto !important;
+    }
+
+    .BundelIndexTableMainDiv {
+        overflow-x: auto !important;
+        overflow-y: auto !important;
+    }
+    .CustumersDetailsMenyMainDiv button{
+       margin-top:5px;
+    }
+
+}
+
+
+/*/////////////////////////////////////////////////////////////////////////////////////////*/
+/*print screen*/
+/*bundel index print css*/
+@media screen {
+    #printSection {
+        display: none;
+    }
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #printSection, #printSection * {
+        visibility: visible;
+    }
+
+    #printSection {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    #BundelLabelPrint{
+        display:none;
+    }
+}
+

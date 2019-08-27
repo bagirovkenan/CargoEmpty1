@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CargoEmpty.Models.General.Decleration.DeclerationDb>
+
+@{
+
+
+    string ForeignWarehouse = "Gelmeyib";
+    string icra;
+    string comment;
+
+    foreach (var i in Model)
+    {
+        if (i.Comment.Length > 25)
+        {
+            comment = i.Comment.Substring(0, 25) + "...";
+        }
+        else
+        {
+            comment = i.Comment;
+        }
+
+        if (i.Executed == true)
+        {
+            icra = "Icra Edilib";
+        }
+        else
+        {
+            icra = "Icra Edilmeyib";
+        }
+        <tr>
+            <td>
+                @i.Country.CauntryName
+            </td>
+            <td>
+                @i.OrderDate
+            </td>
+            <td>
+                @i.TrackingCode
+            </td>
+            <td>
+                @if (i.OrderStatusId != null)
+                {
+                    foreach (var l in ViewBag.Statuse)
+                    {
+                        if (i.OrderStatusId == l.Id)
+                        {
+                            <span>@l.StatusName</span>
+                        }
+                    }
+                }
+                else
+                {
+                    <span>@ForeignWarehouse</span>
+
+                }
+
+            </td>
+            <td>
+                @icra
+            </td>
+            <td>
+                We-@i.Weight<br />
+                Wi-@i.Width/L-@i.Length/H-@i.Height
+            </td>
+            <td>
+                <button type="button" data-id="@i.Id" class="btn btn-primary DecEditBtn" style="font-size:12px;"><i class="far fa-edit"></i></button>
+                <a href="/Bundel/Create/@i.UserDbId" style="font-size:12px;"><button style="font-size:12px;" class="btn btn-warning">Process</button></a>
+            </td>
+
+        </tr>
+    }
+}
+  

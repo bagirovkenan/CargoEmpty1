@@ -6,9 +6,9 @@
 
 <div class="col-lg-12 col-12 BundelIndexMainDiv">
     <div class="row">
-        <div class="col-lg-12 col-12">
+        <div class="col-lg-10 col-12">
             <input type="hidden" name="StatusId" value="" id="BundelStatuseIdInIndex" />
-            <select name="CountryId" class="btn btn-warning BundelIndexCountry" style="box-shadow:unset;font-size:12px;">
+            <select name="CountryId" class="btn btn-warning BundelIndexCountry" style="box-shadow:unset;font-size:12px;margin-top:5px;">
                 <option value="" selected>Butun Baglamalar</option>
                 @foreach (var i in ViewBag.counry)
                 {
@@ -19,9 +19,12 @@
             @{
                 foreach (var i in ViewBag.status)
                 {
-                    <button class="btn btn-warning BundelIndexStatusBtn" data-id="@i.Id" style="font-size:12px;">@i.StatusName</button>
+                    <button class="btn btn-warning BundelIndexStatusBtn" data-id="@i.Id" style="font-size:12px;margin-top:5px;">@i.StatusName</button>
                 }
             }
+        </div>
+        <div class="col-12 col-lg-2">
+            <a href="/Bundel/CreateIndex"><button  class="btn btn-danger"style="font-size:12px;margin-top:5px;width:100%;">Yeni Baglama</button></a>
         </div>
     </div>
     <div class="row">
@@ -96,7 +99,7 @@
                                     }
                                     @if (i.InBaku != null)
                                     {
-                                        @Html.DisplayNameFor(model => model.OnWay) <span>:</span> @i.OnWay<br />
+                                        @Html.DisplayNameFor(model => model.InBaku) <span>:</span> @i.InBaku<br />
 
                                     }
 
@@ -124,7 +127,7 @@
                                 </td>
                                 <td title="ceki/en/uznluq/hundurluk">
                                     @i.Weight kq <br />
-                                    @i.Width/@i.Length/@i.Height
+                                    E-@i.Width/U-@i.Length/H-@i.Height
                                 </td>
                                 <td>
                                     @foreach (var k in ViewBag.status)
@@ -138,8 +141,8 @@
                                 <td>
                                     @if (i.OrderStatusId == 0 || i.OrderStatusId == 2)
                                     {
-                                        <button id="changeBundelStatus" data-id="@i.Id" class="btn btn-warning" style="font-size:12px;">Status</button>
-                                        <button data-id="@i.Id" class="btn btn-danger" style="font-size:12px;" id="bundelIndexDeleteButton"><i class="fas fa-times"></i></button>
+                                        <button id="changeBundelStatus" data-id="@i.Id" class="btn btn-warning" style="font-size:14px;">Status</button>
+                                        <button data-id="@i.Id" class="btn btn-danger" style="font-size:14px;" id="bundelIndexDeleteButton"><i class="fas fa-times"></i></button>
                                     }
                                     else
                                     {
@@ -148,12 +151,13 @@
                                             <button style="width:100%;font-size:14px;" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Action
                                             </button>
-                                            <div class="dropdown-menu">
-                                                <button class="btn btn-info" href="#" style="width:100%;text-align:center;display:block;font-size:12px;">Status</button>
-                                                <button class="btn btn-info" style="width:100%;text-align:center;display:block;margin-top:5px;font-size:12px;" href="#">Status1</button>
-                                                <button class="btn btn-info" href="#" style="width:100%;text-align:center;display:block;margin-top:5px;font-size:12px;">Status2</button>
-                                                <button class="btn btn-info" href="#" style="width:100%;text-align:center;display:block;margin-top:5px;font-size:12px;">Status2</button>
-                                                <button class="btn btn-info" href="#" style="width:100%;text-align:center;display:block;margin-top:5px;font-size:12px;">Status2</button>
+                                            <div class="dropdown-menu" id="BundelIndexActinDropdownMainDinDivId">
+                                                <input type="hidden" name="" value="@i.Id" class="ActionBundelId" />
+                                                <button class="btn btn-info ActionChangeStatus" href="#" style="width:100%;text-align:center;display:block;font-size:14px;">Status</button>
+                                                <button class="btn btn-info BundelIndexActivBill" style="width:100%;text-align:center;display:block;margin-top:10px;font-size:14px;" href="#">Bill</button>
+                                                <button class="btn btn-warning BundelIndexEditBundelBtn" href="#" style="width:100%;text-align:center;display:block;margin-top:10px;font-size:14px;"><i class="fas fa-pen"></i></button>
+                                                <button class="btn btn-info" href="#" style="width:100%;text-align:center;display:block;margin-top:10px;font-size:14px;"><a href="/Bundel/BundelLabel/@i.Id" style="color:white;">Label</a></button>
+                                                <button class=" btn btn-info" href="#" style="width:100%;text-align:center;display:block;margin-top:10px;font-size:14px;"> <a href="@i.InvoicePath" style="color:white;">Proforma</a></button>
 
                                             </div>
                                         </div>
@@ -173,35 +177,36 @@
 
 
 
-            <button style="display:none;" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" id="indexBundelDecIfoModalShowBtn"></button>
+<button style="display:none;" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl" id="indexBundelDecIfoModalShowBtn"></button>
 
-            <!-- Modal -->
-            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="BundelIndexDeclerationInfoModalContenDiv">
+<!-- Modal -->
+<div id="BundelIndezChangeStatusModalMainDiv1" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" id="BundelIndexModalDialog" style="max-width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="BundelIndexDeclerationInfoModalContenDiv">
 
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button id="bundelIndexModalSaveBtn" type="button" class="btn btn-primary">Save</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Bagla</button>
-                        </div>
-                    </div>
                 </div>
             </div>
+            <div class="modal-footer" id="BundelIndexModalFooter">
+                <button id="bundelIndexChangeStatusModalSaveBtn" type="button" class="btn btn-primary">Deyis</button>
+                <button id="BundelIndexPrintBtn" type="button" class="btn btn-info">Print</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Bagla</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-            @*decleration info modal*@
+@*decleration info modal*@
 
 
-            @section AdminBundelCreate
+@section AdminBundelCreate
 {
-                <script type="text/javascript" src="~/JavaScript/CreateBundel.js"></script>
+    <script type="text/javascript" src="~/JavaScript/CreateBundel.js"></script>
 
-            }
+}

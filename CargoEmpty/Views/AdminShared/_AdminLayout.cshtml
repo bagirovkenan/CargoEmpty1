@@ -41,14 +41,20 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-6 col-12">
                             <label>Sifaris:</label>
-                            <input class="form-control" type="search" name="name" value="" placeholder="Search" />
-
+                            <input id="MainPageOrderSerchInput" class="form-control" type="search" name="name" value="" placeholder="Search" />
+                          
+                            <div id="MainPageOrderSerchDiv" class="row">
+                                @*bura ajax ile dolacaq*@
+                            </div>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-12" style="position:relative;">
 
                             <label>Isdifadeci:</label>
-                            <input class="form-control" type="search" name="name" value="" placeholder="Search" />
-                            @*     <i class="fas fa-search"></i>*@
+                            <input id="MainPageUserSerchInput" class="form-control" type="search" name="name" value="" placeholder="Search" />
+                            <div id="MainPageUserSerchDiv" class="row">
+                                @*bura ajax ile dolacaq*@
+                            </div>
+
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-12">
                             <select class="form-control" style="margin-top:30px;">
@@ -96,11 +102,17 @@
                                 <a href="/Orders/IndexAdmin"><h3>Orders</h3></a>
                             </div>
                             <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
+                                <a href="/Declerations/Index"><h3>Declerations</h3></a>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
                                 <a href="/User/UsersIndex">   <h3>Users</h3></a>
                             </div>
 
                             <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
                                 <a href="/User/IndexCustumers">   <h3>Custumers</h3></a>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
+                                <a href=" /Balance/Index">   <h3>Balance</h3></a>
                             </div>
                             <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
                                 <a href="/Carusel/Index">   <h3>Slider</h3></a>
@@ -212,8 +224,9 @@
     @RenderSection("AdminCustumer", required: false)
     @RenderSection("AdminCustumerOrderIndex", required: false)
     @RenderSection("AdminBundelCreate", required: false)
+    @RenderSection("AdminDeclerations", required: false)
 
-
+    
 
     @RenderSection("Editor", required: false)
 

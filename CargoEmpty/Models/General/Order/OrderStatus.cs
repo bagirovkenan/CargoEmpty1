@@ -11,6 +11,6 @@ namespace CargoEmpty.Models.General.Order
         public int Id { get; set; }
         public string StatusName { get; set; }      
 
-        //public virtual IEnumerable<BundelsDb> BundelsDbs { get; set; }
+       public virtual List<BundelsDb> BundelsDbs { get; set; }
     }
 }

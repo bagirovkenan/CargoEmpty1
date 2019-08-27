@@ -7,7 +7,7 @@ namespace CargoEmpty.Models.General.Bundel
 {
     public class ChangeStatus
     {
-        public int BundelStatusID { get; set; }
-        public int BundelId { get; set; }
+        public int Id { get; set; }
+        public int OrderStatusId { get; set; }
     }
 }

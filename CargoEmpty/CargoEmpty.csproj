@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Image\barkode-Regular.png" />
     <Content Include="Image\Carusel\19132_en_1_20190404175827884.jpg" />
     <Content Include="Image\Carusel\19132_en_1_20190404175933372.jpg" />
     <Content Include="Image\Carusel\19391_en_1_20190404175914396.jpg" />
@@ -143,6 +144,7 @@
     <Content Include="JavaScript\Country.js" />
     <Content Include="JavaScript\CreateBundel.js" />
     <Content Include="JavaScript\Currency.js" />
+    <Content Include="JavaScript\Declerations.js" />
     <Content Include="JavaScript\Faq.js" />
     <Content Include="JavaScript\Front\BlogSide.js" />
     <Content Include="JavaScript\Front\Faq.js" />
@@ -185,6 +187,10 @@
     <Compile Include="Controllers\Front\FrontTarifController.cs" />
     <Compile Include="Controllers\Front\HomeController.cs" />
     <Compile Include="Controllers\Front\MyAccountController.cs" />
+    <Compile Include="Controllers\General\BalanceController.cs" />
+    <Compile Include="Controllers\General\SearchController.cs" />
+    <Compile Include="Models\Balance\AddBalance.cs" />
+    <Compile Include="Models\Balance\BalanceOperator.cs" />
     <Compile Include="Models\General\Bundel\BundelStatusAndCountry .cs" />
     <Compile Include="Controllers\General\CategoriesController.cs" />
     <Compile Include="Controllers\General\CauntryController.cs" />
@@ -262,6 +268,7 @@
     <Compile Include="Models\General\Bundel\BundelsDb.cs" />
     <Compile Include="Models\General\Bundel\ChangeCountry.cs" />
     <Compile Include="Models\General\Bundel\ChangeStatus.cs" />
+    <Compile Include="Models\General\Bundel\foreignWarehouse.cs" />
     <Compile Include="Models\General\Bundel\GetBundelIndexChangeStatus.cs" />
     <Compile Include="Models\General\Bundel\GetCreateBundel.cs" />
     <Compile Include="Models\General\Bundel\GetIndexBundel.cs" />
@@ -273,6 +280,7 @@
     <Compile Include="Models\General\Decleration\CreateDeclerationWithOrder.cs" />
     <Compile Include="Models\General\Decleration\DeclerationDb.cs" />
     <Compile Include="Models\General\Decleration\CreateDeclerationView.cs" />
+    <Compile Include="Models\General\Decleration\EditeDec.cs" />
     <Compile Include="Models\General\MyAddress.cs" />
     <Compile Include="Models\General\Order\AdminCustumerOrdersStatusView.cs" />
     <Compile Include="Models\General\Order\CreateOrderView.cs" />
@@ -290,6 +298,7 @@
     <Compile Include="Models\General\User\UserDb.cs" />
     <Compile Include="Models\General\User\UserEdit.cs" />
     <Compile Include="Models\General\User\UserRole.cs" />
+    <Compile Include="Models\General\User\UserSearch.cs" />
     <Compile Include="Models\General\User\UserSignUp.cs" />
     <Compile Include="Models\Helper\ChangeActivStatus.cs" />
     <Compile Include="Models\Helper\ChangeIsActivFromIndex.cs" />
@@ -445,6 +454,23 @@
     <Content Include="Views\Bundel\DeclerationInfo.cshtml" />
     <Content Include="Views\Bundel\ChangeCountryInIndexBundel.cshtml" />
     <Content Include="Views\Bundel\ChangeStatusModal.cshtml" />
+    <Content Include="Views\Bundel\ForeignWarehouse.cshtml" />
+    <Content Include="Views\Bundel\EditForeignWarehouseBundelStatuse.cshtml" />
+    <Content Include="Views\Bundel\BundelBill.cshtml" />
+    <Content Include="Views\Bundel\BundelEdit.cshtml" />
+    <Content Include="Views\Bundel\BundelLabel.cshtml" />
+    <Content Include="Views\Bundel\CreateIndex.cshtml" />
+    <Content Include="Views\Declerations\Index.cshtml" />
+    <Content Include="Views\Declerations\Edite.cshtml" />
+    <Content Include="Views\Declerations\CountryDec.cshtml" />
+    <Content Include="Views\Declerations\SelectStatuse.cshtml" />
+    <Content Include="Views\Balance\Details.cshtml" />
+    <Content Include="Views\JsonResult\CustumerDecleration.cshtml" />
+    <Content Include="Views\JsonResult\SelectCountryDec.cshtml" />
+    <Content Include="Views\Search\UserSearch.cshtml" />
+    <Content Include="Views\Search\BundelSearch.cshtml" />
+    <Content Include="Views\Orders\StatuseOrder.cshtml" />
+    <Content Include="Views\Declerations\StatuseDec.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -454,6 +480,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="File\BundelInvoice\" />
     <Folder Include="Image\Country\" />
     <Folder Include="Image\Decleration\" />
     <Folder Include="Image\Settings\" />

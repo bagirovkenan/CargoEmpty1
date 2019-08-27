@@ -1,11 +1,12 @@
 $(document).ready(function () {
+
     $(".activeAccountLink").click();
 
     $(".CustumersDetailsMenyMainDiv #accauntsettingUl .CustumerInfoActions").on("click", function () {
         var Link = $(this).attr("data-action");
         var id = $(this).attr("data-id");
-
         AjaxReturnPartialView("POST", Link, id, "#CustumersDinamikChangeInfo")
+        console.log(id)
 
         $(".activeAccountLink").removeClass("activeAccountLink");
         $(this).addClass("activeAccountLink");
@@ -19,7 +20,50 @@ $(document).ready(function () {
     })
 
     /////////////////////////////////////////
+    //Customers Details DEcleration Js
 
+    $(".CustumersDetailsActionsMainDiv").on("change","#CustumersDetailsDecsCountrySelectId",function () {
+        var CountryId = $(this).val();
+        if (CountryId == "") {
+            console.log("aa")
+            $("#CustumersDetailsDecsStatuseInputId").val(" ");
+            $(".custumersDecsActionBtn").css({ "background-color": "#FFC107", "color": "black" });
+        }
+ 
+        var UserId = $("#DecsUsrID").val();
+        var StatusId = $("#CustumersDetailsDecsStatuseInputId").val();
+
+        var id = {
+            CountryId: CountryId,
+            StatusId: StatusId,
+            UserId: UserId
+        }
+        AjaxReturnPartialView("POST", "/JsonResult/SelectCountryDec", id, ".DecIndexTableBody")
+    })
+
+    //decs status btn click
+    $(".CustumersDetailsActionsMainDiv").on("click", ".custumersDecsActionBtn", function () {
+        var StatusId = $(this).attr("data-id");
+        var CountryId = $("#CustumersDetailsDecsCountrySelectId").val();
+        var UserId = $("#DecsUsrID").val();
+        $("#CustumersDetailsDecsStatuseInputId").val(StatusId);
+
+        var id = {
+            CountryId: CountryId,
+            StatusId: StatusId,
+            UserId: UserId
+        }
+        $(".custumersDecsActionBtn").css({ "background-color": "#FFC107", "color": "black" });
+        $(this).css({ "background-color": "#ff0000", "color": "white" });
+        AjaxReturnPartialView("POST", "/JsonResult/SelectCountryDec", id, ".DecIndexTableBody")
+    })
+
+    //dec edit btn click
+    $(".CustumersDetailsActionsMainDiv").on("click", ".DecEditBtn", function () {
+        var id = $(this).attr("data-id");
+        AjaxReturnPartialView("GET", "/Declerations/Edite", id, ".AdminDecIndexModalBody")
+        $("#DecIndexModalBtn").click();
+    });
     /////////////////////selected checkbox with delete and paid///////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////checbox when clicked add input///////////////////////////////////////////////////////////////////////////////////////////////////////
     //$("#MyOrdersIndexTabelDiv").on("click", ".CheckedOrder", function () {
@@ -201,6 +245,19 @@ $(document).ready(function () {
             }
         })
 
+    })
+
+    //drop down menyu
+
+    $("#menyuButton").click(function () {
+        var h = $("#accauntsettingUl").css("height");
+        if (h=="0px") {
+            $("#accauntsettingUl").animate({ height: '300px' })
+        }
+        else {
+            $("#accauntsettingUl").animate({ height: '0px' })
+
+        }
     })
 })
 

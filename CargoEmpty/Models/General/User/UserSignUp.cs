@@ -34,11 +34,9 @@ namespace CargoEmpty.Models.General.User
         public string Adress { get; set; }
 
         [Required(ErrorMessage = "Bos Ola Bilmez")]
-        [StringLength(7,ErrorMessage ="Fin nomreni Duzgun Daxil edin")]
         public string FINNumber { get; set; }
 
         [Required(ErrorMessage = "Bos Ola Bilmez")]
-        [StringLength(12 , ErrorMessage = "Seria Nomreni Duzgun Daxil Edin")]
         public string IDCardNumber { get; set; }
 
         [Required(ErrorMessage = "Bos Ola Bilmez")]

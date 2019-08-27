@@ -1,0 +1,73 @@
+﻿@model IEnumerable<CargoEmpty.Models.General.Decleration.DeclerationDb>
+
+@{
+
+
+
+    string icra;
+    string DecsComment;
+
+    foreach (var i in Model)
+    {
+        if (i.Comment.Length > 25)
+        {
+            DecsComment = i.Comment.Substring(0, 25) + "...";
+        }
+        else
+        {
+            DecsComment = i.Comment;
+        }
+        if (i.Executed == true)
+        {
+            icra = "Icra Edilib";
+        }
+        else
+        {
+            icra = "Icra Edilmeyib";
+        }
+        <tr>
+            <td>
+                <input type="checkbox" name="name" class="CheckedOrder" id="@i.Id" />
+            </td>
+            <td>
+                @i.Country.CauntryName
+            </td>
+            <td>
+                @i.OrderDate
+            </td>
+            <td>
+                @i.TrackingCode
+            </td>
+            <td>
+                @if (i.OrderStatusId == 2 || i.OrderStatusId != null)
+                {
+                    foreach (var l in ViewBag.Statuse)
+                    {
+                        if (i.OrderStatusId == l.Id)
+                        {
+                            <span>@l.StatusName</span>
+                        }
+                    }
+                }
+                else
+                {
+                    <span>Anbara Gelmeyib </span>
+
+                }
+
+            </td>
+            <td>
+                @icra
+            </td>
+            <td>
+                We-@i.Weight<br />
+                Wi-@i.Width/L-@i.Length/H-@i.Height
+            </td>
+            <td>
+                <button type="button" data-id="@i.Id" class="btn btn-primary DecEditBtn" style="font-size:12px;"><i class="far fa-edit"></i></button>
+                <button type="button" data-id="@i.Id" class="btn btn-danger DecEditBtn" style="font-size:12px;"><i class="far fa-trash-alt"></i></button>
+            </td>
+
+        </tr>
+    }
+}

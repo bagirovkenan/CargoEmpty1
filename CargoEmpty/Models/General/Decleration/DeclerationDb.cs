@@ -1,4 +1,5 @@
-﻿using CargoEmpty.Models.General.Order;
+﻿using CargoEmpty.Models.General.Bundel;
+using CargoEmpty.Models.General.Order;
 using CargoEmpty.Models.General.User;
 using System;
 using System.Collections.Generic;
@@ -29,8 +30,10 @@ namespace CargoEmpty.Models.General.Decleration
 
 
         public int BundelsDbId { get; set; }
-        //public virtual BundelsDb Bundel { get; set; }
-        
+      
+        public int? OrderStatusId { get; set; }
+
+
 
         public int UserDbId { get; set; }
         public virtual UserDb UserDb { get; set; }

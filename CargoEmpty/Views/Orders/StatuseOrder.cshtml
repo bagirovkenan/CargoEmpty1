@@ -1,0 +1,88 @@
+﻿@model IEnumerable<CargoEmpty.Models.General.Order.OrderDb>
+@{
+
+
+    string IsPaid = "Ode";
+    string IsUrgent = "Normal";
+    string IsPaidLink = "/IsPaid/Paid";
+    string comment;
+
+    foreach (var i in Model)
+    {
+        if (i.Coment.Length > 25)
+        {
+            comment = i.Coment.Substring(0, 25) + "...";
+        }
+        else
+        {
+            comment = i.Coment;
+        }
+
+        if (i.isPaid == true)
+        {
+            IsPaid = "Odenilib";
+            IsPaidLink = "#";
+
+        }
+        else
+        {
+            IsPaid = "Odenilmeyib";
+
+            IsPaidLink = "/IsPaid/Paid";
+        }
+        if (i.isUrgent == true)
+        {
+            IsUrgent = "Tecili";
+
+        }
+        else
+        {
+            IsUrgent = "Normal";
+        }
+<tr>
+    <td>
+        <input type="checkbox" name="name" class="CheckedOrder" id="@i.Id" />
+    </td>
+    <td>
+        @i.OrderName
+    </td>
+    <td>
+
+        <a href="@i.Link">@i.Link.Substring(8, 17)...</a>
+
+    </td>
+    <td>
+        @comment
+    </td>
+    <td>
+        @i.Price<br /> @i.Country.CountryCurrency.CurrencyName
+    </td>
+    <td>
+        @i.Country.CauntryName
+    </td>
+    <td>
+        @if (i.OrderStatusId != null)
+        {
+            foreach (var l in ViewBag.Statuse)
+            {
+                if (i.OrderStatusId == l.Id)
+                {
+                    <span>@l.StatusName</span>
+                }
+            }
+        }
+        else
+        {
+            <span>Sifaris Edilmeyib</span>
+        }
+    </td>
+    <td>
+        <a href="@IsPaidLink"><button type="button" class="btn btn-success" style="font-size:13px">@IsPaid</button></a>
+    </td>
+    <td>
+        <button type="button" data-id="@i.Id" class="btn btn-primary OrderEditBtn" style="font-size:15px;"><i class="far fa-edit"></i></button>
+        <button type="button" data-id="@i.Id" class="btn btn-danger OrderDelete" style="font-size:15px"><i class="far fa-trash-alt"></i></button>
+    </td>
+</tr>
+    }
+}

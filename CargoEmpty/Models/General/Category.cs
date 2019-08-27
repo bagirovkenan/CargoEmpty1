@@ -19,11 +19,11 @@ namespace CargoEmpty.Models.General
         [NotMapped]
         public string Activ { get; set; }
 
-        public virtual IEnumerable<ShopDb> Shops { get; set; }
+        public virtual ICollection<ShopDb> Shops { get; set; }
 
-        public virtual IEnumerable<OrderDb> Orders { get; set; }
+        public virtual ICollection<OrderDb> Orders { get; set; }
 
-        public virtual IEnumerable<DeclerationDb> DeclerationDbs { get; set; }
+        public virtual ICollection<DeclerationDb> DeclerationDbs { get; set; }
 
     }
 }

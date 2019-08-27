@@ -14,13 +14,13 @@ namespace CargoEmpty.Models.General.Bundel
     {
 
         public int Id { get; set; }
-        public double Price { get; set; }
-        public double? DeliveryPrice { get; set; }
-        public double? TransportationFee { get; set; }
-        public double? Weight { get; set; }
-        public double? Height { get; set; }
-        public double? Width { get; set; }
-        public double? Length { get; set; }
+        public decimal Price { get; set; }
+        public decimal? DeliveryPrice { get; set; }
+        public decimal? TransportationFee { get; set; }
+        public decimal? Weight { get; set; }
+        public decimal? Height { get; set; }
+        public decimal? Width { get; set; }
+        public decimal? Length { get; set; }
         public int? TrackingNumber { get; set; }
         public int? UnicalNumberReception { get; set; }
         public string Note { get; set; }
@@ -62,16 +62,16 @@ namespace CargoEmpty.Models.General.Bundel
         public virtual UserDb User { get; set; }
 
         public int CountryId { get; set; }
-        //public virtual Country BundelCountry { get; set; }
+        public virtual Country BundelCountry { get; set; }
 
         public int OrderStatusId { get; set; }
-        //public virtual OrderStatus OrderStatus { get; set; }
+        public virtual OrderStatus OrderStatus { get; set; }
 
-        public virtual IEnumerable<OrderDb> Orders { get; set; }
+       // public virtual ICollection<OrderDb> Orders { get; set; }
 
-        public virtual IEnumerable<DeclerationDb> Declerations { get; set; }
+       // public virtual ICollection<DeclerationDb> Declerations { get; set; }
 
-        public virtual IEnumerable<BundelProducts> BundelProducts { get; set; }
+        public virtual ICollection<BundelProducts> BundelProducts { get; set; }
 
 
 

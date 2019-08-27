@@ -18,13 +18,13 @@ namespace CargoEmpty.Models.General
         public int CurrencyId { get; set; }
         public virtual Currency CountryCurrency { get; set; }
 
-        public virtual IEnumerable<Tarif> Tarifs { get; set; }
+        public virtual ICollection<Tarif> Tarifs { get; set; }
 
-        public virtual IEnumerable<OrderDb> OrderDbs { get; set; }
+        public virtual ICollection<OrderDb> OrderDbs { get; set; }
 
-        public virtual IEnumerable<DeclerationDb> DeclerationDbs { get; set; }
+        public virtual ICollection<DeclerationDb> DeclerationDbs { get; set; }
 
-       // public virtual IEnumerable<BundelsDb> Bundels { get; set; }
+        public virtual ICollection<BundelsDb> Bundels { get; set; }
 
         [NotMapped]
         public HttpPostedFileBase CountryFlag { get; set; }

@@ -17,6 +17,7 @@ namespace CargoEmpty.Controllers.General
         public ActionResult IndexUser()//bu action duzelt bundelleri duzeldennen sora sefdi cunki
         {
             var MyOrders = db.Orders.Where(w => w.UserDbId == UserSession.SessionId).ToList();
+            var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.CreatAdmin==false).ToList();
             OrderIndexView OrderIndex = new OrderIndexView();
             foreach (OrderDb i in MyOrders)
             {
@@ -32,10 +33,21 @@ namespace CargoEmpty.Controllers.General
             OrderIndex.isNormalOrderCount = MyOrders.Count(w => w.isUrgent == false);
 
             ViewBag.orders = MyOrders;
+            ViewBag.decs= MyDecs;
+            ViewBag.Statuse = db.OrderStatuses.ToList();
             return View(OrderIndex);
         }
 
-       
+
+        //change statuse  my orders index
+
+        public async Task<ActionResult> StatuseOrder(int id)
+        {
+            var orders = await db.Orders.Where(w => w.UserDbId == UserSession.SessionId && w.OrderStatusId == id).ToListAsync();
+            ViewBag.Statuse = db.OrderStatuses.ToList();
+            return PartialView(orders);
+        }
+
         public ActionResult Create()
         {
             ViewBag.Country = db.Countries.Where(w => w.IsActive == true).ToList();
@@ -119,38 +131,59 @@ namespace CargoEmpty.Controllers.General
 
                 if (id == 100)
                 {
+                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.CreatAdmin == false).ToList();
+                    ViewBag.decs = MyDecs;
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
                     return PartialView(MyOrders.ToList());
                 }
                 else if (id == 99)
                 {
+                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.CreatAdmin == false).ToList();
+                    ViewBag.decs = MyDecs;
                     var IsPaid = MyOrders.Where(w => w.isPaid == true).ToList();
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
                     return PartialView(IsPaid);
                 }
                 else if (id == 98)
                 {
+                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.CreatAdmin == false).ToList();
+                    ViewBag.decs = MyDecs;
                     var isNotPaid = MyOrders.Where(w => w.isPaid == false).ToList();
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
                     return PartialView(isNotPaid);
 
                 }
                 else if (id == 97)
                 {
+                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.CreatAdmin == false).ToList();
+                    ViewBag.decs = MyDecs;
                     var isUrgentOrder = MyOrders.Where(w => w.isUrgent == true).ToList();
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
                     return PartialView(isUrgentOrder);
                 }
                 else if (id == 96)
                 {
+                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.CreatAdmin == false).ToList();
+                    ViewBag.decs = MyDecs;
                     var isNormalOrder = MyOrders.Where(w => w.isUrgent == false).ToList();
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
                     return PartialView(isNormalOrder);
                 }
                 else if (id == 95)
                 {
+                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.CreatAdmin == false).ToList();
+                    ViewBag.decs = MyDecs;
                     var isNormalOrder = MyOrders.Where(w => w.Ordered == false).ToList();
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
                     return PartialView(isNormalOrder);
                 }
 
                 else if (id == 94)
                 {
+                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.CreatAdmin == false).ToList();
+                    ViewBag.decs = MyDecs;
                     var isNormalOrder = MyOrders.Where(w => w.Ordered == true).ToList();
+                    ViewBag.Statuse = db.OrderStatuses.ToList();
                     return PartialView(isNormalOrder);
                 }
 

@@ -1,0 +1,204 @@
+﻿@model ICollection<CargoEmpty.Models.General.Decleration.DeclerationDb>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 col-md-12 col-12" id="OrdersIndexMainDiv">
+    <div class="row">
+
+
+
+        <div class="col-lg-12 col-md-12 col-12 AdminCustumersDecIndex" style="padding-bottom:5px;">
+            <input type="hidden" name="" value="" class="decStatusIdInput" />
+            <select data-action="/Declerations/CountryDec" class="btn btn-warning DecIndexCountrySelect" style="font-size:12px;">
+                <option value="">Olkeler</option>
+                @foreach (var i in ViewBag.Country)
+                {
+                    var s = 0;
+                    foreach (var l in Model)
+                    {
+                        if (l.CountryId == i.Id)
+                        {
+                            s++;
+                        }
+                    }
+                    <option value="@i.Id">@i.CauntryName<span class="float-right">(@s)</span></option>
+                }
+            </select>
+            <button data-action="/Declerations/SelectStatuse" data-id="98" class="btn btn-warning decStatusIdBtn" style="font-size:12px;margin-top:5px">Icra Edilmeyib</button>
+            <button data-action="/Declerations/SelectStatuse" data-id="99" class="btn btn-warning decStatusIdBtn" style="font-size:12px;margin-top:5px">Icra Edilib</button>
+            <button data-action="/Declerations/SelectStatuse" data-id="100" class="btn btn-warning decStatusIdBtn" style="font-size:12px;margin-top:5px">Xarici Anbarda</button>
+            @foreach (var i in ViewBag.Statuse)
+            {
+                if (i.Id != 9)
+                {
+                    <button data-action="/Declerations/SelectStatuse" data-id="@i.Id" class="btn btn-warning decStatusIdBtn" style="font-size:12px;margin-top:5px">@i.StatusName</button>
+
+                }
+            }
+        </div>
+        <div class="col-lg-12 col-md-12 col-12" style="overflow-x: auto;overflow-y: auto;margin-top:10px;" id="OrdersJsonTabelMainDiv">
+            <table class="table table-bordered" style="width:100%;">
+                <thead style="background-color:red;color:white;">
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Custumer")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Country")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Date Time")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Tracing Num")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Statuse")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Executed")
+                        </th>
+                        <th>
+                            @Html.DisplayName("We-kq")<br />
+                            @Html.DisplayName("Wi-sm/L-sm/H-sm")<br />
+                        </th>
+                        <th style="cursor:pointer;">
+                            @Html.DisplayName("Actions")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="DecIndexTableBody">
+                    @{
+
+
+                        string ForeignWarehouse;
+                        string icra ;
+                        string comment;
+
+                        foreach (var i in Model)
+                        {
+                            if (i.Comment.Length > 25)
+                            {
+                                comment = i.Comment.Substring(0, 25) + "...";
+                            }
+                            else
+                            {
+                                comment = i.Comment;
+                            }
+
+                            if (i.IsForeignWarehouse == true)
+                            {
+                                ForeignWarehouse = "Xarici Anbarda";
+
+
+                            }
+                            else
+                            {
+                                ForeignWarehouse = "Gelmeyib";
+                            }
+                            if (i.Executed==true)
+                            {
+                                icra = "Icra Edilib";
+                            }
+                            else
+                            {
+                                icra = "Icra Edilmeyib";
+                            }
+                    <tr>
+
+                        <td>
+                            @i.UserDb.FirstName @i.UserDb.LastName
+                        </td>
+                        <td>
+                            @i.Country.CauntryName
+                        </td>
+                        <td>
+                            @i.OrderDate
+                        </td>
+                        <td>
+                            @i.TrackingCode
+                        </td>
+                        <td>
+                            @if (i.OrderStatusId != 9 && i.OrderStatusId != null)
+                            {
+                                foreach (var l in ViewBag.Statuse)
+                                {
+                                    if (i.OrderStatusId == l.Id)
+                                    {
+                                        <span>@l.StatusName</span>
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                <span>@ForeignWarehouse</span>
+
+                            }
+
+                        </td>
+                        <td>
+                            @icra
+                        </td>
+                        <td>
+                            We-@i.Weight<br />
+                            Wi-@i.Width/L-@i.Length/H-@i.Height
+                        </td>
+                        <td>
+                            <button type="button" data-id="@i.Id" class="btn btn-primary DecEditBtn" style="font-size:12px;"><i class="far fa-edit"></i></button>
+                            <a href="/Bundel/Create/@i.UserDbId" style="font-size:12px;"><button style="font-size:12px;" class="btn btn-warning">Process</button></a>
+                        </td>
+
+                    </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="DecIndexModalParentDiv">
+    @*modal*@
+    <!-- Button trigger modal -->
+    <button id="DecIndexModalBtn" type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalCenter" style="display:none;">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:700px;"> 
+            <div class="modal-content" id="DecIndexModalFormParentDiv">
+                <form action="/Declerations/Edite" method="post">
+                    <div class="modal-header" style="border-bottom:none;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="AdminDecIndexModalBody">
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer" style="border-top:none;">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @*modal*@
+</div>
+
+
+
+
+@section AdminDeclerations
+{
+    <script type="text/javascript" src="~/JavaScript/Declerations.js"></script>
+
+}

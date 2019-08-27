@@ -1,4 +1,5 @@
-﻿using CargoEmpty.Models.General.Bundel;
+﻿using CargoEmpty.Models.Balance;
+using CargoEmpty.Models.General.Bundel;
 using CargoEmpty.Models.General.Decleration;
 using CargoEmpty.Models.General.Order;
 using System;
@@ -37,11 +38,9 @@ namespace CargoEmpty.Models.General.User
         public string Adress { get; set; }
 
         [Required(ErrorMessage = "Bos Ola Bilmez")]
-        [StringLength(7,ErrorMessage ="7 reqem olmalidi")]
         public string FINNumber { get; set; }
 
         [Required(ErrorMessage = "Bos Ola Bilmez")]
-        [StringLength(12,ErrorMessage = "7 reqem olmalidi")]
         public string IDCardNumber { get; set; }
 
         [Required(ErrorMessage = "Bos Ola Bilmez")]
@@ -56,13 +55,15 @@ namespace CargoEmpty.Models.General.User
         public bool BlakcList { get; set; }
         public bool VIPClient { get; set; }
 
-        public virtual IEnumerable<OrderDb> OrderDbs { get; set; }
+        public virtual ICollection<OrderDb> OrderDbs { get; set; }
 
-        public virtual IEnumerable<BundelsDb> Bundels { get; set; }
+        public virtual ICollection<BundelsDb> Bundels { get; set; }
 
-        public virtual IEnumerable<DeclerationDb> DeclerationDbs { get; set; }
+        public virtual ICollection<DeclerationDb> DeclerationDbs { get; set; }
 
-        public virtual IEnumerable<UserRole> UserRoles { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
+
+        public virtual ICollection<BalanceOperator> BalanceOperators { get; set; }
 
         public UserDb()
         {

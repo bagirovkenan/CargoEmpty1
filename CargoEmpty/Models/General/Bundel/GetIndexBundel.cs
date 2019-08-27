@@ -17,14 +17,15 @@ namespace CargoEmpty.Models.General.Bundel
         public int UserDbId { get; set; }
         public string CustumerName { get; set; }
         public int UserCode { get; set; }
-        public double Price { get; set; }
-        public double? DeliveryPrice { get; set; }
+        public decimal Price { get; set; }
+        public decimal? DeliveryPrice { get; set; }
         public int? UnicalNumberReception { get; set; }
         public List<BundelLinks> Links { get; set; } = new List<BundelLinks>();
         public string InvoicePath { get; set; }
         public string ShopName { get; set; }
         public int OrderStatusId { get; set; }
         public string CountryName { get; set; }
+  
 
         [DisplayName("S.E")]
         public DateTime CreateDate { get; set; }
@@ -37,10 +38,10 @@ namespace CargoEmpty.Models.General.Bundel
         [DisplayName("C.T")]
         public DateTime? DeliveryTime { get; set; }
 
-        public double? Weight { get; set; }
-        public double? Height { get; set; }
-        public double? Width { get; set; }
-        public double? Length { get; set; }
+        public decimal? Weight { get; set; }
+        public decimal? Height { get; set; }
+        public decimal? Width { get; set; }
+        public decimal? Length { get; set; }
 
 
         //????????

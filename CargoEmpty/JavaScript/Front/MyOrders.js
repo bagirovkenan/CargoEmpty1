@@ -1,5 +1,32 @@
 $(document).ready(function () {
 
+    $("#MyOrdersBtn").click(function () {
+
+        $(this).css("background-color", "#dc3545");
+        $("#MyDecsBtn").css("background-color", "#007bff");
+
+        $("#MyOrdersIndexTabelDiv").css("display", "block");
+        $("#MyDecTabelMainDiv").css("display", "none");
+    });
+
+    $("#MyDecsBtn").click(function () {
+
+        $(this).css("background-color", "#dc3545");
+        $("#MyOrdersBtn").css("background-color", "#007bff");
+
+        $("#MyOrdersIndexTabelDiv").css("display", "none");
+        $("#MyDecTabelMainDiv").css("display", "block");
+    })
+
+    /////////////
+    $("#MyOrdersStatuse").change(function () {
+        var id = $(this).val();
+        console.log(id);
+
+        AjaxReturnPartialView("GET", "/Orders/StatuseOrder", id, ".MyOrdersOrderTableBody")
+        AjaxReturnPartialView("GET", "/Declerations/StatuseDec", id, ".MyOrdersDecsTableBody")
+    })
+
     var linkCount = 0;
     $("#AddLink").click(function () {
 
@@ -176,7 +203,7 @@ $(document).ready(function () {
 
             $("#orderMyOrdersStatus .MyOrderStatusActiveLi").removeClass("MyOrderStatusActiveLi");
             clicedelement.addClass("MyOrderStatusActiveLi");
-            $("#MyOrdersIndexTabelDiv").html(res);
+            $("#MyOrdersDecTableMainDiv").html(res);
 
         });
     });

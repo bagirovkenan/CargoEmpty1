@@ -1,13 +1,6 @@
 ShowCategories();
 ShowCategories2();
 
-
-
-
-
-
-
-
 //////////////////////////////////////////////////////
 function ShowCategories() {
     $("#CategoryMenyuButton").click(function () {
@@ -77,8 +70,8 @@ function AjaxReturnPartialView(MetodType, ActionUrl, Data, AddpartalView) {
         url: ActionUrl,
         data: { id: Data },
     }).done(function (res) {
-      
-        $(AddpartalView).html(res);        
+
+        $(AddpartalView).html(res);
     })
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,8 +96,7 @@ function ChangActivStatusFromCreateEdit(element, element2) {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////Add Html
-function ChangeHtml(HtmlChangedElement, AddHtmlElement)
-{
+function ChangeHtml(HtmlChangedElement, AddHtmlElement) {
     $(HtmlChangedElement).html("");
     $(HtmlChangedElement).html(AddHtmlElement);
 }
@@ -137,26 +129,36 @@ function AllSelect(StatickElement, SelectedElements) {
         })
     }
 }
+/////////print modal screen
+function PrintScreen(e) {
+    var domClone = e.cloneNode(true);
+    var printSection = document.getElementById("printSection");
 
+    if (!printSection) {
+        var printSection = document.createElement("div");
+        printSection.id = "printSection";
+        document.body.appendChild(printSection);
+    }
+
+    printSection.innerHTML = "";
+    printSection.appendChild(domClone);
+    window.print();
+}
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////MAin Decleration on the Admin Panel
+/////////Main Decleration on the Admin Panel
 
-$("#layoutDeclerationModal").on("click", function () {   
-    console.log("ASD");
-    var userId ="";
+$("#layoutDeclerationModal").on("click", function () {
+    var userId = "";
     var Link = "/Declerations/CreateOnLayoutPage"
     AjaxReturnPartialView("GET", Link, userId, ".DeclerationModalAdminLayout");
-
- 
     $("#adminLayoutModalBtn").click();
 });
-                                               
+
 $(".DeclerationModalAdminLayout").on("change", "#MainDeclerationUserSelect", function () {
     var userId = $(".DeclerationModalAdminLayout #MainDeclerationUserSelect").val();
     var Link = "/Declerations/CustumersOrders"
-
     $.ajax({
         type: "POST",
         url: Link,
@@ -170,26 +172,25 @@ $(".DeclerationModalAdminLayout").on("change", "#MainDeclerationUserSelect", fun
                     $(".MainDeclerationFormMainDiv #MainDeclerationOrdersDiv #MainOrdesName").append(option);
                     if (res.length == 1) {
                         $(".MainDeclerationFormMainDiv #MainDeclerationOrdersDiv #MainOrdesName").change();
-
                     }
                 }
-
-                
             }
             else {
                 $(".MainDeclerationFormMainDiv #MainDeclerationOrdersDiv #MainOrdesName").html(" ");
                 var option = '<option class="MainDeclerationOrderNameClasse">Sifaris Tapilmadi</option>'
                 $(".MainDeclerationFormMainDiv #MainDeclerationOrdersDiv #MainOrdesName").append(option);
             }
+        },
+        error: function () {
+            alert("bilinmeyen Sef Askar Oldu")
         }
     })
-
 })
 
 
 $(".DeclerationModalAdminLayout").on("change", "#MainDeclerationCountrySelect", function () {
     var CurrencyName = $("#MainDeclerationCountrySelect  option:selected").attr("data-id");
-   var userId = $(".DeclerationModalAdminLayout #MainDeclerationUserSelect").val();
+    var userId = $(".DeclerationModalAdminLayout #MainDeclerationUserSelect").val();
     var id = $(this).val();
     $("#MainDeclerationValyutaDiv #MainDeclerationOrderOrderValyuta").text(CurrencyName);
     $.ajax({
@@ -204,8 +205,7 @@ $(".DeclerationModalAdminLayout").on("change", "#MainDeclerationCountrySelect", 
                     var option = '<option class="MainDeclerationOrderNameClasse" value="' + response[i].Id + '">' + response[i].OrderName + '</option>'
                     $(".MainDeclerationFormMainDiv #MainDeclerationOrdersDiv #MainOrdesName").append(option);
 
-                    if (response.length == 1)
-                    {
+                    if (response.length == 1) {
                         $(".MainDeclerationFormMainDiv #MainDeclerationOrdersDiv #MainOrdesName").change();
 
                     }
@@ -215,8 +215,6 @@ $(".DeclerationModalAdminLayout").on("change", "#MainDeclerationCountrySelect", 
                 $(".MainDeclerationFromMainDiv #MainDeclerationOrdersDiv #MainOrdesName").html(" ");
                 alert("Bu Olkeden Tesdiqlenmeyen Sifarisiniz Yoxdur")
             }
-
-
 
         }
     })
@@ -259,7 +257,19 @@ $(".DeclerationModalAdminLayout").on("change", "#MainOrdesName", function () {
 
 
 ////////////////////////////////////////////////
+//User Search
+$("#MainPageUserSerchInput").keyup(function () {
+    var id = $(this).val().toString();
+    AjaxReturnPartialView("GET", "/Search/UserSearch", id, "#MainPageUserSerchDiv");
+    console.log(id);
+})
 
+//order search
+$("#MainPageOrderSerchInput").keyup(function () {
+    var id = $(this).val().toString();
+    AjaxReturnPartialView("GET", "/Search/BundelSearch", id, "#MainPageOrderSerchDiv");
+    console.log(id);
+})
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //function SelectClickedClass(ClickedElement) {heleki lazim deyil

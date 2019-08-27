@@ -5,15 +5,28 @@
 }
 <div class="col-lg-12 col-12">
     <div class="row">
-        <div class="col-lg-12 col-12 CustumersDetailsMainDiv">
+        <div class="col-lg-12 col-12 CustumersDetailsMainDiv" style="position:relative;">
             <div class="row">
-                <div class="col-lg-9 col-md-8 col-12 CustumersDetailsCustumersInformation">
+                <div class="col-lg-7 col-md-7 col-12 CustumersDetailsCustumersInformation" style="margin-top:5px;">
                     <div class="UserDetailsAdmin">
-                        <span class="form-control">Custumer-@Model.FirstName @Model.LastName | ID-@Model.Id | UserCod-@Model.UserCod | Balanc-@Model.Balance | Bonuc-@Model.BonusBalance </span>
+                        <span class="form-control">@Model.FirstName @Model.LastName | ID-@Model.Id | UserCod-@Model.UserCod | Balanc-@Model.Balance | Bonuc-@Model.BonusBalance </span>
+                        <input type="hidden" name="" value="@Model.Id" id="DecsUsrID" />
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-12">
+                <div class="col-lg-2 col-md-2 col-sm-6 col-12" style="margin-top:5px;">
                     <a href="/Bundel/Create/@Model.Id"><button data-id="@Model.Id" id="AdminCustumerDeclerationBtn" class="btn btn-danger" style="width:100%;box-shadow:unset;" type="button" data-toggle="modal" data-target=".bd-example-modal-xl">Process</button></a>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12" style="margin-top:5px;">
+                    <div class="col-lg-12 col-md-12 col-12  CustumersDetailsMenyMainDiv" style="position:relative;">
+                        <button id="menyuButton" class="btn btn-danger" style="width:100%;">Menyu <i class="fas fa-bars float-right"> </i></button>
+                        <ul id="accauntsettingUl">
+                            <li data-action="/JsonResult/CustumerInfo" data-id="@Model.Id" class="CustumerInfoActions">Sexsi Melumat</li>
+                            <li data-action="/JsonResult/CustumerOrders" data-id="@Model.Id" class="CustumerInfoActions">Sifarisler</li>
+                            <li data-action="/JsonResult/CustumerDecleration" data-id="@Model.Id" class="CustumerInfoActions">Beyannameler</li>
+                            <a href="/Balance/Details/@Model.Id"><li data-id="@Model.Id" class="CustumerInfoActions">Balans Emeliyyatlari</li></a>
+                            <li data-action="/JsonResult/CustumerMessages" data-id="@Model.Id" class="CustumerInfoActions">Mesajlar</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -21,23 +34,11 @@
         <div class="col-lg-12 col-md-12 col-12 CustumersDetailsActionsMainDiv">
             <input type="hidden" name="UserID" value="@Model.Id" id="CustumerId" />
             <div class="row">
-                <div class="col-lg-9 col-md-9 col-12 CustumersDetailsActions" id="CustumersDinamikChangeInfo">
+                <div class="col-lg-12 col-md-12 col-12 CustumersDetailsActions" id="CustumersDinamikChangeInfo">
                     <div class="row">
                         @*bura ajaxs ile dinamik dolacaq*@
 
                     </div>
-                </div>
-
-                <div class="col-lg-3 col-md-3 col-12 float-right CustumersDetailsMenyMainDiv">
-                    <ul id="accauntsettingUl">
-                        <li data-action="/JsonResult/CustumerInfo" data-id="@Model.Id" class="CustumerInfoActions">Sexsi Melumat</li>
-                        <li data-action="/JsonResult/CustumerOrders" data-id="@Model.Id" class="CustumerInfoActions">Butun Sifarisler</li>
-                        <li data-action="/JsonResult/CustumerBundels" data-id="@Model.Id" class="CustumerInfoActions">Baglamalar</li>
-                        <li data-action="/JsonResult/CustumerDeclerations" data-id="@Model.Id" class="CustumerInfoActions">Beyannameler</li>
-                        <li data-action="/JsonResult/CustumerBalaceInfo" data-id="@Model.Id" class="CustumerInfoActions">Balans Emeliyyatlari</li>
-                        <li data-action="/JsonResult/CustumerMessages" data-id="@Model.Id" class="CustumerInfoActions">Mesajlar</li>
-                        <li data-action="/JsonResult/CustumerQueryes" data-id="@Model.Id" class="CustumerInfoActions">Sorgular</li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -67,7 +68,7 @@
 
                         </div>
                         <div class="AdminCutumersDetailsModalBodyUserID">
-                             
+
                         </div>
                     </div>
 
@@ -84,25 +85,32 @@
 </div>
 
 
-
-@*@*decleration modal*@
-@*<div class="CustumerDetailsDeclerationModalMinDiv">
-    <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog"
-         aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
+<button id="DecIndexModalBtn" type="button" class="btn btn-primary " data-toggle="modal" data-target=".bd-example-modal-xl" style="display:none;">
+    Launch demo modal
+</button>
+<div class="modal fade bd-example-modal-xl" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document" style="max-width:700px;">
+        <div class="modal-content" id="DecIndexModalFormParentDiv">
+            <form action="/JsonResult/Edite" method="post">
                 <div class="modal-header" style="border-bottom:none;">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="CustumerDetailsDeclerationModalContentDiv">
+                <div class="modal-body">
+                    <div class="AdminDecIndexModalBody">
 
+                    </div>
                 </div>
-            </div>
+
+                <div class="modal-footer" style="border-top:none;">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
-</div>*@
+</div>
 
 @section AdminCustumer
 {

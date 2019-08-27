@@ -4,7 +4,7 @@ $(document).ready(function () {
     //show bundel decleration info
     $(".BundelIndexTableMainDiv").on("click", "#BundelIndexDecNameId", function () {
         var id = $(this).attr("data-id");
-        
+
         AjaxReturnPartialView("GET", "/Bundel/DeclerationInfo", id, ".BundelIndexDeclerationInfoModalContenDiv");
         $("#bundelIndexModalSaveBtn").css("display", "none");
         $("#indexBundelDecIfoModalShowBtn").click();
@@ -24,8 +24,8 @@ $(document).ready(function () {
             StatusId: StatusId
         }
         AjaxReturnPartialView("POST", "/Bundel/ChangeCountryInIndexBundel", id, "#BundelIndexTableBodyId")
-    }); 
-        //When Bundel clicks status buttons
+    });
+    //When Bundel clicks status buttons
     $(".BundelIndexStatusBtn").click(function () {
         $(".BundelIndexStatusBtn").css({ "background-color": "#FFC107", "color": "black" });
         $(this).css({ "background-color": "#ff0000", "color": "white" });
@@ -34,8 +34,8 @@ $(document).ready(function () {
         $("#BundelStatuseIdInIndex").val(StatusId);
         var id =
         {
-            CountryId : CountryId,
-            StatusId : StatusId
+            CountryId: CountryId,
+            StatusId: StatusId
         }
         AjaxReturnPartialView("POST", "/Bundel/ChangeCountryInIndexBundel", id, "#BundelIndexTableBodyId")
 
@@ -67,47 +67,200 @@ $(document).ready(function () {
     $(".BundelIndexTableMainDiv").on("click", "#changeBundelStatus", function () {
         var Link = "/Bundel/ChangeStatusModal";
         var id = $(this).attr("data-id");
-        AjaxReturnPartialView("POST", Link, id , ".BundelIndexDeclerationInfoModalContenDiv");
+        AjaxReturnPartialView("POST", Link, id, ".BundelIndexDeclerationInfoModalContenDiv");
         $("#bundelIndexModalSaveBtn").css("display", "block");
+        $("#BundelIndexPrintBtn").css("display", "none");
+        $("#bundelIndexChangeStatusModalSaveBtn").css("display", "block");
         $("#indexBundelDecIfoModalShowBtn").click();
     });
 
-    //save bundel staus 
-    $("#bundelIndexModalSaveBtn").click(function () {
-        var statusId = $("#BundelIndexStatusSelect").val();
-        var bundelID = $("#changeStatusModalBundelId").val();
-        var id = {
-            BundelStatusID: statusId,
-            BundelId: bundelID
-        }
-        AjaxReturnPartialView("POST", "/Bundel/ChangeStatus", id, "#BundelIndexTableBodyId")
-    });
-    
+
     //when clicked the add button in the Index Bundel Pages Change Modal 
-    var bundels=0;
+    var bundels;
+
     $(".BundelIndexDeclerationInfoModalContenDiv").on("click", "#ChangeBundelStatuseModalTableAddBtn", function () {
-        bundels++   
-        $(".ChangeBundelStatuseModalTableRemoveTd").css("display", "block");
+        bundels = document.querySelectorAll(".BundelProductsTrClass").length;
+        var idInput =  document.getElementsByClassName("BundelEditBundelPruoductClass")[0].value;
+        console.log(document.getElementsByClassName("BundelEditBundelPruoductClass")[0].value);
+        if (bundels < 5) {
+            document.getElementsByClassName("BundelEditBundelPruoductClass")[0].value = "";
+            $(".ChangeBundelStatuseModalTableRemoveTd").css("display", "block");
             var tr = $("#IndexChangeStatusWarehouseAbroadTableBody").children()[0].outerHTML;
-        $("#IndexChangeStatusWarehouseAbroadTableBody").append(tr);
-        console.log(bundels  + " add")
-
-    }); 
-
-     //when clicked the remove button in the Index Bundel Pages Change Modal 
-    $(".BundelIndexDeclerationInfoModalContenDiv").on("click", "#ChangeBundelStatuseModalTableRemoveBtn", function () {
-     
-        if (bundels > 0) {
-            bundels--
-            $(this).parent().parent().remove();
+            $("#IndexChangeStatusWarehouseAbroadTableBody").append(tr);
+            document.getElementsByClassName("BundelEditBundelPruoductClass")[0].value = idInput;           
+            bundels = document.querySelectorAll(".BundelProductsTrClass").length;           
         }
-        if (bundels==0) {
+        else {
+            alert("Bir Baglamada 5 sifaris ola biler");
+            $(".ChangeBundelStatuseModalTableRemoveTd").css("display", "block")
+        }
+        
+    });
+    //when clicked the remove button in the Index Bundel Pages Change Modal 
+    $(".BundelIndexDeclerationInfoModalContenDiv").on("click", "#ChangeBundelStatuseModalTableRemoveBtn", function () {
+       
+        console.log(bundels);
+        if (bundels > 1) {
+            $(this).parent().parent().remove();
+            bundels = document.querySelectorAll(".BundelProductsTrClass").length;
+        }
+        if (bundels == 1) {
             $(".ChangeBundelStatuseModalTableRemoveTd").css("display", "none")
         }
-    }); 
-//----------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------------------
+    });
+
+    //delete btn in the edit bundel
+    $(".BundelIndexDeclerationInfoModalContenDiv").on("click", "#ChangeBundelStatuseModalTableDeleteBtn", function () {
+        bundels = document.querySelectorAll(".BundelProductsTrClass").length;        
+        if (bundels > 1) {
+            var deleteBtn = $(this);
+            var id = $(this).parent().parent().children()[0].firstChild.value;
+            if (id==null || id=="") {
+                $(this).parent().parent().remove();
+                bundels = document.querySelectorAll(".BundelProductsTrClass").length;
+                console.log(id);
+            }
+            else {
+                console.log(id + " aj")
+            $.ajax({
+                url: "/Bundel/DeleteProduct",
+                type: "GET",
+                data: { id: id },
+                success: function (res) {
+                    if (res.success == "true") {
+                        deleteBtn.parent().parent().remove();
+                        bundels = document.querySelectorAll(".BundelProductsTrClass").length;
+                    }
+                    else {
+                        bundels = document.querySelectorAll(".BundelProductsTrClass").length;
+                    }
+                },
+                error: function () {
+                    bundels = document.querySelectorAll(".BundelProductsTrClass").length;
+                }
+                })
+            }
+        }
+        else {
+            alert("Butun mehsullar Siline bilmez");
+        }
+    });
+    //change order statuse  in change status bundel modal
+
+    $(".BundelIndexDeclerationInfoModalContenDiv").on("change", "#BundelIndexStatusSelect", function () {
+        var val = $(this).val();
+        var id = $("#changeStatusModalBundelId").val();
+        if (val == 9) {
+            AjaxReturnPartialView("GET", "/Bundel/ForeignWarehouse", id, ".ForeignWarehouseModalHiddenDiv");
+
+            $("#IndexBundelStatusForm").attr("action", "/Bundel/ForeignWarehouse");
+
+        }
+        else {
+            $("#IndexBundelStatusForm").attr("action", "/Bundel/ChangeStatus");
+            $(".ForeignWarehouseModalHiddenDiv").html("");
+        }
+    })
+    //when chenged bundel wheight
+    
+    $(".BundelIndexDeclerationInfoModalContenDiv").on("keyup", "#ChangeBundelStatusModalWeightInputId", function () {
+        $("#ChangeBundelStatusModalPriceSpanId").text("");
+        $("#ChangeBundelStatusModalPriceInputId").val("");
+    })
+    //Calculate bundel delivery price
+
+    $(".BundelIndexDeclerationInfoModalContenDiv").on("click", "#ChangeBundelStatusModalPriceButtonId", function () {
+
+        $("input[type=number].ChangeBundelStatusModalBundelSize").each(function (i) {
+            var value = $(this).val();
+
+            if (value != 0) {
+                $(this).css("background-color", "white");
+                var model = {
+                    BundleWeight: $("#ChangeBundelStatusModalWeightInputId").val(),
+                    CountryId: $("#changeStatusModalBundelCountryId").val(),
+                    BundelCount: 1,
+                    BundleWidth: $("#ChangeBundelStatusModalWidthInputId").val(),
+                    BundleLenght: $("#ChangeBundelStatusModalLengthInputId").val(),
+                    BundleHeight: $("#ChangeBundelStatusModalHeightInputId").val()
+                }
+                $.ajax({
+                    url: "/Bundel/CalculatePrice",
+                    data: { model: model },
+                    type: "POST",
+                    success: function (res) {
+                        if (res.success == "true") {
+                            var text = res.responseUSD + " USD | " + res.responseAZN + " AZN";
+                            $("#ChangeBundelStatusModalPriceSpanId").text(text);
+                            $("#ChangeBundelStatusModalPriceInputId").val(res.responseUSD);
+                        }
+                        else {
+                            text = 0
+                            $("#ChangeBundelStatusModalPriceSpanId").text(text);
+                            $("#ChangeBundelStatusModalPriceInputId").val(text);
+                            alert("Qiymet Hesablana bilmedi baglama parametrlerine(ceki/en/uzunluq/hundurluk)birde baxin");
+                        }
+                    },
+                    error: function () {
+                        alert("Qiymet Hesablana bilmedi baglama parametrlerine(ceki/en/uzunluq/hundurluk)birde baxin");
+                    }
+                })
+            }
+            else {
+                $(this).css("background-color", "#e6161654");
+            }
+        });
+    });
+
+    //save bundel staus 
+    $("#bundelIndexChangeStatusModalSaveBtn").click(function () {
+        $(".changeStatusSubmitButton").click();
+        console.log("submit")
+        
+    });
+
+    //Change the status of the bundle on the external storage
+    $("#BundelIndexActinDropdownMainDinDivId .ActionChangeStatus").click(function () {
+        var id = $(this).parent().children(".ActionBundelId").val();
+
+        AjaxReturnPartialView("GET", "/Bundel/EditForeignWarehouseBundelStatuse", id, ".BundelIndexDeclerationInfoModalContenDiv");
+        $("#BundelIndexPrintBtn").css("display", "none");
+        $("#bundelIndexChangeStatusModalSaveBtn").css("display", "block");
+        $("#indexBundelDecIfoModalShowBtn").click();
+    })
+
+
+    // bill btn click info bundel
+    $("#BundelIndexActinDropdownMainDinDivId .BundelIndexActivBill").click(function () {
+        var id = $(this).parent().children(".ActionBundelId").val();
+        AjaxReturnPartialView("GET", "/Bundel/BundelBill", id, ".BundelIndexDeclerationInfoModalContenDiv");
+        $("#bundelIndexChangeStatusModalSaveBtn").css("display", "none");
+        $("#BundelIndexPrintBtn").css("display", "block");
+        $("#BundelIndexModalDialog").css("max-width", "900px");
+        $("#indexBundelDecIfoModalShowBtn").click();
+    });
+
+    //click print btn
+    $("#BundelIndexModalFooter").on("click", "#BundelIndexPrintBtn", function () {
+        PrintScreen(document.getElementById("BundelIndezChangeStatusModalMainDiv1"));
+    })
+    //Edit bundel Action btn
+    $("#BundelIndexActinDropdownMainDinDivId .BundelIndexEditBundelBtn").click(function () {
+        var id = $(this).parent().children(".ActionBundelId").val();
+        AjaxReturnPartialView("GET", "/Bundel/BundelEdit", id, ".BundelIndexDeclerationInfoModalContenDiv");
+
+        $("#BundelIndexPrintBtn").css("display", "none");
+        $("#bundelIndexChangeStatusModalSaveBtn").css("display", "block");
+        $("#indexBundelDecIfoModalShowBtn").click();
+    })
+
+    //bundel label
+    $("#BundelLabelPages").on("click", "#BundelLabelPrint", function () {
+        PrintScreen(document.getElementById("BundelLabelPages"));
+    })
+    //----------------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------------
     ///Creaate Bundel Page js
     $("#ShowOrdersTableBtnId").on("click", function () {
         $("#CreateBundelDeclerationTableParentDivId").css("display", "none");
@@ -147,7 +300,7 @@ $(document).ready(function () {
             alert("Bir Baglamada Yalniz Eyni Olkeden Sifarisler Ola Biler")
         }
         else {
-           
+
             var CountryId = $(this).val();
             var userId = $("#BundelUserId").val();
             $("#CreateBundelFormContryId").val(CountryId);
@@ -207,7 +360,7 @@ $(document).ready(function () {
         var ShopInput = $(this);
         $.ajax({
             url: "/Bundel/ShowShop",
-            data: { ShopName: name},
+            data: { ShopName: name },
             type: 'GET',
             success: function (data) {
                 if (data.success == "true") {
@@ -231,8 +384,7 @@ $(document).ready(function () {
             data: { id: id },
             type: "GET",
             success: function (data) {
-                if (data.Success == true)
-                {
+                if (data.Success == true) {
                     $("#CreateBundelModalCompanyName").val(data.CompanyName);
                     $("#CreateBundelModalAdress").val(data.Adress);
                     $("#CreateBundelModalAccountNumber").val(data.AccountNumber);
@@ -242,8 +394,7 @@ $(document).ready(function () {
                     $("#CreateBundelModalPostCode").val(data.PostCode);
                     $("#CreateBundelModalShopNameInputDiv").html("");
                 }
-                else
-                {
+                else {
                     alert("Magaza Melumatlarina Yeniden Baxin");
                 }
             },

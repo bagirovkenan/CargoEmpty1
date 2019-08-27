@@ -7,11 +7,7 @@ function calculatePrice()
         var a = $(this).val()
         if (a != 0)
         {
-
             $(this).css("background-color", "white");
-           
-        
-
             var jsonObject =
             {
                 CountryId: $("#CountryId").val(),
@@ -22,8 +18,6 @@ function calculatePrice()
                 BundleWeight: $("#BundleWeight").val(),
 
             }
-
-
             $.ajax({
                 type: "POST",
                 url: "/Home/Calculate",
@@ -40,8 +34,7 @@ function calculatePrice()
                 }
 
             })
-        }
-       
+        }      
         else
         {
             $(this).css("background-color", "rgba(255, 255, 255, 0.22)");

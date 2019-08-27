@@ -1,0 +1,71 @@
+﻿@model CargoEmpty.Models.General.Decleration.DeclerationDb
+
+<div class="col-lg-12 col-12 DeclerationInfoModalMainDiv">
+    <input class="form-control" type="hidden" name="Id" value="@Model.Id" />
+    <div class="row">
+        <div class="col-12 col-lg-2">
+            <span>Id</span>
+            <span class="form-control">@Model.Id</span>
+        </div>
+        <div class="col-12 col-lg-5">
+            <span>Magaza Adi</span>
+            <span class="form-control">@Model.ShopName</span>
+        </div>
+        <div class="col-12 col-lg-5">
+            <span>Olke</span>
+            <span class="form-control">@Model.Country.CauntryName</span>
+        </div>
+        <div class="col-12 col-lg-6">
+            <span>Qiymet</span>
+            <span class="form-control">@Model.OrderPrice @Model.Country.CountryCurrency.CurrencyName</span>
+        </div>
+        <div class="col-12 col-lg-6">
+            <span>Izleme Nomresi</span>
+            <span class="form-control">@Model.TrackingCode</span>
+        </div>
+        <div class="col-12 col-lg-12">
+            <span>Qeyd</span>
+            <span class="form-control">@Model.Comment</span>
+        </div>
+        <div class="col-12 col-lg-6">
+            <span>Ceki(kq)</span><span style="color:red">*</span>
+            <input class="form-control" type="number" step="0.01" name="Weight" value="@Model.Weight" required />
+        </div>
+        <div class="col-12 col-lg-6">
+            <span>Uzunluq(sm)</span><span style="color:red">*</span>
+            <input class="form-control" type="number" step="0.01" name="Length" value="@Model.Length" required />
+        </div>
+        <div class="col-12 col-lg-6">
+            <span>En(sm)</span><span style="color:red">*</span>
+            <input class="form-control" type="number" step="0.01" name="Width" value="@Model.Width" required />
+        </div>
+        <div class="col-12 col-lg-6">
+            <span>Hundurluk(sm)</span><span style="color:red">*</span>
+            <input class="form-control" type="number" step="0.01" name="Height" value="@Model.Height" required />
+        </div>
+        <div class="col-12 col-lg-12">
+            <span>Statuse Deyis</span><span style="color:red">*</span>
+            <div>
+                <select name="OrderStatusId" class="form-control">
+                    @foreach (var k in ViewBag.Statuse)
+                    {
+                        if (k.Id == Model.OrderStatusId)
+                        {
+                            <option value="@k.Id" selected>@k.StatusName</option>
+                        }
+                        else
+                        {
+                            <option value="@k.Id">@k.StatusName</option>
+                        }
+
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-12">
+            <span style="display:block;">Invoce</span>
+            <a href="@Model.InvoicePath">Invoice</a>
+        </div>
+    </div>
+</div>

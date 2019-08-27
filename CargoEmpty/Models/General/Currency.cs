@@ -18,7 +18,7 @@ namespace CargoEmpty.Models.General
         [NotMapped]
         public string Activ { get; set; }
 
-        public virtual IEnumerable<Country> Countries { get; set; }
+        public virtual ICollection<Country> Countries { get; set; }
 
         //public virtual IEnumerable<OrderDb> OrderDbs { get; set; }
     }

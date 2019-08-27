@@ -11,4 +11,11 @@ namespace CargoEmpty.Controllers.General
         public int? CountryId { get; set; }
         public int? StatusId { get; set; }
     }
+
+    public class UserBundelStatusAndCountry
+    {
+        public int UserId { get; set; }
+        public int? CountryId { get; set; }
+        public int? StatusId { get; set; }
+    }
 }

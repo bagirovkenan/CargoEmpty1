@@ -8,7 +8,7 @@ namespace CargoEmpty.Models.General.Bundel
     public class PostCreateBundel
     {
         public int UserDbId { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public string[] orderId { get; set; }
         public string Note { get; set; }
         public DateTime CreateDate { get; set; }
