@@ -1,0 +1,41 @@
+﻿
+<form action="/Message/Create" method="post">
+    <input type="hidden" name="UserDbId" value="" />
+    <div class="row">
+        <div class="col-lg-12 col-12">
+            <div class="row">
+                <div class="col-12 col-lg-12">
+                    <label>To</label>
+                    <div  class="CreateMessageToDivClass">
+                        <input id="AdminCreateMessageToInputId" class="form-control" type="text" />
+                    </div>
+                    <div class="MessgeToDinamikChengeUser">
+
+                    </div>
+                </div>
+                <div class="col-12 col-lg-12">
+                    <label>Subject</label>
+                    <div>
+                        <input class="form-control" type="text" name="Subject" />
+                    </div>
+                </div>
+                @*<div class="col-12 col-lg-12">
+                    <label>Company</label>
+                    <div>
+                        <input class="form-control" type="text" name="Company" />
+                    </div>
+                </div>*@
+                <div class="col-12 col-lg-12">
+                    <label>Mesag</label>
+                    <div>
+                        <textarea class="form-control" name="Message" style="min-height:150px"></textarea>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-12" style="padding:14px;">
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

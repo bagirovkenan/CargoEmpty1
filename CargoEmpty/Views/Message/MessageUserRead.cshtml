@@ -1,0 +1,25 @@
+﻿@model CargoEmpty.Models.Message.MessageDb
+
+    <div class="row">
+        <div class="col-lg-12 col-12">
+            <div class="row">
+                <div class="col-12 col-lg-12">
+                    <p>From : @Model.FromMail</p>
+                    <p>To : @Model.ToMail</p>
+                    <p>Tarix : @Model.CreateDate</p>
+                </div>
+                <div class="col-12 col-lg-12">
+                    <label>Subject</label>
+                    <div>
+                        <span class="form-control">@Model.Subject</span>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-12">
+                    <label>Mesaj</label>
+                    <div>
+                        <span class="form-control" style="min-height:150px">@Model.Message</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

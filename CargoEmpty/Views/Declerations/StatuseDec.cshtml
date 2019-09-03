@@ -26,9 +26,7 @@
             icra = "Icra Edilmeyib";
         }
         <tr>
-            <td>
-                <input type="checkbox" name="name" class="CheckedOrder" id="@i.Id" />
-            </td>
+            
             <td>
                 @i.Country.CauntryName
             </td>
@@ -65,7 +63,7 @@
             </td>
             <td>
                 <button type="button" data-id="@i.Id" class="btn btn-primary DecEditBtn" style="font-size:12px;"><i class="far fa-edit"></i></button>
-                <button type="button" data-id="@i.Id" class="btn btn-danger DecEditBtn" style="font-size:12px;"><i class="far fa-trash-alt"></i></button>
+                <button type="button" data-id="@i.Id" class="btn btn-danger DecDeleteBtn" style="font-size:12px;"><i class="far fa-trash-alt"></i></button>
             </td>
 
         </tr>

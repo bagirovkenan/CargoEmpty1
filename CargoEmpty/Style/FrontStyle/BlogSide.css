@@ -1,4 +1,4 @@
-.FaqTopImgMainDiv{
+.FaqTopImgMainDiv {
     background-position: center;
     background-size: cover;
     color: #a3a3a3;
@@ -8,44 +8,45 @@
     background-repeat: no-repeat;
     background-size: 100%;
     background-attachment: fixed;
-    background-position: center; 
+    background-position: center;
 }
 
-.FaqTopImgMainDiv::before{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(22,0,1,0.8);
-    display: block;
-    content: "";
-    left: 0px;
-    top: 0px;
-}
-.faqTitleColDiv h1{
+    .FaqTopImgMainDiv::before {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(22,0,1,0.8);
+        display: block;
+        content: "";
+        left: 0px;
+        top: 0px;
+    }
+
+.faqTitleColDiv h1 {
     margin: 0px;
     padding: 0px;
     text-transform: uppercase;
     color: #fff;
     font-size: 32px;
 }
-.RightText h4{
 
-    margin: 0px ;
+.RightText h4 {
+    margin: 0px;
     color: #fff;
     line-height: 26px;
     font-size: 18px;
 }
 
-.RightText h4 span{
-    color: #eb0028;
-}
+    .RightText h4 span {
+        color: #eb0028;
+    }
 
 /* numune topimg end */
 
 /* Category left blog start */
-.CategoryTitelColDiv{
+.CategoryTitelColDiv {
     background-color: #eb0028;
-    border-radius: 3px ;
+    border-radius: 3px;
     padding: 14px 20px;
     margin: 0px;
     margin-bottom: 2px;
@@ -53,13 +54,12 @@
     color: #fff;
     font-size: 18px;
     transition: 0.5s;
-
 }
 
-.CategoryMenyuButtonColDiv{
+.CategoryMenyuButtonColDiv {
     background-color: #eb0028;
     border-radius: 3px;
-    padding-left:0px;
+    padding-left: 0px;
     margin: 0px;
     margin-bottom: 2px;
     text-transform: uppercase;
@@ -68,13 +68,13 @@
     display: none;
     transition: 0.5s;
 }
-.CategoryMenyuButtonColDiv button{
-    background-color: #eb0028 !important; 
-}
+
+    .CategoryMenyuButtonColDiv button {
+        background-color: #eb0028 !important;
+    }
 
 
-.categoryTitetelColDiv{
-
+.categoryTitetelColDiv {
     border-radius: 3px;
     transition: 1s;
     padding: 14px 20px;
@@ -83,63 +83,84 @@
     box-shadow: 0px 3px 3px 0px rgba(153,153,153,0.5);
 }
 
-.categoryTitetelColDiv h3{
- 
-    margin: 0px;
-    margin-bottom: 2px;
-    text-transform: uppercase;
-    color: #333;
-    font-size: 14px;
-    transition: 1s;
-}
+    .categoryTitetelColDiv h3 {
+        margin: 0px;
+        margin-bottom: 2px;
+        text-transform: uppercase;
+        color: #333;
+        font-size: 14px;
+        transition: 1s;
+    }
 
 
-.categoryTitetelColDiv:hover {
-  background-color: #eb0028;
-  cursor: pointer;
-}
-.categoryTitetelColDiv:hover h3{
-    font-size: 18px;
-    color: #fff;
-  }
+    .categoryTitetelColDiv:hover {
+        background-color: #eb0028;
+        cursor: pointer;
+    }
+
+        .categoryTitetelColDiv:hover h3 {
+            font-size: 18px;
+            color: #fff;
+        }
 /* Category left blog end */
 
 /* side left blog start */
-.shopName{
+.shopName {
     box-sizing: border-box;
     text-align: center;
-    
-
 }
 
 
-.logoDiv{
+.logoDiv {
     box-sizing: border-box;
     text-align: center;
     box-shadow: 0px 3px 3px 0px rgba(153,153,153,0.5);
     margin: 2%;
-    
-    
 }
+
     .logoDiv img {
         width: 100%;
         height: 175px;
     }
+
+/* user index message  */
+.UserIndexMessageMenuUlClass {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+
+
+    .UserIndexMessageMenuUlClass .UserIndexMessageMenuLiClass {
+        display: block;
+        padding: 12px 0px 12px 20px;
+        background-color: #f6f6f6;
+        color: #808080;
+        text-transform: uppercase;
+        position: relative;
+        transition: 0.5s;
+        cursor: pointer;
+    }
+.UserMessageContentMainDiv {
+    border: solid 1px #a3a3a3;
+    margin-top: 5px;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px 0px rgba(153,153,153,0.5);
+}
+/*///////////////////////////////////////*/
 /* side left blog end */
 /* Medias scren 600px///////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 @media screen and (max-width: 600px) {
-
-    .CategoryTitelColDiv{
+    .CategoryTitelColDiv {
         display: none;
     }
 
-    .CategoryMenyuButtonColDiv{
+    .CategoryMenyuButtonColDiv {
         display: inline-block;
         padding-left: 0px;
     }
 
-    .categoryTitetelColDiv{
+    .categoryTitetelColDiv {
         display: none;
     }
-   
 }

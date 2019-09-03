@@ -105,6 +105,7 @@ button {
   
 }
 #divMenu {
+    height:0px;
     position: absolute;
     z-index: 99;   
     overflow: hidden;

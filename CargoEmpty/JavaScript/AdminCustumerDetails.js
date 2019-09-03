@@ -5,7 +5,7 @@ $(document).ready(function () {
     $(".CustumersDetailsMenyMainDiv #accauntsettingUl .CustumerInfoActions").on("click", function () {
         var Link = $(this).attr("data-action");
         var id = $(this).attr("data-id");
-        AjaxReturnPartialView("POST", Link, id, "#CustumersDinamikChangeInfo")
+        AjaxReturnPartialView("POST", Link, id, "#CustumersDinamikChangeInfo");
         console.log(id)
 
         $(".activeAccountLink").removeClass("activeAccountLink");

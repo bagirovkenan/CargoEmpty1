@@ -69,10 +69,14 @@ function AjaxReturnPartialView(MetodType, ActionUrl, Data, AddpartalView) {
         type: MetodType,
         url: ActionUrl,
         data: { id: Data },
+        error: function () {
+            alert("Xeta Basverdi")
+        }
     }).done(function (res) {
 
         $(AddpartalView).html(res);
-    })
+        })
+       
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function ChangActivStatusFromCreateEdit(element, element2) {

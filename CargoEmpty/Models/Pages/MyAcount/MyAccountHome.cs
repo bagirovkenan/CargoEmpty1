@@ -11,7 +11,7 @@ namespace CargoEmpty.Models.Pages.MyAcount
     public  class  MyAccountHome
     {
         public  UserDb User { get; set; } = new UserDb();
-        public List<OrderDb> OrderDbs { get; set; } = new List<OrderDb>();
+        public  List<OrderDb> OrderDbs { get; set; } = new List<OrderDb>();
         public  List<MyAddress> MyAdress { get; set; } = new List<MyAddress>();
     }
 }

@@ -5,6 +5,7 @@ using CargoEmpty.Models.General.Bundel;
 using CargoEmpty.Models.General.Decleration;
 using CargoEmpty.Models.General.Order;
 using CargoEmpty.Models.General.User;
+using CargoEmpty.Models.Message;
 using CargoEmpty.Models.Pages;
 using CargoEmpty.Models.Pages.About;
 using CargoEmpty.Models.Pages.Carusel;
@@ -50,6 +51,8 @@ namespace CargoEmpty.Context
         public DbSet<OrderStatus> OrderStatuses { get; set; }
         public DbSet<MyAddress> MyAddresses { get; set; }
         public DbSet<BalanceOperator> BalanceOperators { get; set; }
+        public DbSet<MessageDb> Messages { get; set; }
+        
 
     }
     

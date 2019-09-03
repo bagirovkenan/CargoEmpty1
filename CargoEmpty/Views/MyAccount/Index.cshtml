@@ -233,7 +233,7 @@
                     <div class="row">
                         <div class="latest-news-section" style="margin-top:0;">
                             <a href="#" title="">
-                                <div class="news-date"> 0 <span>azn</span></div>
+                                <div class="news-date"> @Model.User.Balance<span>AZN</span></div>
                                 <h5>Balans</h5>
                                 @*<div class="news-post-by">Son əməliyyat <span></span></div>*@
                                 <p>
@@ -248,7 +248,7 @@
                     <div class="row">
                         <div class="latest-news-section" style="margin-bottom:15px;">
                             <a href="#" title="">
-                                <div class="news-date"> 0 <span>azn</span></div>
+                                <div class="news-date" > @Model.User.BonusBalance <span>Bonus</span></div>
                                 <h5> Bonus Balans</h5>
                                 @*<div class="news-post-by">Son əməliyyat <span></span></div>*@
                                 <p>
@@ -262,11 +262,9 @@
                     <li class=activeAccountLink><a href="/MyAccount/Index" title="" id="salam">Ünvanlarım</a></li>
                     <li><a href="/Orders/IndexUser" title="">SİFARİŞLƏRİM</a></li>
                     <li class="PassivAccountLink"><a href="/SignUp/Edit/@Model.User.Id" title="">TƏNZİMLƏMƏLƏR</a></li>
-                    <li class="PassivAccountLink"><a href="#" title="">Balans (SİFARİŞLƏR)</a></li>
-                    <li class="PassivAccountLink"><a href="#" title="">Balans (XİDMƏTLƏR)</a></li>
-                    <li class="PassivAccountLink"><a href="#" title="">Sorğular</a></li>
-                    <li class="PassivAccountLink"><a href="#" title="">Mesajlar </a></li>
-                    <li class="PassivAccountLink"><a href="" title="">Çıxış</a></li>
+                    <li class="PassivAccountLink"><a href="#" title="">Balans</a></li>                  
+                    <li class="PassivAccountLink"><a href="/Message/UserIndexMsg/@Model.User.Id" title="">Mesajlar</a></li>
+                    <li class="PassivAccountLink"><a href="/UserLogin/ExitAccount" title="">Çıxış</a></li>
                 </ul>
             </div>
 

@@ -2,6 +2,7 @@
 using CargoEmpty.Models.General.Bundel;
 using CargoEmpty.Models.General.Decleration;
 using CargoEmpty.Models.General.Order;
+using CargoEmpty.Models.Message;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -65,6 +66,9 @@ namespace CargoEmpty.Models.General.User
 
         public virtual ICollection<BalanceOperator> BalanceOperators { get; set; }
 
+        public virtual ICollection<MessageDb> Messages { get; set; }
+
+        
         public UserDb()
         {
             BlakcList = false;

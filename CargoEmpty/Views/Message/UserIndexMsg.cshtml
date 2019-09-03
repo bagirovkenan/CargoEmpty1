@@ -1,0 +1,34 @@
+﻿@model IEnumerable<CargoEmpty.Models.Message.MessageDb>
+@{
+    ViewBag.Title = "UserIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="col-12 cl-lg-12 UserMsgMainDiv">
+    <div class="row">
+        <div class="col-12 col-lg-3 UserMessageRightDiv">
+            <ul class="UserIndexMessageMenuUlClass">
+                <li style="padding: 12px 0px 12px 20px; background-color: #f6f6f6;">
+                    <button data-id=" @ViewData["Id"]" class="btn btn-danger AddMessagebtn" data-link="/Message/UserCreate">Yeni Messaj <i class="fas fa-plus" style="color:white;"></i></button>
+                </li>
+                <li data-id="@ViewData["Id"]" class="UserIndexMessageMenuLiClass" data-link="/Message/UserAllmsg" style="background-color:#eb0028;color:#f6f6f6;">Butun Mesajlar</li>
+                <li data-id="@ViewData["Id"]" class="UserIndexMessageMenuLiClass" data-link="/Message/UserUnRead">Oxunmamis  <span class="UnreadMEssageCount" style="text-align:right;">(@ViewData["inbox"])</span></li>
+                <li data-id="@ViewData["Id"]" class="UserIndexMessageMenuLiClass" data-link="/Message/UserInbox">Gelen</li>
+                <li data-id="@ViewData["Id"]" class="UserIndexMessageMenuLiClass" data-link="/Message/UserSend">Gonderilen</li>
+            </ul>
+        </div>
+        <div class="col-lg-8 col-12 UserMessagLeftDiv">
+            @Html.Partial("MessageIndex", Model as IEnumerable<CargoEmpty.Models.Message.MessageDb>)
+        </div>
+    </div>
+</div>
+
+
+<div style="margin-top:20px"></div>
+
+@section FrontShopScript
+{
+    <script type="text/javascript" src="~/JavaScript/Front/BlogSide.js"></script>
+
+}

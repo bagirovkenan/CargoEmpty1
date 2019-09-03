@@ -3,7 +3,7 @@ $(document).ready(function () {
     $("#MyOrdersBtn").click(function () {
 
         $(this).css("background-color", "#dc3545");
-        $("#MyDecsBtn").css("background-color", "#007bff");
+        $("#MyDecsBtn").css("background-color", "#8a7979");
 
         $("#MyOrdersIndexTabelDiv").css("display", "block");
         $("#MyDecTabelMainDiv").css("display", "none");
@@ -12,7 +12,7 @@ $(document).ready(function () {
     $("#MyDecsBtn").click(function () {
 
         $(this).css("background-color", "#dc3545");
-        $("#MyOrdersBtn").css("background-color", "#007bff");
+        $("#MyOrdersBtn").css("background-color", "#8a7979");
 
         $("#MyOrdersIndexTabelDiv").css("display", "none");
         $("#MyDecTabelMainDiv").css("display", "block");
@@ -79,8 +79,6 @@ $(document).ready(function () {
             $(".LinkInputDiv .price").val("");
             $(".LinkInputDiv #producCount").val("1");
 
-            
-            console.log(CurrencyId);
         }
     })
 
@@ -138,11 +136,10 @@ $(document).ready(function () {
     $(".orderFormInputMainDiv").on("keyup", "#producCount", function () {
         var keyupElementCount = $(this);
         var countProduct = $(this).val();
-        var CurrencyId = $(this).parent().parent().parent().children()[1].lastElementChild.lastElementChild.value;;           
+        var CurrencyId = $(this).parent().parent().parent().children()[1].lastElementChild.lastElementChild.value;;
         var productprice = $(this).parent().parent().parent().children()[1].lastElementChild.firstElementChild.value;
 
-        if (productprice != "")
-        {
+        if (productprice != "") {
             $.ajax({
                 type: "POST",
                 url: "/Orders/CalculateOrderPrice",
@@ -166,25 +163,24 @@ $(document).ready(function () {
                 }
 
             })
-           
+
         }
         else {
-          
-        }
-        
-    })
-    
-    /////////////////menyu dropdown in myorders ////////////////////////////////////////////////////////////////
 
-    var width = $("#divMenu").css("height");
-    $("#divMenu").css("height", "0px");
+        }
+
+    })
+
+    /////////////////menyu dropdown in myorders ////////////////////////////////////////////////////////////////
     $("#menyuOrdersLink").on("click", function () {
         if ($("#divMenu").css("height") == "0px") {
-            $("#divMenu").animate({ height: width });
 
+            $("#divMenu").css("overflow", "auto");
+            $("#divMenu").animate({ height:"280px" });                        
         }
         else {
             $("#divMenu").animate({ height: '0px' });
+            $("#divMenu").css("overflow", "hidden");
         }
     });
 
@@ -209,7 +205,7 @@ $(document).ready(function () {
     });
 
     /////////////////edit delete orders in my orders////////////////////////////////////////////////////////////////
-    $("#MyOrdersIndexTabelDiv").on("click", ".OrderEditBtn", function () {
+    $("#MyOrdersDecTableMainDiv").on("click", ".OrderEditBtn", function () {
 
         var StatusId = $(this).attr("data-id");
 
@@ -225,31 +221,51 @@ $(document).ready(function () {
         $("#editModalShowBtn").click();
     });
 
+    //user index dec info
+    $("#MyOrdersDecTableMainDiv").on("click", ".DecEditBtn", function () {
+        var id = $(this).attr("data-id");
+        AjaxReturnPartialView("GET", "/Declerations/UserEdite", id, "#DecInfoUserIndexOrderModaBody");
+        $("#DecInfoUserIndexOrderModalBtn").click();
+    });
 
+    //user index dec info
+    $("#MyOrdersDecTableMainDiv").on("click", ".DecDeleteBtn", function () {
+        var id = $(this).attr("data-id");
+        $.ajax({
+            type: "POST",
+            url: "/Declerations/UserDelete",
+            dataType: "json",
+            data: { id: id },
+            success: function (data) {
+                if (data.success == true) { // if true (1)
+                    setTimeout(function () {// wait for 5 secs(2)
+                        location.reload(); // then reload the page.(3)
+                    }, 500);
+                }
+            }
 
-    $("#MyOrdersIndexTabelDiv").on("click", ".OrderDelete", function () {
+        })
+    })
 
+    $("#MyOrdersDecTableMainDiv").on("click", ".OrderDelete", function () {
         var StatusId = $(this).attr("data-id");
-
         $.ajax({
             type: "GET",
             url: "/Orders/Delete",
             data: { id: StatusId },
         }).done(function (res) {
-
             $("#CountrydeletePartialModal").html(res);
-
         });
         $("#OrderDeleteButton").click();
         console.log(StatusId)
     });
+
     /////////////////////selected checkbox with delete and paid///////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////checbox when clicked add input///////////////////////////////////////////////////////////////////////////////////////////////////////
-    $("#MyOrdersIndexTabelDiv").on("click", ".CheckedOrder", function () {
+
+    $("#MyOrdersDecTableMainDiv").on("click", ".CheckedOrder", function () {
         var DataId = $(this).attr("id");
         if ($(this).prop('checked')) {
-
-
             var input = '<input class="SelectedOrder" id="SelectedOrder-' + DataId + '" name = "id" type ="hidden" value = "' + DataId + '" /> '
             $(".OrderHyiddenDiv").append(input);
         }
@@ -259,51 +275,49 @@ $(document).ready(function () {
         }
     })
     ///////////////////All selected/////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    $("#MyOrdersIndexTabelDiv").on("click", "#OrderAllSelect", function (i) {
+
+    $("#MyOrdersDecTableMainDiv").on("click", "#OrderAllSelect", function (i) {
 
         var r = document.querySelectorAll(".CheckedOrder");//////////////////////////////////////////////////////////burani mellimnen sorus
-        var  v = r.length;
+        var v = r.length;
         var c = 0
 
-        $("#MyOrdersIndexTabelDiv input[type = 'checkbox']:checked").each(function () {
+        $("#MyOrdersDecTableMainDiv input[type = 'checkbox']:checked").each(function () {
             c++
         })
 
         if (c == v) {
-            $("#MyOrdersIndexTabelDiv input[type = 'checkbox']:checked").each(function () {
+            $("#MyOrdersDecTableMainDiv input[type = 'checkbox']:checked").each(function () {
                 $(this).click();
                 c = 0;
             })
         }
         else {
-            $("#MyOrdersIndexTabelDiv input:checkbox:not(:checked)").each(function () {
+            $("#MyOrdersDecTableMainDiv input:checkbox:not(:checked)").each(function () {
                 $(this).click();
                 c = 0;
 
             })
         }
-       
+
     });
 
-    $("#MyOrdersIndexTabelDiv").on("click", "#OrderAllDelete", function () {
+    $("#MyOrdersDecTableMainDiv").on("click", "#OrderAllDelete", function () {
         var slectedLenght = document.querySelectorAll(".SelectedOrder");
         $("#AllDeleteModalBtn").click();
         var SpanText;
-        if (slectedLenght.length==0)
-        {
+        if (slectedLenght.length == 0) {
             SpanText = 'Secilmis element Yoxdur'
             $("#AllDeleteText").text(SpanText);
             $("#AllDeleteModalSubmitBtn").css("display", "none");
         }
-        else
-        {
+        else {
             SpanText = "Diqqet Secdiyiniz Elementler Silinecek Geri Qaytarmaq Mumkun Deyil";
             $("#AllDeleteText").text(SpanText);
             $("#AllDeleteModalSubmitBtn").css("display", "block");
 
         }
-        
+
 
     })
 

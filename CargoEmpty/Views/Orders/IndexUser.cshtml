@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-12 col-lg-8">
             <button class="btn" id="MyOrdersBtn" style="font-size:12px;background-color:#dc3545;color:white;">Sifarisler</button>
-            <button class="btn" id="MyDecsBtn" style="font-size:12px;background-color:#007bff;color:white;">Beyannameler</button>
+            <button class="btn" id="MyDecsBtn" style="font-size:12px;background-color:#8a7979;color:white;">Beyannameler</button>
             <select class="btn btn-warning float-right" id="MyOrdersStatuse" style="font-size:12px;box-shadow:unset;">
                 <option value="">Sifaris Statuslari</option>
                 @{
@@ -60,7 +60,7 @@
                         <tbody class="MyOrdersOrderTableBody">
                             @{
 
-                            
+
                                 string IsPaid = "Ode";
                                 string IsUrgent = "Normal";
                                 string IsPaidLink = "/IsPaid/Paid";
@@ -98,51 +98,51 @@
                                     {
                                         IsUrgent = "Normal";
                                     }
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="name" class="CheckedOrder" id="@i.Id" />
-                                </td>
-                                <td>
-                                    @i.OrderName
-                                </td>
-                                <td>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="name" class="CheckedOrder" id="@i.Id" />
+                                        </td>
+                                        <td>
+                                            @i.OrderName
+                                        </td>
+                                        <td>
 
-                                    <a href="@i.Link">@i.Link.Substring(8, 17)...</a>
+                                            <a href="@i.Link">@i.Link.Substring(8, 17)...</a>
 
-                                </td>
-                                <td>
-                                    @comment
-                                </td>
-                                <td>
-                                    @i.Price<br /> @i.Country.CountryCurrency.CurrencyName
-                                </td>
-                                <td>
-                                    @i.Country.CauntryName
-                                </td>
-                                <td>
-                                    @if (i.OrderStatusId != null)
-                                    {
-                                        foreach (var l in ViewBag.Statuse)
-                                        {
-                                            if (i.OrderStatusId == l.Id)
+                                        </td>
+                                        <td>
+                                            @comment
+                                        </td>
+                                        <td>
+                                            @i.Price<br /> @i.Country.CountryCurrency.CurrencyName
+                                        </td>
+                                        <td>
+                                            @i.Country.CauntryName
+                                        </td>
+                                        <td>
+                                            @if (i.OrderStatusId != null)
                                             {
-                                                <span>@l.StatusName</span>
+                                                foreach (var l in ViewBag.Statuse)
+                                                {
+                                                    if (i.OrderStatusId == l.Id)
+                                                    {
+                                                        <span>@l.StatusName</span>
+                                                    }
+                                                }
                                             }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        <span>Sifaris Edilmeyib</span>
-                                    }
-                                </td>
-                                <td>
-                                    <a href="@IsPaidLink"><button type="button" class="btn btn-success" style="font-size:13px">@IsPaid</button></a>
-                                </td>
-                                <td>
-                                    <button type="button" data-id="@i.Id" class="btn btn-primary OrderEditBtn" style="font-size:15px;"><i class="far fa-edit"></i></button>
-                                    <button type="button" data-id="@i.Id" class="btn btn-danger OrderDelete" style="font-size:15px"><i class="far fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
+                                            else
+                                            {
+                                                <span>Sifaris Edilmeyib</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a href="@IsPaidLink"><button type="button" class="btn btn-success" style="font-size:13px">@IsPaid</button></a>
+                                        </td>
+                                        <td>
+                                            <button type="button" data-id="@i.Id" class="btn btn-primary OrderEditBtn" style="font-size:15px;"><i class="far fa-edit"></i></button>
+                                            <button type="button" data-id="@i.Id" class="btn btn-danger OrderDelete" style="font-size:15px"><i class="far fa-trash-alt"></i></button>
+                                        </td>
+                                    </tr>
                                 }
                             }
                         </tbody>
@@ -153,9 +153,7 @@
                     <table class="table table-bordered" style="width:100%;">
                         <thead style="background-color:red;color:white;">
                             <tr>
-                                <th style="text-align:center;cursor:pointer;" id="OrderAllSelect" title="Butun Sifarisleri Sec">
-                                    <i class="fas fa-caret-square-down"></i>
-                                </th>
+
                                 <th>
                                     @Html.DisplayName("Country")
                                 </th>
@@ -207,9 +205,7 @@
                                         icra = "Icra Edilmeyib";
                                     }
                                     <tr>
-                                        <td>
-                                            <input type="checkbox" name="name" class="CheckedOrder" id="@i.Id" />
-                                        </td>
+
                                         <td>
                                             @i.Country.CauntryName
                                         </td>
@@ -246,7 +242,7 @@
                                         </td>
                                         <td>
                                             <button type="button" data-id="@i.Id" class="btn btn-primary DecEditBtn" style="font-size:12px;"><i class="far fa-edit"></i></button>
-                                            <button type="button" data-id="@i.Id" class="btn btn-danger DecEditBtn" style="font-size:12px;"><i class="far fa-trash-alt"></i></button>
+                                            <button type="button" data-id="@i.Id" class="btn btn-danger DecDeleteBtn" style="font-size:12px;"><i class="far fa-trash-alt"></i></button>
                                         </td>
 
                                     </tr>
@@ -274,7 +270,7 @@
                             <li><a href="#" title="">Balans (XİDMƏTLƏR)</a></li>
                             <li><a href="#" title="">Sorğular</a></li>
                             <li><a href="#" title="">Mesajlar </a></li>
-                            <li><a href="#" title="">Çıxış</a></li>
+                            <li><a href="/UserLogin/ExitAccount" title="">Çıxış</a></li>
                         </ul>
 
                     </div>
@@ -284,7 +280,6 @@
                 <div class="col-lg-12 col-md-12 col-12">
                     <ul id="orderMyOrdersStatus">
                         <li data-statusId="100" class="MyOrderStatusActiveLi"><span>Sifarislerim</span></li>
-                        <li data-statusId="94"><span>Sifaris Edilib</span><span class="float-right">(@Model.OrderedCount)</span></li>
                         <li data-statusId="95"><span>Sifaris Edilmeyib</span><span class="float-right">(@Model.isNotOrdered)</span></li>
                         <li data-statusId="99">Odenilib<span class="float-right">(@Model.isPaidCount)</span></li>
                         <li data-statusId="98"><span>Odenilmeyib</span><span class="float-right">(@Model.isNotPaidCount)</span></li>
@@ -362,7 +357,34 @@
     </div>
 </div>
 
+@*decs info modal*@
+@*!-- Button trigger modal -->*@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-edmodal-xl" id="DecInfoUserIndexOrderModalBtn" style="display:none;"></button>
+<!-- Modal -->
+<div class="modal fade bd-example-edmodal-xl" id="exampleModalCenterDec" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog  modal-xl" role="document" style="max-width:700px;">
+        <div class="modal-content">
+            <form action="/Declerations/UserEdite" method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="DecInfoUserIndexOrderModaBody">
 
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger" id="AllDeleteModalSubmitBtn">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-body" id="DecInfoUserIndexDeleteDiv">
+
+</div>
 <div style="height:70px;"></div>
 
 

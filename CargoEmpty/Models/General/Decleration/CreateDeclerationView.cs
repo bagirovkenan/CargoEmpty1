@@ -12,7 +12,7 @@ namespace CargoEmpty.Models.General.Decleration
 {
     public class CreateDeclerationView
     {
-
+        public int? Id { get; set; }
         public int BundleCount { get; set; }
         public string DecDate { get; set; }
         public string FromOrder { get; set; }
@@ -25,9 +25,7 @@ namespace CargoEmpty.Models.General.Decleration
 
         public int? OrderDbId { get; set; }
         public int? UserDbId { get; set; }
-
         public int CategoryId { get; set; }
-
         public int CountryId { get; set; }
 
 

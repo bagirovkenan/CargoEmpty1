@@ -55,6 +55,47 @@ namespace CargoEmpty.Controllers.General
 
         }
 
+        //EditeDec dec for user
+        public async Task<ActionResult> UserEdite(int id)
+        {
+            ViewBag.Category = await db.Categories.ToListAsync();
+            var dec = await db.Declerations.FirstOrDefaultAsync(f => f.Id == id && f.CreatAdmin == false);
+            return PartialView(dec);
+        }
+
+        [HttpPost]
+        //EditeDec dec for user
+        public ActionResult UserEdite(CreateDeclerationView dec)
+        {
+            var decDb = db.Declerations.FirstOrDefault(f => f.Id == dec.Id);
+            decDb.OrderPrice = dec.OrderPrice;
+            decDb.BundleCount = dec.BundleCount;
+            decDb.OrderDate = DateTime.Now;
+            decDb.FromOrder = dec.FromOrder;
+            decDb.ShopName = dec.ShopName;
+            decDb.TrackingCode = dec.TrackingCode;
+            decDb.Comment = dec.Comment;
+            decDb.CategoryId = dec.CategoryId;
+            dec.CreatAdmin = false;
+            if (dec.Invoice != null && dec.Invoice.ContentLength > 0)
+            {
+                decDb.InvoicePath = dec.SaveImageFileGeneral(dec.Invoice, "/Image/Decleration");
+            }
+            db.SaveChanges();
+            return RedirectToAction("IndexUser", "Orders");
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> UserDelete(int id)
+        {
+
+            var dec = await db.Declerations.FirstOrDefaultAsync(f => f.Id == id && f.CreatAdmin == false);
+            db.Declerations.Remove(dec);
+            await db.SaveChangesAsync();
+            return Json(new { success = true });
+        }
+
+
         /// <summary>//// /////////////////////////////////////////////////////////////////////////
         // Decleration actions for admin
 

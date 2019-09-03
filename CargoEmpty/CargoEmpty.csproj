@@ -188,6 +188,7 @@
     <Compile Include="Controllers\Front\HomeController.cs" />
     <Compile Include="Controllers\Front\MyAccountController.cs" />
     <Compile Include="Controllers\General\BalanceController.cs" />
+    <Compile Include="Controllers\General\MessageController.cs" />
     <Compile Include="Controllers\General\SearchController.cs" />
     <Compile Include="Models\Balance\AddBalance.cs" />
     <Compile Include="Models\Balance\BalanceOperator.cs" />
@@ -309,8 +310,12 @@
     <Compile Include="Models\Helper\CustomMapper.cs" />
     <Compile Include="Models\Helper\SendEmail.cs" />
     <Compile Include="Models\Helper\SHA.cs" />
+    <Compile Include="Models\Message\CreateView.cs" />
+    <Compile Include="Models\Message\UserMessage.cs" />
     <Compile Include="Models\Helper\ViewModelFromDbModel.cs" />
     <Compile Include="Models\Main\PagesMainModel.cs" />
+    <Compile Include="Models\Message\MessageDb.cs" />
+    <Compile Include="Models\Message\UserViewMessage.cs" />
     <Compile Include="Models\Pages\About\AboutDb.cs" />
     <Compile Include="Models\Pages\Calculate\FrontCalculateBundle.cs" />
     <Compile Include="Models\Pages\Calculate\SelectTarif.cs" />
@@ -471,6 +476,23 @@
     <Content Include="Views\Search\BundelSearch.cshtml" />
     <Content Include="Views\Orders\StatuseOrder.cshtml" />
     <Content Include="Views\Declerations\StatuseDec.cshtml" />
+    <Content Include="Views\Declerations\UserEdite.cshtml" />
+    <Content Include="Views\Message\UserIndexMsg.cshtml" />
+    <Content Include="Views\Message\MessageIndex.cshtml" />
+    <Content Include="Views\Message\UserCreate.cshtml" />
+    <Content Include="Views\Message\UserUnRead.cshtml" />
+    <Content Include="Views\Message\UserInbox.cshtml" />
+    <Content Include="Views\Message\UserSend.cshtml" />
+    <Content Include="Views\Message\UserAllmsg.cshtml" />
+    <Content Include="Views\Message\MessageUserRead.cshtml" />
+    <Content Include="Views\Message\Index.cshtml" />
+    <Content Include="Views\Message\Allmsg.cshtml" />
+    <Content Include="Views\Message\UnRead.cshtml" />
+    <Content Include="Views\Message\Inbox.cshtml" />
+    <Content Include="Views\Message\Send.cshtml" />
+    <Content Include="Views\Message\Create.cshtml" />
+    <Content Include="Views\Message\AdminIndexMessage.cshtml" />
+    <Content Include="Views\Message\MessageAdminRead.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CargoEmpty.Models.Message.MessageDb>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminShared/_AdminLayout.cshtml";
+}
+
+<div class="col-12 cl-lg-12 UserMsgMainDiv">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-1 col-12 MessagLeftDiv">
+            @Html.Partial("AdminIndexMessage", Model as IEnumerable<CargoEmpty.Models.Message.MessageDb>)
+        </div>
+        <div class="col-12 col-lg-3 MessageRightDiv">
+            <ul class="IndexMessageMenuUlClass">
+                <li style="padding: 12px 0px 12px 20px; background-color: #f6f6f6;">
+                    <button data-id="1" class="btn btn-danger AddMessagebtn" data-link="/Message/Create">Yeni Messag<i class="fas fa-plus" style="color:white;"></i></button>
+                </li>
+                <li class="IndexMessageMenuLiClass" data-link="/Message/Allmsg" style="background-color:#eb0028;color:#f6f6f6;">Butun Mesajlar</li>
+                <li class="IndexMessageMenuLiClass" data-link="/Message/UnRead">Oxunmamis  <span style="text-align:right;">(@ViewData["inbox"])</span></li>
+                <li class="IndexMessageMenuLiClass" data-link="/Message/Inbox">Gelen</li>
+                <li class="IndexMessageMenuLiClass" data-link="/Message/Send">Gonderilen</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<div style="margin-top:20px"></div>
+
+@section AboutScript
+{
+    <script type="text/javascript" src="~/JavaScript/About.js"></script>
+
+}
+

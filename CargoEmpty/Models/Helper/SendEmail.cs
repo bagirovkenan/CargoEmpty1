@@ -36,6 +36,34 @@ namespace CargoEmpty.Models.Helper
             });
         }
 
+        //public static bool UserSendNewMail(UserMessage mesage)
+        //{
+
+        //    Task.Run(() =>
+        //    {
+        //        SmtpClient client = new SmtpClient("smtp.gmail.com");
+        //        MailAddress from = new MailAddress(mesage.Email, mesage.FullName);
+        //        client.EnableSsl = true;
+        //        client.Port = 587;
+        //        client.Credentials = new System.Net.NetworkCredential("kenanbagirov14@gmail.com", "kenan5952595");
+
+        //        MailAddress to = new MailAddress(_To);
+
+        //        MailMessage message = new MailMessage(from, to);
+        //        message.Body = _Message;
+        //        message.Subject = _Subject;
+        //        message.SubjectEncoding = System.Text.Encoding.UTF8;
+
+        //        ///  client.SendCompleted += new SendCompletedEventHandler(SentCompletedCallback);
+
+        //        client.Send(message);
+        //        message.Dispose();
+
+        //    });
+        //}
+
+
+
         public static bool SendCompletedCallback(object sender, AsyncCompletedEventArgs e)
         {
             // Get the unique identifier for this asynchronous operation.
