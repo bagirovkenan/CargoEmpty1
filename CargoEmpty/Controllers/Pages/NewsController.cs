@@ -91,13 +91,13 @@ namespace CargoEmpty.Controllers.Pages
         [HttpPost]
         [ValidateInput(false)]
 
-        public async Task<ActionResult> Edit(NewsDbModel EditNews)
+        public ActionResult Edit(NewsDbModel EditNews)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var EditNewsDb = await db.News.FirstOrDefaultAsync(f => f.Id == EditNews.Id);
+                    var EditNewsDb =  db.News.FirstOrDefault(f => f.Id == EditNews.Id);
                     if (EditNewsDb == null)
                     {
                         return HttpNotFound();
@@ -115,7 +115,7 @@ namespace CargoEmpty.Controllers.Pages
                             EditNews.SaveImageFile(EditNews.NewsImg, "/Image/News");
                             ViewModelChangeDbModel<NewsDbModel, NewsDbModel> nw = new ViewModelChangeDbModel<NewsDbModel, NewsDbModel>();
                             nw.ViewFromDb(EditNews, EditNewsDb, "NewsCreateDate");
-                            await db.SaveChangesAsync();
+                            db.SaveChanges();
                             return RedirectToAction("Index");
                         }
                         else

@@ -78,8 +78,8 @@ namespace CargoEmpty.Controllers.General
         [HttpPost]
         public ActionResult Edit(UserEdit edit)
         {
-
-            if (edit.Id == UserSession.SessionId)
+            UserDb UserSession = (UserDb)Session["User"];
+            if (edit.Id == UserSession.Id)
             {
                 if (ModelState.IsValid)
                 {

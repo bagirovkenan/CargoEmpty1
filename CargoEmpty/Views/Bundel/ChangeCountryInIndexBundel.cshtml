@@ -83,10 +83,13 @@
                         <button style="width:100%;" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Action
                         </button>
-                        <div class="dropdown-menu">
-                            <button class="btn btn-info" href="#" style="width:100%;text-align:center;display:block;margin-top:5px;font-size:12px;">Status</button>
-                            <button class="btn btn-info" style="width:100%;text-align:center;display:block;margin-top:5px;font-size:12px;" href="#">Status1</button>
-                            <button class="btn btn-info" href="#" style="width:100%;text-align:center;display:block;margin-top:5px;font-size:12px;">Status2</button>
+                        <div class="dropdown-menu" id="BundelIndexActinDropdownMainDinDivId">
+                            <input type="hidden" name="" value="@i.Id" class="ActionBundelId" />
+                            <button class="btn btn-info ActionChangeStatus" href="#" style="width:100%;text-align:center;display:block;font-size:14px;">Status</button>
+                            <button class="btn btn-info BundelIndexActivBill" style="width:100%;text-align:center;display:block;margin-top:10px;font-size:14px;" href="#">Bill</button>
+                            <button class="btn btn-warning BundelIndexEditBundelBtn" href="#" style="width:100%;text-align:center;display:block;margin-top:10px;font-size:14px;"><i class="fas fa-pen"></i></button>
+                            <button class="btn btn-info" href="#" style="width:100%;text-align:center;display:block;margin-top:10px;font-size:14px;"><a href="/Bundel/BundelLabel/@i.Id" style="color:white;">Label</a></button>
+                            <button class=" btn btn-info" href="#" style="width:100%;text-align:center;display:block;margin-top:10px;font-size:14px;"> <a href="@i.InvoicePath" style="color:white;">Proforma</a></button>
 
                         </div>
                     </div>

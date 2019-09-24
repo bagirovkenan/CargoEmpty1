@@ -34,9 +34,10 @@ namespace CargoEmpty.Controllers.General
         //////////////
         public async Task<ActionResult> UserIndexMsg(int id)
         {
-            if (id == UserSession.SessionId)
+            UserDb UserSession = (UserDb)Session["User"];
+            if (id == UserSession.Id)
             {
-                var msgs = await db.Messages.Where(f => f.UserDbId == UserSession.SessionId || f.ToMesssageUserDbId == UserSession.SessionId).OrderByDescending(o => o.CreateDate).ToListAsync();
+                var msgs = await db.Messages.Where(f => f.UserDbId == UserSession.Id || f.ToMesssageUserDbId == UserSession.Id).OrderByDescending(o => o.CreateDate).ToListAsync();
                 int inbox = SmsCount.UserMsgCount(id);
                 ViewData["inbox"] = inbox;
                 ViewData["Id"] = id;
@@ -51,9 +52,11 @@ namespace CargoEmpty.Controllers.General
 
         public async Task<ActionResult> UserAllmsg(int id)
         {
-            if (id == UserSession.SessionId)
+            UserDb UserSession = (UserDb)Session["User"];
+
+            if (id == UserSession.Id)
             {
-                var msgs = await db.Messages.Where(f => f.UserDbId == UserSession.SessionId || f.ToMesssageUserDbId == UserSession.SessionId).OrderByDescending(o => o.CreateDate).ToListAsync();
+                var msgs = await db.Messages.Where(f => f.UserDbId == UserSession.Id || f.ToMesssageUserDbId == UserSession.Id).OrderByDescending(o => o.CreateDate).ToListAsync();
                 int inbox = SmsCount.UserMsgCount(id);
                 return PartialView(msgs);
             }
@@ -65,9 +68,11 @@ namespace CargoEmpty.Controllers.General
 
         public async Task<ActionResult> UserUnRead(int? id)
         {
-            if (id == UserSession.SessionId)
+            UserDb UserSession = (UserDb)Session["User"];
+
+            if (id == UserSession.Id)
             {
-                var msgs = await db.Messages.Where(f => f.ToMesssageUserDbId == UserSession.SessionId && f.Read == false).OrderByDescending(o => o.CreateDate).ToListAsync();
+                var msgs = await db.Messages.Where(f => f.ToMesssageUserDbId == UserSession.Id && f.Read == false).OrderByDescending(o => o.CreateDate).ToListAsync();
                 return PartialView(msgs);
             }
             else
@@ -78,9 +83,11 @@ namespace CargoEmpty.Controllers.General
 
         public async Task<ActionResult> UserInbox(int id)
         {
-            if (id == UserSession.SessionId)
+            UserDb UserSession = (UserDb)Session["User"];
+
+            if (id == UserSession.Id)
             {
-                var msgs = await db.Messages.Where(f => f.ToMesssageUserDbId == UserSession.SessionId).OrderByDescending(o => o.CreateDate).ToListAsync();
+                var msgs = await db.Messages.Where(f => f.ToMesssageUserDbId == UserSession.Id).OrderByDescending(o => o.CreateDate).ToListAsync();
                 return PartialView(msgs);
             }
             return RedirectToAction("Index", "MyAccount");
@@ -88,9 +95,11 @@ namespace CargoEmpty.Controllers.General
 
         public async Task<ActionResult> UserSend(int id)
         {
-            if (id == UserSession.SessionId)
+            UserDb UserSession = (UserDb)Session["User"];
+
+            if (id == UserSession.Id)
             {
-                var msgs = await db.Messages.Where(f => f.UserDbId == UserSession.SessionId).OrderByDescending(o => o.CreateDate).OrderByDescending(o => o.CreateDate).ToListAsync();
+                var msgs = await db.Messages.Where(f => f.UserDbId == UserSession.Id).OrderByDescending(o => o.CreateDate).OrderByDescending(o => o.CreateDate).ToListAsync();
                 return PartialView(msgs);
             }
             return RedirectToAction("Index", "MyAccount");
@@ -98,9 +107,11 @@ namespace CargoEmpty.Controllers.General
 
         public async Task<ActionResult> UserCreate(int id)
         {
-            if (id == UserSession.SessionId)
+            UserDb UserSession = (UserDb)Session["User"];
+
+            if (id == UserSession.Id)
             {
-                var user = await db.Users.FirstOrDefaultAsync(f => f.Id == UserSession.SessionId);
+                var user = await db.Users.FirstOrDefaultAsync(f => f.Id == UserSession.Id);
                 var userMsg = new UserViewMessage();
                 userMsg.UserId = user.Id;
                 userMsg.FullName = user.FirstName + user.LastName;
@@ -114,9 +125,11 @@ namespace CargoEmpty.Controllers.General
         [HttpPost]
         public async Task<ActionResult> UserCreate(CreateView ViewMessage)
         {
-            if (ViewMessage.UserDbId == UserSession.SessionId)
+            UserDb UserSession = (UserDb)Session["User"];
+
+            if (ViewMessage.UserDbId == UserSession.Id)
             {
-                var user = await db.Users.FirstOrDefaultAsync(f => f.Id == UserSession.SessionId);
+                var user = await db.Users.FirstOrDefaultAsync(f => f.Id == UserSession.Id);
                 MessageDb Message = new MessageDb();
 
                 Message.UserDbId = ViewMessage.UserDbId;
@@ -131,7 +144,7 @@ namespace CargoEmpty.Controllers.General
                 Message.Read = true;
                 db.Messages.Add(Message);
                 await db.SaveChangesAsync();
-                return RedirectToAction("UserIndexMsg", new { id = UserSession.SessionId });
+                return RedirectToAction("UserIndexMsg", new { id = UserSession.Id });
             }
             else
             {
@@ -147,7 +160,9 @@ namespace CargoEmpty.Controllers.General
         [HttpPost]
         public async Task<ActionResult> MessageUserRead(int id)
         {
-            var msg = await db.Messages.FirstOrDefaultAsync(f => f.Id == id && (f.UserDbId == UserSession.SessionId || f.ToMesssageUserDbId == UserSession.SessionId));
+            UserDb UserSession = (UserDb)Session["User"];
+
+            var msg = await db.Messages.FirstOrDefaultAsync(f => f.Id == id && (f.UserDbId == UserSession.Id || f.ToMesssageUserDbId == UserSession.Id));
             if (msg != null)
             {
                 msg.Read = true;
@@ -156,13 +171,15 @@ namespace CargoEmpty.Controllers.General
             }
             else
             {
-                return RedirectToAction("UserIndexMsg", "User", new { id = UserSession.SessionId });
+                return RedirectToAction("UserIndexMsg", "User", new { id = UserSession.Id });
             }
         }
         [HttpPost]
         public JsonResult MessageUserDelete(int id)
         {
-            var msg = db.Messages.FirstOrDefault(f => f.Id == id && (f.UserDbId == UserSession.SessionId || f.ToMesssageUserDbId == UserSession.SessionId));
+            UserDb UserSession = (UserDb)Session["User"];
+
+            var msg = db.Messages.FirstOrDefault(f => f.Id == id && (f.UserDbId == UserSession.Id || f.ToMesssageUserDbId == UserSession.Id));
             if (msg != null)
             {
                 db.Messages.Remove(msg);
@@ -200,10 +217,15 @@ namespace CargoEmpty.Controllers.General
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(MessageDb Message)
+        public async Task<ActionResult> Create(AdminCreate ViewMessage)
         {
-            
+            MessageDb Message = new MessageDb();    
             Message.CreateDate = DateTime.Now;
+            Message.ToMesssageUserDbId = ViewMessage.ToMesssageUserDbId;
+            Message.Subject = ViewMessage.Subject;
+            Message.Message = ViewMessage.Message;
+            Message.ToMail = (await db.Users.FirstOrDefaultAsync(f => f.Id == ViewMessage.ToMesssageUserDbId)).Mail;
+            Message.FromMail = "kenanbagiro.14@gmail.com";
             db.Messages.Add(Message);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -234,6 +256,8 @@ namespace CargoEmpty.Controllers.General
         [HttpPost]
         public async Task<ActionResult> MessageAdminRead(int id)
         {
+            UserDb UserSession = (UserDb)Session["User"];
+
             var msg = await db.Messages.FirstOrDefaultAsync(f => f.Id == id );
             if (msg != null)
             {
@@ -243,7 +267,7 @@ namespace CargoEmpty.Controllers.General
             }
             else
             {
-                return RedirectToAction("UserIndexMsg", "User", new { id = UserSession.SessionId });
+                return RedirectToAction("UserIndexMsg", "User", new { id = UserSession.Id });
             }
         }
         [HttpPost]

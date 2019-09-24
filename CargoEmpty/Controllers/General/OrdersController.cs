@@ -16,8 +16,9 @@ namespace CargoEmpty.Controllers.General
         // GET: Orders
         public ActionResult IndexUser()//bu action duzelt bundelleri duzeldennen sora sefdi cunki
         {
-            var MyOrders = db.Orders.Where(w => w.UserDbId == UserSession.SessionId).ToList();
-            var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.CreatAdmin==false).ToList();
+            UserDb UserSession = (UserDb)Session["User"];
+            var MyOrders = db.Orders.Where(w => w.UserDbId == UserSession.Id).ToList();
+            var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.Id && w.CreatAdmin==false).ToList();
             OrderIndexView OrderIndex = new OrderIndexView();
             foreach (OrderDb i in MyOrders)
             {
@@ -35,6 +36,8 @@ namespace CargoEmpty.Controllers.General
             ViewBag.orders = MyOrders;
             ViewBag.decs= MyDecs;
             ViewBag.Statuse = db.OrderStatuses.ToList();
+            var Id = UserSession.Id;
+            ViewBag.id = Id;
             return View(OrderIndex);
         }
 
@@ -43,7 +46,8 @@ namespace CargoEmpty.Controllers.General
 
         public async Task<ActionResult> StatuseOrder(int id)
         {
-            var orders = await db.Orders.Where(w => w.UserDbId == UserSession.SessionId && w.OrderStatusId == id).ToListAsync();
+            UserDb UserSession = (UserDb)Session["User"];
+            var orders = await db.Orders.Where(w => w.UserDbId == UserSession.Id && w.OrderStatusId == id).ToListAsync();
             ViewBag.Statuse = db.OrderStatuses.ToList();
             return PartialView(orders);
         }
@@ -63,8 +67,9 @@ namespace CargoEmpty.Controllers.General
 
                 if (ModelState.IsValid)
                 {
+                    UserDb UserSession = (UserDb)Session["User"];
                     var country = db.Countries.FirstOrDefault(f => f.Id == createOrder.CountryId);
-                    var user = db.Users.FirstOrDefault(f => f.Id == UserSession.SessionId);
+                    var user = db.Users.FirstOrDefault(f => f.Id == UserSession.Id);
                     if (country != null && user != null)
                     {
                         OrderDb order = new OrderDb();
@@ -124,21 +129,23 @@ namespace CargoEmpty.Controllers.General
         public ActionResult MyOrdersActions(int? id)//?????????
         {
 
-            if (UserSession.SessionIsLogin == "true")
+            if (Session["isLogin"] !=null)
             {
-            var MyOrders = db.Orders.Where(w => w.UserDbId == UserSession.SessionId);
+               
+                UserDb UserSession = (UserDb)Session["User"];
+                var MyOrders = db.Orders.Where(w => w.UserDbId == UserSession.Id);
 
 
                 if (id == 100)
                 {
-                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.CreatAdmin == false).ToList();
+                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.Id && w.CreatAdmin == false).ToList();
                     ViewBag.decs = MyDecs;
                     ViewBag.Statuse = db.OrderStatuses.ToList();
                     return PartialView(MyOrders.ToList());
                 }
                 else if (id == 99)
                 {
-                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.CreatAdmin == false).ToList();
+                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.Id && w.CreatAdmin == false).ToList();
                     ViewBag.decs = MyDecs;
                     var IsPaid = MyOrders.Where(w => w.isPaid == true).ToList();
                     ViewBag.Statuse = db.OrderStatuses.ToList();
@@ -146,7 +153,7 @@ namespace CargoEmpty.Controllers.General
                 }
                 else if (id == 98)
                 {
-                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.CreatAdmin == false).ToList();
+                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.Id && w.CreatAdmin == false).ToList();
                     ViewBag.decs = MyDecs;
                     var isNotPaid = MyOrders.Where(w => w.isPaid == false).ToList();
                     ViewBag.Statuse = db.OrderStatuses.ToList();
@@ -155,7 +162,7 @@ namespace CargoEmpty.Controllers.General
                 }
                 else if (id == 97)
                 {
-                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.CreatAdmin == false).ToList();
+                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.Id && w.CreatAdmin == false).ToList();
                     ViewBag.decs = MyDecs;
                     var isUrgentOrder = MyOrders.Where(w => w.isUrgent == true).ToList();
                     ViewBag.Statuse = db.OrderStatuses.ToList();
@@ -163,7 +170,7 @@ namespace CargoEmpty.Controllers.General
                 }
                 else if (id == 96)
                 {
-                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.CreatAdmin == false).ToList();
+                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.Id && w.CreatAdmin == false).ToList();
                     ViewBag.decs = MyDecs;
                     var isNormalOrder = MyOrders.Where(w => w.isUrgent == false).ToList();
                     ViewBag.Statuse = db.OrderStatuses.ToList();
@@ -171,7 +178,7 @@ namespace CargoEmpty.Controllers.General
                 }
                 else if (id == 95)
                 {
-                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.CreatAdmin == false).ToList();
+                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.Id && w.CreatAdmin == false).ToList();
                     ViewBag.decs = MyDecs;
                     var isNormalOrder = MyOrders.Where(w => w.Ordered == false).ToList();
                     ViewBag.Statuse = db.OrderStatuses.ToList();
@@ -180,7 +187,7 @@ namespace CargoEmpty.Controllers.General
 
                 else if (id == 94)
                 {
-                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.CreatAdmin == false).ToList();
+                    var MyDecs = db.Declerations.Where(w => w.UserDbId == UserSession.Id && w.CreatAdmin == false).ToList();
                     ViewBag.decs = MyDecs;
                     var isNormalOrder = MyOrders.Where(w => w.Ordered == true).ToList();
                     ViewBag.Statuse = db.OrderStatuses.ToList();
@@ -206,7 +213,8 @@ namespace CargoEmpty.Controllers.General
             }
             else
             {
-                var editdbOrder = await db.Orders.FirstOrDefaultAsync(f => f.Id == id && f.UserDbId == UserSession.SessionId);
+                UserDb UserSession = (UserDb)Session["User"];
+                var editdbOrder = await db.Orders.FirstOrDefaultAsync(f => f.Id == id && f.UserDbId == UserSession.Id);
                 if (editdbOrder == null)
                 {
                     return HttpNotFound();
@@ -227,7 +235,8 @@ namespace CargoEmpty.Controllers.General
         {
             if (ModelState.IsValid)
             {
-                OrderDb editOrder = await db.Orders.FirstOrDefaultAsync(f => f.Id == edit.Id && f.UserDbId == UserSession.SessionId);
+                UserDb UserSession = (UserDb)Session["User"];
+                OrderDb editOrder = await db.Orders.FirstOrDefaultAsync(f => f.Id == edit.Id && f.UserDbId == UserSession.Id);
                 if (editOrder != null)
                 {
                     editOrder.Link = edit.Link;
@@ -290,9 +299,10 @@ namespace CargoEmpty.Controllers.General
         [HttpPost]
         public async Task<ActionResult> SelectedDelete(int[] id)
         {
+            UserDb UserSession = (UserDb)Session["User"];
             foreach (var i in id)
             {
-                var order = await db.Orders.FirstOrDefaultAsync(f => f.Id == i && f.UserDbId == UserSession.SessionId);
+                var order = await db.Orders.FirstOrDefaultAsync(f => f.Id == i && f.UserDbId == UserSession.Id);
                 if (order != null)
                 {
                     db.Orders.Remove(order);
@@ -327,6 +337,7 @@ namespace CargoEmpty.Controllers.General
         public ActionResult IndexAdmin()
         {
             var Orders = db.Orders.OrderByDescending(o=>o.CreatedDate).ToList();
+
             OrderIndexView OrderIndex = new OrderIndexView();
             
             OrderIndex.AllOrdersCount = Orders.Count();

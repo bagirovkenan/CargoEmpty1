@@ -13,6 +13,13 @@ namespace CargoEmpty.Models.Message
         public string Company { get; set; }
     }
 
+    public class AdminCreate
+    {
+        public int ToMesssageUserDbId { get; set; }
+        public string Subject { get; set; }
+        public string Message { get; set; }
+    }
+
     public class ReadMessage
     {
         public int? MessageId { get; set; }

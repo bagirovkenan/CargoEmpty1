@@ -24,7 +24,7 @@ namespace CargoEmpty.Models.Helper
         {
             using (CargoDbContext db = new CargoDbContext())
             {
-                int unread = db.Messages.Count(f => f.ToMesssageUserDbId == UserSession.SessionId && f.Read == false);
+                int unread = db.Messages.Count(f => f.ToMesssageUserDbId == id && f.Read == false);
                 return unread;
             }
         }

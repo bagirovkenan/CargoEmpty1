@@ -136,7 +136,7 @@
                                             }
                                         </td>
                                         <td>
-                                            <a href="@IsPaidLink"><button type="button" class="btn btn-success" style="font-size:13px">@IsPaid</button></a>
+                                            <a href="/Balance/Paid/@i.Id"><button type="button" class="btn btn-success IndexUserPaidOrder" style="font-size:13px">@IsPaid</button></a>
                                         </td>
                                         <td>
                                             <button type="button" data-id="@i.Id" class="btn btn-primary OrderEditBtn" style="font-size:15px;"><i class="far fa-edit"></i></button>
@@ -180,9 +180,7 @@
                         </thead>
                         <tbody class="MyOrdersDecsTableBody">
                             @{
-
-
-
+  
                                 string icra;
                                 string DecsComment;
 
@@ -265,11 +263,9 @@
                             <li><a href="/Orders/Create" title="">Sifaris Elave Et</a></li>
                             <li><a href="/MyAccount/Index" title="">Ünvanlarım</a></li>
                             <li><a href="/Orders/IndexUser" title="">SİFARİŞLƏRİM</a></li>
-                            <li><a href="#" title="">TƏNZİMLƏMƏLƏR</a></li>
-                            <li><a href="#" title="">Balans (SİFARİŞLƏR)</a></li>
-                            <li><a href="#" title="">Balans (XİDMƏTLƏR)</a></li>
-                            <li><a href="#" title="">Sorğular</a></li>
-                            <li><a href="#" title="">Mesajlar </a></li>
+                            <li class="PassivAccountLink"><a href="/SignUp/Edit/@ViewBag.id" title="">TƏNZİMLƏMƏLƏR</a></li>
+                            <li><a href="/Balance/UserBalance/@ViewBag.id" title="">Balans</a></li>
+                            <li><a href="/Message/UserIndexMsg/@ViewBag.id" title="">Mesajlar </a></li>
                             <li><a href="/UserLogin/ExitAccount" title="">Çıxış</a></li>
                         </ul>
 

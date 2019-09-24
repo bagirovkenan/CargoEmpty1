@@ -54,13 +54,17 @@
                             <div id="MainPageUserSerchDiv" class="row">
                                 @*bura ajax ile dolacaq*@
                             </div>
-
+                            @*@Session["FirstName"] @Session["LastName"] | @Session["UserCode"]*@
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-12">
-                            <select class="form-control" style="margin-top:30px;">
-                                <option value="value">Istifadeci Adi olacaq</option>
-                                <option value="value">Log out</option>
-                            </select>
+                            <div class="dropdown">
+                                <button style="margin-top:32px;width:100%;" class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    @Session["FirstName"] @Session["LastName"] | @Session["UserCode"]
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="/UserLogin/ExitAccount">Log Out</a>                                  
+                                </div>
+                            </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-12">
                             <button class="btn btn-warning" id="layoutDeclerationModal" style="width:100%;box-shadow:unset;margin-top:31px;">Beyanname</button>
@@ -110,9 +114,9 @@
                             <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
                                 <a href="/User/IndexCustumers"><h3>Custumers</h3></a>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
+                            @*<div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
                                 <a href=" /Balance/Index"><h3>Balance</h3></a>
-                            </div>
+                            </div>*@
                             <div class="col-lg-12 col-md-12 col-12 categoryTitetelColDiv" id="">
                                 <a href="/Message/Index">   <h3>Messages</h3></a>
                             </div>

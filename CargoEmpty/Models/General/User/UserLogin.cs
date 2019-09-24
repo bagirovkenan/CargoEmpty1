@@ -14,15 +14,22 @@ namespace CargoEmpty.Models.General.User
 /// <summary>
 /// ///////////////////////////////////////////////////
 /// </summary>
-    public static class UserSession
+    public static class NewUserSession
     {
-        public static string SessionIsLogin { get; set; }
-        public static int?   SessionId { get; set; }
-        public static string SessionUserCode { get; set; }
-        public static string SessionUserName  { get; set; }
-        public static string SessionMail{ get; set; }
-        public static string SessionFirstName { get; set; }
-        public static string SessionLastName { get; set; }
+       public static UserDb SessionUser()
+        {
+            if (HttpContext.Current.Session["isLogin"]!=null)
+            {
+                UserDb user = (UserDb)HttpContext.Current.Session["User"];
+                return user;
+            }
+            else
+            {
+                UserDb us = new UserDb();
+                return us;
+            }
+
+        }
 
     }
 
@@ -32,6 +39,7 @@ namespace CargoEmpty.Models.General.User
     /// 
     public class ForgetThePassword
     {
+        
         [Required (ErrorMessage ="Bos Ola Bilmez Ve Qeydiyyatdan Kecdiyiniz Emaili Yazin")]
         public string Mail { get; set; }
         [Required (ErrorMessage ="Bos Ola Bilmez Ve Qeydiyyatdan Kecdiyiniz Adinizi Yazin")]

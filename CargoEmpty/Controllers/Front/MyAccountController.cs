@@ -18,11 +18,12 @@ namespace CargoEmpty.Controllers.Front
         public async  Task<ActionResult> Index()
         {
             var Account = new MyAccountHome();
+            UserDb UserSession = (UserDb)Session["User"];
 
-            if (UserSession.SessionIsLogin=="true")
+            if (Session["isLogin"] != null)
             {
                 var Addresses = await db.MyAddresses.ToListAsync();
-                var User = await db.Users.FirstOrDefaultAsync(f => f.Id == UserSession.SessionId);
+                var User = await db.Users.FirstOrDefaultAsync(f => f.Id == UserSession.Id);
               
                 User.ViewFromDb(Account.User);
                 foreach(var i in Addresses)

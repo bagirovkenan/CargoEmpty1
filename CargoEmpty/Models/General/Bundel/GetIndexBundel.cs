@@ -20,7 +20,7 @@ namespace CargoEmpty.Models.General.Bundel
         public decimal Price { get; set; }
         public decimal? DeliveryPrice { get; set; }
         public int? UnicalNumberReception { get; set; }
-        public List<BundelLinks> Links { get; set; } = new List<BundelLinks>();
+        public List<BundelLinks> Links { get;  } = new List<BundelLinks>();
         public string InvoicePath { get; set; }
         public string ShopName { get; set; }
         public int OrderStatusId { get; set; }
@@ -64,6 +64,7 @@ namespace CargoEmpty.Models.General.Bundel
                     }
                 }
             });
+
             Task task2 = Task.Run(() =>
            {
                using (CargoDbContext dbs = new CargoDbContext())

@@ -97,7 +97,7 @@ $(".MessagLeftDiv").on("click", "#CreateMessageUserNameBtnId", function () {
     var id = $(this).attr("data-id");
     var text = $(this).text(); 
     $("#AdminCreateMessageToInputId").val(text);
-    var input = '<input type="text" name="ToMesssageUserDbId" value="' + id + '" />' 
+    var input = '<input type="hidden" name="ToMesssageUserDbId" value="' + id + '" />' 
     $(".MessgeToDinamikChengeUser").html("");
     $(".MessgeToDinamikChengeUser").append(input);
 });

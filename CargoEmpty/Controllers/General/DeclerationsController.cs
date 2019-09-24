@@ -26,7 +26,8 @@ namespace CargoEmpty.Controllers.General
 
         public async Task<ActionResult> StatuseDec(int id)
         {
-            var decs = await db.Declerations.Where(w => w.UserDbId == UserSession.SessionId && w.OrderStatusId == id).ToListAsync();
+            UserDb UserSession = (UserDb)Session["User"];
+            var decs = await db.Declerations.Where(w => w.UserDbId == UserSession.Id && w.OrderStatusId == id).ToListAsync();
             ViewBag.Statuse = db.OrderStatuses.ToList();
             return PartialView(decs);
         }
@@ -35,8 +36,8 @@ namespace CargoEmpty.Controllers.General
         [HttpPost]
         public ActionResult Create(CreateDeclerationView create)
         {
-
-            var user = db.Users.FirstOrDefault(f => f.Id == UserSession.SessionId);
+            UserDb UserSession = (UserDb)Session["User"];
+            var user = db.Users.FirstOrDefault(f => f.Id == UserSession.Id);
 
             if (ModelState.IsValid && create.Invoice != null && create.Invoice.ContentLength > 0 && user != null)
             {

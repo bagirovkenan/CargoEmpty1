@@ -220,7 +220,8 @@ $(document).ready(function () {
     });
 
     //Change the status of the bundle on the external storage
-    $("#BundelIndexActinDropdownMainDinDivId .ActionChangeStatus").click(function () {
+    $(".BundelIndexTableMainDiv").on("click",".ActionChangeStatus",function () {
+        
         var id = $(this).parent().children(".ActionBundelId").val();
 
         AjaxReturnPartialView("GET", "/Bundel/EditForeignWarehouseBundelStatuse", id, ".BundelIndexDeclerationInfoModalContenDiv");
@@ -231,7 +232,7 @@ $(document).ready(function () {
 
 
     // bill btn click info bundel
-    $("#BundelIndexActinDropdownMainDinDivId .BundelIndexActivBill").click(function () {
+    $(".BundelIndexTableMainDiv").on("click",".BundelIndexActivBill",function () {
         var id = $(this).parent().children(".ActionBundelId").val();
         AjaxReturnPartialView("GET", "/Bundel/BundelBill", id, ".BundelIndexDeclerationInfoModalContenDiv");
         $("#bundelIndexChangeStatusModalSaveBtn").css("display", "none");
@@ -244,8 +245,8 @@ $(document).ready(function () {
     $("#BundelIndexModalFooter").on("click", "#BundelIndexPrintBtn", function () {
         PrintScreen(document.getElementById("BundelIndezChangeStatusModalMainDiv1"));
     })
-    //Edit bundel Action btn
-    $("#BundelIndexActinDropdownMainDinDivId .BundelIndexEditBundelBtn").click(function () {
+    //Edit bundel Action btn 
+    $(".BundelIndexTableMainDiv").on("click",".BundelIndexEditBundelBtn",function () {
         var id = $(this).parent().children(".ActionBundelId").val();
         AjaxReturnPartialView("GET", "/Bundel/BundelEdit", id, ".BundelIndexDeclerationInfoModalContenDiv");
 

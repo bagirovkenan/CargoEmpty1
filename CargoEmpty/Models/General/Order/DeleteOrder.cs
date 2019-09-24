@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.ModelBinding;
+using System.Web.Mvc;
 
 namespace CargoEmpty.Models.General.Order
 {
@@ -17,34 +18,36 @@ namespace CargoEmpty.Models.General.Order
 
         public static async Task<bool> Delete(DeleteOrder delete, CargoDbContext db)
         {
-          
-                var del = await db.Orders.FirstOrDefaultAsync(f => f.Id == delete.OrderId && f.UserDbId == delete.UserId);
-                if (del!=null)
-                {
-                    db.Orders.Remove(del);                  
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            
+
+            var del = await db.Orders.FirstOrDefaultAsync(f => f.Id == delete.OrderId && f.UserDbId == delete.UserId);
+            if (del != null)
+            {
+                db.Orders.Remove(del);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         public static async Task<bool> Delete(int id, CargoDbContext db)
         {
-           
-                var del = await db.Orders.FirstOrDefaultAsync(f => f.Id ==id && f.UserDbId == UserSession.SessionId);
-                if (del != null)
-                {
-                    db.Orders.Remove(del);
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            
+
+            int? SesId = (int)HttpContext.Current.Session["userId"];
+
+            var del = await db.Orders.FirstOrDefaultAsync(f => f.Id == id && f.UserDbId == SesId);
+            if (del != null)
+            {
+                db.Orders.Remove(del);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }

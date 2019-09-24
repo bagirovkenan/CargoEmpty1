@@ -24,58 +24,36 @@ namespace CargoEmpty.Controllers.General
         
         public ActionResult Login(UserLogin login)
         {
+           
             var ViewHashPassword = SHA.CustumSHA(login.Password);
             var user = db.Users.SingleOrDefault(f => (f.UserName == login.UerNameOrMail || f.Mail == login.UerNameOrMail) && f.HashPassword == ViewHashPassword);
 
             if (user == null)
             {
-
+                Session["isLogin"] = null;
                 return View(login);
             }
             else
             {
+                
                 Session["isLogin"] = "true";
+                Session["User"] = user;
                 Session["userId"] = user.Id;
                 Session["UserCode"] = user.UserCod;
                 Session["username"] = user.UserName;
                 Session["mail"] = user.Mail;
                 Session["FirstName"] = user.FirstName;
                 Session["LastName"] = user.LastName;
-                UserSession.SessionIsLogin  = (string)Session["isLogin"];
-                UserSession.SessionId       = (int)Session["userId"];
-                UserSession.SessionUserCode = (string)Session["UserCode"];
-                UserSession.SessionUserName = (string)Session["username"];
-                UserSession.SessionMail     = (string)Session["mail"];
-                UserSession.SessionFirstName =(string)Session["FirstName"];
-                UserSession.SessionLastName = (string)Session["LastName"];
 
-                //return View(login);
                 return RedirectToAction("Index","MyAccount");
-                //int? usrProfil = (int)Session["userId"];
             }
         }
 
         public ActionResult ExitAccount()
         {
-            Session["isLogin"] = "false";
-            Session["userId"] = 0;
-            Session["UserCode"] = "null";
-            Session["username"] = "null";
-            Session["mail"] = "null";
-            Session["FirstName"] = "null";
-            Session["LastName"] = "null";
-
-            UserSession.SessionIsLogin = (string)Session["isLogin"];
-            UserSession.SessionId = (int)Session["userId"];
-            UserSession.SessionUserCode = (string)Session["UserCode"];
-            UserSession.SessionUserName = (string)Session["username"];
-            UserSession.SessionMail = (string)Session["mail"];
-            UserSession.SessionFirstName = (string)Session["FirstName"];
-            UserSession.SessionLastName = (string)Session["LastName"];
-
-            //return View(login);
+           
+            Session.Clear();         
             return RedirectToAction("Index", "Home");
-            //int? usrProfil = (int)Session["userId"];
         }
 
         public ActionResult ForgetPassword()
